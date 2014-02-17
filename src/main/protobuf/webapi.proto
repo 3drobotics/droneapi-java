@@ -4,8 +4,8 @@ option java_package = "com.geeksville.dapi";
 
 
 message LoginMsg {
-	required String username = 1;
-	required String password = 2;
+	required string username = 1;
+	required string password = 2;
 }
 
 message MavlinkMsg {
