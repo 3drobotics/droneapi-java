@@ -5,6 +5,9 @@
 *.war
 *.ear
 
+# Eclipse stuff
+.cache
+
 # SBT stuff
 project/target
 .history
