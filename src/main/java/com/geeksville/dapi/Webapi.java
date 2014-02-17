@@ -569,10 +569,10 @@ public final class Webapi {
     boolean hasSrcInterface();
     int getSrcInterface();
     
-    // repeated bytes packets = 2;
-    java.util.List<com.google.protobuf.ByteString> getPacketsList();
-    int getPacketsCount();
-    com.google.protobuf.ByteString getPackets(int index);
+    // repeated bytes packet = 2;
+    java.util.List<com.google.protobuf.ByteString> getPacketList();
+    int getPacketCount();
+    com.google.protobuf.ByteString getPacket(int index);
   }
   public static final class MavlinkMsg extends
       com.google.protobuf.GeneratedMessage
@@ -613,23 +613,23 @@ public final class Webapi {
       return srcInterface_;
     }
     
-    // repeated bytes packets = 2;
-    public static final int PACKETS_FIELD_NUMBER = 2;
-    private java.util.List<com.google.protobuf.ByteString> packets_;
+    // repeated bytes packet = 2;
+    public static final int PACKET_FIELD_NUMBER = 2;
+    private java.util.List<com.google.protobuf.ByteString> packet_;
     public java.util.List<com.google.protobuf.ByteString>
-        getPacketsList() {
-      return packets_;
+        getPacketList() {
+      return packet_;
     }
-    public int getPacketsCount() {
-      return packets_.size();
+    public int getPacketCount() {
+      return packet_.size();
     }
-    public com.google.protobuf.ByteString getPackets(int index) {
-      return packets_.get(index);
+    public com.google.protobuf.ByteString getPacket(int index) {
+      return packet_.get(index);
     }
     
     private void initFields() {
       srcInterface_ = 0;
-      packets_ = java.util.Collections.emptyList();;
+      packet_ = java.util.Collections.emptyList();;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -650,8 +650,8 @@ public final class Webapi {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeSInt32(1, srcInterface_);
       }
-      for (int i = 0; i < packets_.size(); i++) {
-        output.writeBytes(2, packets_.get(i));
+      for (int i = 0; i < packet_.size(); i++) {
+        output.writeBytes(2, packet_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -668,12 +668,12 @@ public final class Webapi {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < packets_.size(); i++) {
+        for (int i = 0; i < packet_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(packets_.get(i));
+            .computeBytesSizeNoTag(packet_.get(i));
         }
         size += dataSize;
-        size += 1 * getPacketsList().size();
+        size += 1 * getPacketList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -801,7 +801,7 @@ public final class Webapi {
         super.clear();
         srcInterface_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        packets_ = java.util.Collections.emptyList();;
+        packet_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
@@ -846,10 +846,10 @@ public final class Webapi {
         }
         result.srcInterface_ = srcInterface_;
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          packets_ = java.util.Collections.unmodifiableList(packets_);
+          packet_ = java.util.Collections.unmodifiableList(packet_);
           bitField0_ = (bitField0_ & ~0x00000002);
         }
-        result.packets_ = packets_;
+        result.packet_ = packet_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -869,13 +869,13 @@ public final class Webapi {
         if (other.hasSrcInterface()) {
           setSrcInterface(other.getSrcInterface());
         }
-        if (!other.packets_.isEmpty()) {
-          if (packets_.isEmpty()) {
-            packets_ = other.packets_;
+        if (!other.packet_.isEmpty()) {
+          if (packet_.isEmpty()) {
+            packet_ = other.packet_;
             bitField0_ = (bitField0_ & ~0x00000002);
           } else {
-            ensurePacketsIsMutable();
-            packets_.addAll(other.packets_);
+            ensurePacketIsMutable();
+            packet_.addAll(other.packet_);
           }
           onChanged();
         }
@@ -920,8 +920,8 @@ public final class Webapi {
               break;
             }
             case 18: {
-              ensurePacketsIsMutable();
-              packets_.add(input.readBytes());
+              ensurePacketIsMutable();
+              packet_.add(input.readBytes());
               break;
             }
           }
@@ -951,52 +951,52 @@ public final class Webapi {
         return this;
       }
       
-      // repeated bytes packets = 2;
-      private java.util.List<com.google.protobuf.ByteString> packets_ = java.util.Collections.emptyList();;
-      private void ensurePacketsIsMutable() {
+      // repeated bytes packet = 2;
+      private java.util.List<com.google.protobuf.ByteString> packet_ = java.util.Collections.emptyList();;
+      private void ensurePacketIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          packets_ = new java.util.ArrayList<com.google.protobuf.ByteString>(packets_);
+          packet_ = new java.util.ArrayList<com.google.protobuf.ByteString>(packet_);
           bitField0_ |= 0x00000002;
          }
       }
       public java.util.List<com.google.protobuf.ByteString>
-          getPacketsList() {
-        return java.util.Collections.unmodifiableList(packets_);
+          getPacketList() {
+        return java.util.Collections.unmodifiableList(packet_);
       }
-      public int getPacketsCount() {
-        return packets_.size();
+      public int getPacketCount() {
+        return packet_.size();
       }
-      public com.google.protobuf.ByteString getPackets(int index) {
-        return packets_.get(index);
+      public com.google.protobuf.ByteString getPacket(int index) {
+        return packet_.get(index);
       }
-      public Builder setPackets(
+      public Builder setPacket(
           int index, com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  ensurePacketsIsMutable();
-        packets_.set(index, value);
+  ensurePacketIsMutable();
+        packet_.set(index, value);
         onChanged();
         return this;
       }
-      public Builder addPackets(com.google.protobuf.ByteString value) {
+      public Builder addPacket(com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  ensurePacketsIsMutable();
-        packets_.add(value);
+  ensurePacketIsMutable();
+        packet_.add(value);
         onChanged();
         return this;
       }
-      public Builder addAllPackets(
+      public Builder addAllPacket(
           java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        ensurePacketsIsMutable();
-        super.addAll(values, packets_);
+        ensurePacketIsMutable();
+        super.addAll(values, packet_);
         onChanged();
         return this;
       }
-      public Builder clearPackets() {
-        packets_ = java.util.Collections.emptyList();;
+      public Builder clearPacket() {
+        packet_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
@@ -1020,10 +1020,10 @@ public final class Webapi {
     boolean hasType();
     com.geeksville.dapi.Webapi.EnvelopeMsgCode getType();
     
-    // optional .com.geeksville.dapi.LoginMsg heartbeat = 10;
-    boolean hasHeartbeat();
-    com.geeksville.dapi.Webapi.LoginMsg getHeartbeat();
-    com.geeksville.dapi.Webapi.LoginMsgOrBuilder getHeartbeatOrBuilder();
+    // optional .com.geeksville.dapi.LoginMsg login = 10;
+    boolean hasLogin();
+    com.geeksville.dapi.Webapi.LoginMsg getLogin();
+    com.geeksville.dapi.Webapi.LoginMsgOrBuilder getLoginOrBuilder();
     
     // optional .com.geeksville.dapi.MavlinkMsg mavlink = 11;
     boolean hasMavlink();
@@ -1069,17 +1069,17 @@ public final class Webapi {
       return type_;
     }
     
-    // optional .com.geeksville.dapi.LoginMsg heartbeat = 10;
-    public static final int HEARTBEAT_FIELD_NUMBER = 10;
-    private com.geeksville.dapi.Webapi.LoginMsg heartbeat_;
-    public boolean hasHeartbeat() {
+    // optional .com.geeksville.dapi.LoginMsg login = 10;
+    public static final int LOGIN_FIELD_NUMBER = 10;
+    private com.geeksville.dapi.Webapi.LoginMsg login_;
+    public boolean hasLogin() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.geeksville.dapi.Webapi.LoginMsg getHeartbeat() {
-      return heartbeat_;
+    public com.geeksville.dapi.Webapi.LoginMsg getLogin() {
+      return login_;
     }
-    public com.geeksville.dapi.Webapi.LoginMsgOrBuilder getHeartbeatOrBuilder() {
-      return heartbeat_;
+    public com.geeksville.dapi.Webapi.LoginMsgOrBuilder getLoginOrBuilder() {
+      return login_;
     }
     
     // optional .com.geeksville.dapi.MavlinkMsg mavlink = 11;
@@ -1097,7 +1097,7 @@ public final class Webapi {
     
     private void initFields() {
       type_ = com.geeksville.dapi.Webapi.EnvelopeMsgCode.LoginMsgCode;
-      heartbeat_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
+      login_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
       mavlink_ = com.geeksville.dapi.Webapi.MavlinkMsg.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
@@ -1109,8 +1109,8 @@ public final class Webapi {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (hasHeartbeat()) {
-        if (!getHeartbeat().isInitialized()) {
+      if (hasLogin()) {
+        if (!getLogin().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -1132,7 +1132,7 @@ public final class Webapi {
         output.writeEnum(3, type_.getNumber());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(10, heartbeat_);
+        output.writeMessage(10, login_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(11, mavlink_);
@@ -1152,7 +1152,7 @@ public final class Webapi {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, heartbeat_);
+          .computeMessageSize(10, login_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1274,7 +1274,7 @@ public final class Webapi {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getHeartbeatFieldBuilder();
+          getLoginFieldBuilder();
           getMavlinkFieldBuilder();
         }
       }
@@ -1286,10 +1286,10 @@ public final class Webapi {
         super.clear();
         type_ = com.geeksville.dapi.Webapi.EnvelopeMsgCode.LoginMsgCode;
         bitField0_ = (bitField0_ & ~0x00000001);
-        if (heartbeatBuilder_ == null) {
-          heartbeat_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
+        if (loginBuilder_ == null) {
+          login_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
         } else {
-          heartbeatBuilder_.clear();
+          loginBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         if (mavlinkBuilder_ == null) {
@@ -1343,10 +1343,10 @@ public final class Webapi {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        if (heartbeatBuilder_ == null) {
-          result.heartbeat_ = heartbeat_;
+        if (loginBuilder_ == null) {
+          result.login_ = login_;
         } else {
-          result.heartbeat_ = heartbeatBuilder_.build();
+          result.login_ = loginBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
@@ -1375,8 +1375,8 @@ public final class Webapi {
         if (other.hasType()) {
           setType(other.getType());
         }
-        if (other.hasHeartbeat()) {
-          mergeHeartbeat(other.getHeartbeat());
+        if (other.hasLogin()) {
+          mergeLogin(other.getLogin());
         }
         if (other.hasMavlink()) {
           mergeMavlink(other.getMavlink());
@@ -1390,8 +1390,8 @@ public final class Webapi {
           
           return false;
         }
-        if (hasHeartbeat()) {
-          if (!getHeartbeat().isInitialized()) {
+        if (hasLogin()) {
+          if (!getLogin().isInitialized()) {
             
             return false;
           }
@@ -1441,11 +1441,11 @@ public final class Webapi {
             }
             case 82: {
               com.geeksville.dapi.Webapi.LoginMsg.Builder subBuilder = com.geeksville.dapi.Webapi.LoginMsg.newBuilder();
-              if (hasHeartbeat()) {
-                subBuilder.mergeFrom(getHeartbeat());
+              if (hasLogin()) {
+                subBuilder.mergeFrom(getLogin());
               }
               input.readMessage(subBuilder, extensionRegistry);
-              setHeartbeat(subBuilder.buildPartial());
+              setLogin(subBuilder.buildPartial());
               break;
             }
             case 90: {
@@ -1487,94 +1487,94 @@ public final class Webapi {
         return this;
       }
       
-      // optional .com.geeksville.dapi.LoginMsg heartbeat = 10;
-      private com.geeksville.dapi.Webapi.LoginMsg heartbeat_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
+      // optional .com.geeksville.dapi.LoginMsg login = 10;
+      private com.geeksville.dapi.Webapi.LoginMsg login_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.geeksville.dapi.Webapi.LoginMsg, com.geeksville.dapi.Webapi.LoginMsg.Builder, com.geeksville.dapi.Webapi.LoginMsgOrBuilder> heartbeatBuilder_;
-      public boolean hasHeartbeat() {
+          com.geeksville.dapi.Webapi.LoginMsg, com.geeksville.dapi.Webapi.LoginMsg.Builder, com.geeksville.dapi.Webapi.LoginMsgOrBuilder> loginBuilder_;
+      public boolean hasLogin() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.geeksville.dapi.Webapi.LoginMsg getHeartbeat() {
-        if (heartbeatBuilder_ == null) {
-          return heartbeat_;
+      public com.geeksville.dapi.Webapi.LoginMsg getLogin() {
+        if (loginBuilder_ == null) {
+          return login_;
         } else {
-          return heartbeatBuilder_.getMessage();
+          return loginBuilder_.getMessage();
         }
       }
-      public Builder setHeartbeat(com.geeksville.dapi.Webapi.LoginMsg value) {
-        if (heartbeatBuilder_ == null) {
+      public Builder setLogin(com.geeksville.dapi.Webapi.LoginMsg value) {
+        if (loginBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          heartbeat_ = value;
+          login_ = value;
           onChanged();
         } else {
-          heartbeatBuilder_.setMessage(value);
+          loginBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000002;
         return this;
       }
-      public Builder setHeartbeat(
+      public Builder setLogin(
           com.geeksville.dapi.Webapi.LoginMsg.Builder builderForValue) {
-        if (heartbeatBuilder_ == null) {
-          heartbeat_ = builderForValue.build();
+        if (loginBuilder_ == null) {
+          login_ = builderForValue.build();
           onChanged();
         } else {
-          heartbeatBuilder_.setMessage(builderForValue.build());
+          loginBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000002;
         return this;
       }
-      public Builder mergeHeartbeat(com.geeksville.dapi.Webapi.LoginMsg value) {
-        if (heartbeatBuilder_ == null) {
+      public Builder mergeLogin(com.geeksville.dapi.Webapi.LoginMsg value) {
+        if (loginBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              heartbeat_ != com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance()) {
-            heartbeat_ =
-              com.geeksville.dapi.Webapi.LoginMsg.newBuilder(heartbeat_).mergeFrom(value).buildPartial();
+              login_ != com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance()) {
+            login_ =
+              com.geeksville.dapi.Webapi.LoginMsg.newBuilder(login_).mergeFrom(value).buildPartial();
           } else {
-            heartbeat_ = value;
+            login_ = value;
           }
           onChanged();
         } else {
-          heartbeatBuilder_.mergeFrom(value);
+          loginBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000002;
         return this;
       }
-      public Builder clearHeartbeat() {
-        if (heartbeatBuilder_ == null) {
-          heartbeat_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
+      public Builder clearLogin() {
+        if (loginBuilder_ == null) {
+          login_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
           onChanged();
         } else {
-          heartbeatBuilder_.clear();
+          loginBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      public com.geeksville.dapi.Webapi.LoginMsg.Builder getHeartbeatBuilder() {
+      public com.geeksville.dapi.Webapi.LoginMsg.Builder getLoginBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
-        return getHeartbeatFieldBuilder().getBuilder();
+        return getLoginFieldBuilder().getBuilder();
       }
-      public com.geeksville.dapi.Webapi.LoginMsgOrBuilder getHeartbeatOrBuilder() {
-        if (heartbeatBuilder_ != null) {
-          return heartbeatBuilder_.getMessageOrBuilder();
+      public com.geeksville.dapi.Webapi.LoginMsgOrBuilder getLoginOrBuilder() {
+        if (loginBuilder_ != null) {
+          return loginBuilder_.getMessageOrBuilder();
         } else {
-          return heartbeat_;
+          return login_;
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
           com.geeksville.dapi.Webapi.LoginMsg, com.geeksville.dapi.Webapi.LoginMsg.Builder, com.geeksville.dapi.Webapi.LoginMsgOrBuilder> 
-          getHeartbeatFieldBuilder() {
-        if (heartbeatBuilder_ == null) {
-          heartbeatBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getLoginFieldBuilder() {
+        if (loginBuilder_ == null) {
+          loginBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.geeksville.dapi.Webapi.LoginMsg, com.geeksville.dapi.Webapi.LoginMsg.Builder, com.geeksville.dapi.Webapi.LoginMsgOrBuilder>(
-                  heartbeat_,
+                  login_,
                   getParentForChildren(),
                   isClean());
-          heartbeat_ = null;
+          login_ = null;
         }
-        return heartbeatBuilder_;
+        return loginBuilder_;
       }
       
       // optional .com.geeksville.dapi.MavlinkMsg mavlink = 11;
@@ -1704,14 +1704,14 @@ public final class Webapi {
     java.lang.String[] descriptorData = {
       "\n\036src/main/protobuf/webapi.proto\022\023com.ge" +
       "eksville.dapi\".\n\010LoginMsg\022\020\n\010username\030\001 " +
-      "\002(\t\022\020\n\010password\030\002 \002(\t\"3\n\nMavlinkMsg\022\024\n\014s" +
-      "rcInterface\030\001 \002(\021\022\017\n\007packets\030\002 \003(\014\"\242\001\n\010E" +
-      "nvelope\0222\n\004type\030\003 \002(\0162$.com.geeksville.d" +
-      "api.EnvelopeMsgCode\0220\n\theartbeat\030\n \001(\0132\035" +
-      ".com.geeksville.dapi.LoginMsg\0220\n\007mavlink" +
-      "\030\013 \001(\0132\037.com.geeksville.dapi.MavlinkMsg*" +
-      "7\n\017EnvelopeMsgCode\022\020\n\014LoginMsgCode\020\n\022\022\n\016" +
-      "MavlinkMsgCode\020\013B\025\n\023com.geeksville.dapi"
+      "\002(\t\022\020\n\010password\030\002 \002(\t\"2\n\nMavlinkMsg\022\024\n\014s" +
+      "rcInterface\030\001 \002(\021\022\016\n\006packet\030\002 \003(\014\"\236\001\n\010En" +
+      "velope\0222\n\004type\030\003 \002(\0162$.com.geeksville.da" +
+      "pi.EnvelopeMsgCode\022,\n\005login\030\n \001(\0132\035.com." +
+      "geeksville.dapi.LoginMsg\0220\n\007mavlink\030\013 \001(" +
+      "\0132\037.com.geeksville.dapi.MavlinkMsg*7\n\017En" +
+      "velopeMsgCode\022\020\n\014LoginMsgCode\020\n\022\022\n\016Mavli" +
+      "nkMsgCode\020\013B\025\n\023com.geeksville.dapi"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1731,7 +1731,7 @@ public final class Webapi {
           internal_static_com_geeksville_dapi_MavlinkMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_MavlinkMsg_descriptor,
-              new java.lang.String[] { "SrcInterface", "Packets", },
+              new java.lang.String[] { "SrcInterface", "Packet", },
               com.geeksville.dapi.Webapi.MavlinkMsg.class,
               com.geeksville.dapi.Webapi.MavlinkMsg.Builder.class);
           internal_static_com_geeksville_dapi_Envelope_descriptor =
@@ -1739,7 +1739,7 @@ public final class Webapi {
           internal_static_com_geeksville_dapi_Envelope_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_Envelope_descriptor,
-              new java.lang.String[] { "Type", "Heartbeat", "Mavlink", },
+              new java.lang.String[] { "Type", "Login", "Mavlink", },
               com.geeksville.dapi.Webapi.Envelope.class,
               com.geeksville.dapi.Webapi.Envelope.Builder.class);
           return null;

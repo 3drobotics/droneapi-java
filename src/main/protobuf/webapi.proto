@@ -10,7 +10,7 @@ message LoginMsg {
 
 message MavlinkMsg {
 	required sint32 srcInterface = 1;
-	repeated bytes packets = 2;
+	repeated bytes packet = 2;
 }
 
 // Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment similar 
@@ -26,6 +26,6 @@ message Envelope {
   	required EnvelopeMsgCode type = 3;
 
 	// Payloads
-	optional LoginMsg heartbeat = 10;
+	optional LoginMsg login = 10;
 	optional MavlinkMsg mavlink = 11;
 }
