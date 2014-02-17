@@ -3,6 +3,13 @@
   <classpathentry kind="src" path="src/main/java" output="target/classes"/>
   <classpathentry kind="src" path="src/test/scala" output="target/test-classes"/>
   <classpathentry kind="src" path="src/test/java" output="target/test-classes"/>
+  <classpathentry kind="lib" path="/home/kevinh/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/jars/akka-actor_2.10-2.2.3.jar"/>
+  <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
+  <classpathentry kind="lib" path="/home/kevinh/.ivy2/cache/com.typesafe/config/bundles/config-1.0.2.jar"/>
+  <classpathentry kind="lib" path="/home/kevinh/.ivy2/cache/com.typesafe.akka/akka-remote_2.10/bundles/akka-remote_2.10-2.2.3.jar"/>
+  <classpathentry kind="lib" path="/home/kevinh/.ivy2/cache/io.netty/netty/bundles/netty-3.6.6.Final.jar"/>
+  <classpathentry kind="lib" path="/home/kevinh/.ivy2/cache/com.google.protobuf/protobuf-java/jars/protobuf-java-2.4.1.jar"/>
+  <classpathentry kind="lib" path="/home/kevinh/.ivy2/cache/org.uncommons.maths/uncommons-maths/jars/uncommons-maths-1.2.2a.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="output" path="bin"/>
 </classpath>
