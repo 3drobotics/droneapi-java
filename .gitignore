@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+
+# SBT stuff
+project/target
+.history
+target/
