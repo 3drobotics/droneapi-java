@@ -36,7 +36,8 @@ public class GCSHookImpl implements GCSHooks {
 	@Override
 	public void loginUser(String userName, String password)
 			throws UnknownHostException, IOException {
-		weblink = new TCPProtobufClient("localhost", 5555);
+		weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER,
+				APIConstants.DEFAULT_TCP_PORT);
 
 		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
 				.setPassword(password).build();
