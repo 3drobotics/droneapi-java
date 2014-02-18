@@ -13,11 +13,24 @@ message MavlinkMsg {
 	repeated bytes packet = 2;
 }
 
+// Set the vehicle ID that corresponds to a particular sysId on a particular interface
+message SetVehicleMsg {
+	// The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+	required sint32 gcsInterface = 1;
+
+	// The mavlink sysId the vehicle is appearing as for this session/interface
+	required int32  sysId = 2;
+
+	// vehicleId is globally unique and must previously have been registered with the web API
+	repeated string vehicleId = 3;
+}
+
 // Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment similar 
 // to how I've used protobufs in the past)
 enum EnvelopeMsgCode {
 	LoginMsgCode = 10;
 	MavlinkMsgCode = 11;
+	SetVehicleMsgCode = 12;
 }
 
 // Envelope to contain all the messages. At any time, ONLY 1 of the optional fields can be used.
@@ -28,4 +41,5 @@ message Envelope {
 	// Payloads
 	optional LoginMsg login = 10;
 	optional MavlinkMsg mavlink = 11;
+	optional SetVehicleMsg setVehicle = 12;
 }
