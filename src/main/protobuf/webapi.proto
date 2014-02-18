@@ -22,8 +22,8 @@ enum EnvelopeMsgCode {
 
 // Envelope to contain all the messages. At any time, ONLY 1 of the optional fields can be used.
 message Envelope {
-  	// Identifies which field is filled in.
-  	required EnvelopeMsgCode type = 3;
+  	// Identifies which field is filled in.  If not specified receiver will need to check each optional payload below
+  	optional EnvelopeMsgCode type = 3;
 
 	// Payloads
 	optional LoginMsg login = 10;
