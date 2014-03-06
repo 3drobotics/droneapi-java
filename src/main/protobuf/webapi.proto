@@ -6,11 +6,17 @@ option java_package = "com.geeksville.dapi";
 message LoginMsg {
 	required string username = 1;
 	required string password = 2;
+
+	// If specified this is the clients notion of connection time (in UTC) as usecs since 1970
+	optional int64 startTime = 3;
 }
 
 message MavlinkMsg {
 	required sint32 srcInterface = 1;
 	repeated bytes packet = 2;
+
+	// If specified this is the delta time from the original connection time (in usecs)
+	optional int64 deltaT = 3;
 }
 
 // Set the vehicle ID that corresponds to a particular sysId on a particular interface

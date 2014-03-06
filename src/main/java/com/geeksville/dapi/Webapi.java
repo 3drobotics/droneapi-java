@@ -90,6 +90,10 @@ public final class Webapi {
     // required string password = 2;
     boolean hasPassword();
     String getPassword();
+    
+    // optional int64 startTime = 3;
+    boolean hasStartTime();
+    long getStartTime();
   }
   public static final class LoginMsg extends
       com.google.protobuf.GeneratedMessage
@@ -184,9 +188,20 @@ public final class Webapi {
       }
     }
     
+    // optional int64 startTime = 3;
+    public static final int STARTTIME_FIELD_NUMBER = 3;
+    private long startTime_;
+    public boolean hasStartTime() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public long getStartTime() {
+      return startTime_;
+    }
+    
     private void initFields() {
       username_ = "";
       password_ = "";
+      startTime_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -214,6 +229,9 @@ public final class Webapi {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getPasswordBytes());
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt64(3, startTime_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -230,6 +248,10 @@ public final class Webapi {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, startTime_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -359,6 +381,8 @@ public final class Webapi {
         bitField0_ = (bitField0_ & ~0x00000001);
         password_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
+        startTime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -405,6 +429,10 @@ public final class Webapi {
           to_bitField0_ |= 0x00000002;
         }
         result.password_ = password_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.startTime_ = startTime_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -426,6 +454,9 @@ public final class Webapi {
         }
         if (other.hasPassword()) {
           setPassword(other.getPassword());
+        }
+        if (other.hasStartTime()) {
+          setStartTime(other.getStartTime());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -474,6 +505,11 @@ public final class Webapi {
             case 18: {
               bitField0_ |= 0x00000002;
               password_ = input.readBytes();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              startTime_ = input.readInt64();
               break;
             }
           }
@@ -554,6 +590,27 @@ public final class Webapi {
         onChanged();
       }
       
+      // optional int64 startTime = 3;
+      private long startTime_ ;
+      public boolean hasStartTime() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public long getStartTime() {
+        return startTime_;
+      }
+      public Builder setStartTime(long value) {
+        bitField0_ |= 0x00000004;
+        startTime_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearStartTime() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        startTime_ = 0L;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.LoginMsg)
     }
     
@@ -576,6 +633,10 @@ public final class Webapi {
     java.util.List<com.google.protobuf.ByteString> getPacketList();
     int getPacketCount();
     com.google.protobuf.ByteString getPacket(int index);
+    
+    // optional int64 deltaT = 3;
+    boolean hasDeltaT();
+    long getDeltaT();
   }
   public static final class MavlinkMsg extends
       com.google.protobuf.GeneratedMessage
@@ -630,9 +691,20 @@ public final class Webapi {
       return packet_.get(index);
     }
     
+    // optional int64 deltaT = 3;
+    public static final int DELTAT_FIELD_NUMBER = 3;
+    private long deltaT_;
+    public boolean hasDeltaT() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public long getDeltaT() {
+      return deltaT_;
+    }
+    
     private void initFields() {
       srcInterface_ = 0;
       packet_ = java.util.Collections.emptyList();;
+      deltaT_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -656,6 +728,9 @@ public final class Webapi {
       for (int i = 0; i < packet_.size(); i++) {
         output.writeBytes(2, packet_.get(i));
       }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt64(3, deltaT_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -677,6 +752,10 @@ public final class Webapi {
         }
         size += dataSize;
         size += 1 * getPacketList().size();
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, deltaT_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -806,6 +885,8 @@ public final class Webapi {
         bitField0_ = (bitField0_ & ~0x00000001);
         packet_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000002);
+        deltaT_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -853,6 +934,10 @@ public final class Webapi {
           bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.packet_ = packet_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.deltaT_ = deltaT_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -881,6 +966,9 @@ public final class Webapi {
             packet_.addAll(other.packet_);
           }
           onChanged();
+        }
+        if (other.hasDeltaT()) {
+          setDeltaT(other.getDeltaT());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -925,6 +1013,11 @@ public final class Webapi {
             case 18: {
               ensurePacketIsMutable();
               packet_.add(input.readBytes());
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              deltaT_ = input.readInt64();
               break;
             }
           }
@@ -1001,6 +1094,27 @@ public final class Webapi {
       public Builder clearPacket() {
         packet_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 deltaT = 3;
+      private long deltaT_ ;
+      public boolean hasDeltaT() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public long getDeltaT() {
+        return deltaT_;
+      }
+      public Builder setDeltaT(long value) {
+        bitField0_ |= 0x00000004;
+        deltaT_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDeltaT() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        deltaT_ = 0L;
         onChanged();
         return this;
       }
@@ -2371,19 +2485,20 @@ public final class Webapi {
   static {
     java.lang.String[] descriptorData = {
       "\n\036src/main/protobuf/webapi.proto\022\023com.ge" +
-      "eksville.dapi\".\n\010LoginMsg\022\020\n\010username\030\001 " +
-      "\002(\t\022\020\n\010password\030\002 \002(\t\"2\n\nMavlinkMsg\022\024\n\014s" +
-      "rcInterface\030\001 \002(\021\022\016\n\006packet\030\002 \003(\014\"G\n\rSet" +
-      "VehicleMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysI" +
-      "d\030\002 \002(\005\022\021\n\tvehicleId\030\003 \002(\t\"\326\001\n\010Envelope\022" +
-      "2\n\004type\030\003 \001(\0162$.com.geeksville.dapi.Enve" +
-      "lopeMsgCode\022,\n\005login\030\n \001(\0132\035.com.geeksvi" +
-      "lle.dapi.LoginMsg\0220\n\007mavlink\030\013 \001(\0132\037.com" +
-      ".geeksville.dapi.MavlinkMsg\0226\n\nsetVehicl",
-      "e\030\014 \001(\0132\".com.geeksville.dapi.SetVehicle" +
-      "Msg*N\n\017EnvelopeMsgCode\022\020\n\014LoginMsgCode\020\n" +
-      "\022\022\n\016MavlinkMsgCode\020\013\022\025\n\021SetVehicleMsgCod" +
-      "e\020\014B\025\n\023com.geeksville.dapi"
+      "eksville.dapi\"A\n\010LoginMsg\022\020\n\010username\030\001 " +
+      "\002(\t\022\020\n\010password\030\002 \002(\t\022\021\n\tstartTime\030\003 \001(\003" +
+      "\"B\n\nMavlinkMsg\022\024\n\014srcInterface\030\001 \002(\021\022\016\n\006" +
+      "packet\030\002 \003(\014\022\016\n\006deltaT\030\003 \001(\003\"G\n\rSetVehic" +
+      "leMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysId\030\002 \002" +
+      "(\005\022\021\n\tvehicleId\030\003 \002(\t\"\326\001\n\010Envelope\0222\n\004ty" +
+      "pe\030\003 \001(\0162$.com.geeksville.dapi.EnvelopeM" +
+      "sgCode\022,\n\005login\030\n \001(\0132\035.com.geeksville.d" +
+      "api.LoginMsg\0220\n\007mavlink\030\013 \001(\0132\037.com.geek",
+      "sville.dapi.MavlinkMsg\0226\n\nsetVehicle\030\014 \001" +
+      "(\0132\".com.geeksville.dapi.SetVehicleMsg*N" +
+      "\n\017EnvelopeMsgCode\022\020\n\014LoginMsgCode\020\n\022\022\n\016M" +
+      "avlinkMsgCode\020\013\022\025\n\021SetVehicleMsgCode\020\014B\025" +
+      "\n\023com.geeksville.dapi"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2395,7 +2510,7 @@ public final class Webapi {
           internal_static_com_geeksville_dapi_LoginMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_LoginMsg_descriptor,
-              new java.lang.String[] { "Username", "Password", },
+              new java.lang.String[] { "Username", "Password", "StartTime", },
               com.geeksville.dapi.Webapi.LoginMsg.class,
               com.geeksville.dapi.Webapi.LoginMsg.Builder.class);
           internal_static_com_geeksville_dapi_MavlinkMsg_descriptor =
@@ -2403,7 +2518,7 @@ public final class Webapi {
           internal_static_com_geeksville_dapi_MavlinkMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_MavlinkMsg_descriptor,
-              new java.lang.String[] { "SrcInterface", "Packet", },
+              new java.lang.String[] { "SrcInterface", "Packet", "DeltaT", },
               com.geeksville.dapi.Webapi.MavlinkMsg.class,
               com.geeksville.dapi.Webapi.MavlinkMsg.Builder.class);
           internal_static_com_geeksville_dapi_SetVehicleMsg_descriptor =
