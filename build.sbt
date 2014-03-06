@@ -13,3 +13,7 @@ crossPaths := false // disable using the Scala version in output paths and artif
 libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.2.3"
 
 libraryDependencies += "com.typesafe.akka" %% "akka-remote" % "2.2.3"
+
+mainClass in (Compile, run) := Some( "com.geeksville.apiproxy.TestClient")
+
+EclipseKeys.projectFlavor := EclipseProjectFlavor.Java
