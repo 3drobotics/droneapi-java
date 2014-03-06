@@ -52,9 +52,8 @@ public class GCSHookImpl implements GCSHooks {
 	}
 
 	@Override
-	public void flush() {
-		// TODO Auto-generated method stub
-
+	public void flush() throws IOException {
+		weblink.flush();
 	}
 
 }

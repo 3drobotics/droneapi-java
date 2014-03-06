@@ -53,6 +53,8 @@ public interface GCSHooks {
 
 	/**
 	 * Send any queued messages immedately
+	 * 
+	 * @throws IOException
 	 */
-	void flush();
+	void flush() throws IOException;
 }
