@@ -10,7 +10,11 @@ public class TestClient {
 		try {
 			webapi.loginUser("bob", "sekrit");
 			webapi.flush();
-			webapi.filterMavlink(0, new byte[] { 1, 2, 3, 4, 5 });
+
+			int interfaceNum = 0;
+			int sysId = 1;
+			webapi.setVehicleId("blahblahvehicle", interfaceNum, sysId);
+			webapi.filterMavlink(interfaceNum, new byte[] { 1, 2, 3, 4, 5 });
 			webapi.flush();
 
 			System.out.println("Test successful");

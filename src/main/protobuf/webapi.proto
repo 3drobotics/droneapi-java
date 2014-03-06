@@ -22,7 +22,7 @@ message SetVehicleMsg {
 	required int32  sysId = 2;
 
 	// vehicleId is globally unique and must previously have been registered with the web API
-	repeated string vehicleId = 3;
+	required string vehicleId = 3;
 }
 
 // Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment similar 

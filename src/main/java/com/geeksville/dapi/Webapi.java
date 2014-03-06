@@ -1027,10 +1027,9 @@ public final class Webapi {
     boolean hasSysId();
     int getSysId();
     
-    // repeated string vehicleId = 3;
-    java.util.List<String> getVehicleIdList();
-    int getVehicleIdCount();
-    String getVehicleId(int index);
+    // required string vehicleId = 3;
+    boolean hasVehicleId();
+    String getVehicleId();
   }
   public static final class SetVehicleMsg extends
       com.google.protobuf.GeneratedMessage
@@ -1081,24 +1080,42 @@ public final class Webapi {
       return sysId_;
     }
     
-    // repeated string vehicleId = 3;
+    // required string vehicleId = 3;
     public static final int VEHICLEID_FIELD_NUMBER = 3;
-    private com.google.protobuf.LazyStringList vehicleId_;
-    public java.util.List<String>
-        getVehicleIdList() {
-      return vehicleId_;
+    private java.lang.Object vehicleId_;
+    public boolean hasVehicleId() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public int getVehicleIdCount() {
-      return vehicleId_.size();
+    public String getVehicleId() {
+      java.lang.Object ref = vehicleId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          vehicleId_ = s;
+        }
+        return s;
+      }
     }
-    public String getVehicleId(int index) {
-      return vehicleId_.get(index);
+    private com.google.protobuf.ByteString getVehicleIdBytes() {
+      java.lang.Object ref = vehicleId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        vehicleId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
       gcsInterface_ = 0;
       sysId_ = 0;
-      vehicleId_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      vehicleId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1110,6 +1127,10 @@ public final class Webapi {
         return false;
       }
       if (!hasSysId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasVehicleId()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1126,8 +1147,8 @@ public final class Webapi {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(2, sysId_);
       }
-      for (int i = 0; i < vehicleId_.size(); i++) {
-        output.writeBytes(3, vehicleId_.getByteString(i));
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getVehicleIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1146,14 +1167,9 @@ public final class Webapi {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, sysId_);
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < vehicleId_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(vehicleId_.getByteString(i));
-        }
-        size += dataSize;
-        size += 1 * getVehicleIdList().size();
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getVehicleIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1283,7 +1299,7 @@ public final class Webapi {
         bitField0_ = (bitField0_ & ~0x00000001);
         sysId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        vehicleId_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        vehicleId_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -1331,10 +1347,8 @@ public final class Webapi {
           to_bitField0_ |= 0x00000002;
         }
         result.sysId_ = sysId_;
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          vehicleId_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              vehicleId_);
-          bitField0_ = (bitField0_ & ~0x00000004);
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         result.vehicleId_ = vehicleId_;
         result.bitField0_ = to_bitField0_;
@@ -1359,15 +1373,8 @@ public final class Webapi {
         if (other.hasSysId()) {
           setSysId(other.getSysId());
         }
-        if (!other.vehicleId_.isEmpty()) {
-          if (vehicleId_.isEmpty()) {
-            vehicleId_ = other.vehicleId_;
-            bitField0_ = (bitField0_ & ~0x00000004);
-          } else {
-            ensureVehicleIdIsMutable();
-            vehicleId_.addAll(other.vehicleId_);
-          }
-          onChanged();
+        if (other.hasVehicleId()) {
+          setVehicleId(other.getVehicleId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1379,6 +1386,10 @@ public final class Webapi {
           return false;
         }
         if (!hasSysId()) {
+          
+          return false;
+        }
+        if (!hasVehicleId()) {
           
           return false;
         }
@@ -1419,8 +1430,8 @@ public final class Webapi {
               break;
             }
             case 26: {
-              ensureVehicleIdIsMutable();
-              vehicleId_.add(input.readBytes());
+              bitField0_ |= 0x00000004;
+              vehicleId_ = input.readBytes();
               break;
             }
           }
@@ -1471,59 +1482,39 @@ public final class Webapi {
         return this;
       }
       
-      // repeated string vehicleId = 3;
-      private com.google.protobuf.LazyStringList vehicleId_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureVehicleIdIsMutable() {
-        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          vehicleId_ = new com.google.protobuf.LazyStringArrayList(vehicleId_);
-          bitField0_ |= 0x00000004;
-         }
+      // required string vehicleId = 3;
+      private java.lang.Object vehicleId_ = "";
+      public boolean hasVehicleId() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public java.util.List<String>
-          getVehicleIdList() {
-        return java.util.Collections.unmodifiableList(vehicleId_);
+      public String getVehicleId() {
+        java.lang.Object ref = vehicleId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          vehicleId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public int getVehicleIdCount() {
-        return vehicleId_.size();
-      }
-      public String getVehicleId(int index) {
-        return vehicleId_.get(index);
-      }
-      public Builder setVehicleId(
-          int index, String value) {
+      public Builder setVehicleId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  ensureVehicleIdIsMutable();
-        vehicleId_.set(index, value);
-        onChanged();
-        return this;
-      }
-      public Builder addVehicleId(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureVehicleIdIsMutable();
-        vehicleId_.add(value);
-        onChanged();
-        return this;
-      }
-      public Builder addAllVehicleId(
-          java.lang.Iterable<String> values) {
-        ensureVehicleIdIsMutable();
-        super.addAll(values, vehicleId_);
+  bitField0_ |= 0x00000004;
+        vehicleId_ = value;
         onChanged();
         return this;
       }
       public Builder clearVehicleId() {
-        vehicleId_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
+        vehicleId_ = getDefaultInstance().getVehicleId();
         onChanged();
         return this;
       }
-      void addVehicleId(com.google.protobuf.ByteString value) {
-        ensureVehicleIdIsMutable();
-        vehicleId_.add(value);
+      void setVehicleId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        vehicleId_ = value;
         onChanged();
       }
       
@@ -2384,7 +2375,7 @@ public final class Webapi {
       "\002(\t\022\020\n\010password\030\002 \002(\t\"2\n\nMavlinkMsg\022\024\n\014s" +
       "rcInterface\030\001 \002(\021\022\016\n\006packet\030\002 \003(\014\"G\n\rSet" +
       "VehicleMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysI" +
-      "d\030\002 \002(\005\022\021\n\tvehicleId\030\003 \003(\t\"\326\001\n\010Envelope\022" +
+      "d\030\002 \002(\005\022\021\n\tvehicleId\030\003 \002(\t\"\326\001\n\010Envelope\022" +
       "2\n\004type\030\003 \001(\0162$.com.geeksville.dapi.Enve" +
       "lopeMsgCode\022,\n\005login\030\n \001(\0132\035.com.geeksvi" +
       "lle.dapi.LoginMsg\0220\n\007mavlink\030\013 \001(\0132\037.com" +

@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import com.geeksville.dapi.Webapi.Envelope;
 import com.geeksville.dapi.Webapi.LoginMsg;
 import com.geeksville.dapi.Webapi.MavlinkMsg;
+import com.geeksville.dapi.Webapi.SetVehicleMsg;
 import com.google.protobuf.ByteString;
 
 /**
@@ -29,8 +30,8 @@ public class GCSHookImpl implements GCSHooks {
 			throws IOException {
 		MavlinkMsg mav = MavlinkMsg.newBuilder().setSrcInterface(fromInterface)
 				.addPacket(ByteString.copyFrom(bytes)).build();
-		Envelope msg = Envelope.newBuilder().setMavlink(mav).build();
-		weblink.send(msg);
+
+		weblink.send(Envelope.newBuilder().setMavlink(mav).build());
 	}
 
 	@Override
@@ -46,9 +47,13 @@ public class GCSHookImpl implements GCSHooks {
 	}
 
 	@Override
-	public void setVehicleId(String vehicleId, int mavlinkSysId) {
-		// TODO Auto-generated method stub
+	public void setVehicleId(String vehicleId, int interfaceId, int mavlinkSysId)
+			throws IOException {
+		SetVehicleMsg mav = SetVehicleMsg.newBuilder()
+				.setGcsInterface(interfaceId).setSysId(mavlinkSysId)
+				.setVehicleId(vehicleId).build();
 
+		weblink.send(Envelope.newBuilder().setSetVehicle(mav).build());
 	}
 
 	@Override

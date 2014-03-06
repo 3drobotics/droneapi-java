@@ -47,9 +47,14 @@ public interface GCSHooks {
 	 * must call this for every vehicle that is connected.
 	 * 
 	 * @param vehicleId
+	 * @param fromInterface
+	 *            the interface # this vehicle is connected on
 	 * @param mavlinkSysId
+	 *            the mavlink sysid for this vehicle
+	 * @throws IOException
 	 */
-	void setVehicleId(String vehicleId, int mavlinkSysId);
+	void setVehicleId(String vehicleId, int fromInterface, int mavlinkSysId)
+			throws IOException;
 
 	/**
 	 * Send any queued messages immedately
