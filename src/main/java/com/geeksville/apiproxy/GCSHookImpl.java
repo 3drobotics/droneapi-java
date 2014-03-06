@@ -17,7 +17,12 @@ import com.google.protobuf.ByteString;
  */
 public class GCSHookImpl implements GCSHooks {
 
-	TCPProtobufClient weblink;
+	private TCPProtobufClient weblink;
+
+	/**
+	 * Time in usecs
+	 */
+	private long startTime;
 
 	@Override
 	public void setCallback(GCSCallback cb) {
@@ -28,8 +33,11 @@ public class GCSHookImpl implements GCSHooks {
 	@Override
 	public void filterMavlink(int fromInterface, byte[] bytes)
 			throws IOException {
+		long deltat = (System.currentTimeMillis() * 1000) - startTime;
+
 		MavlinkMsg mav = MavlinkMsg.newBuilder().setSrcInterface(fromInterface)
-				.addPacket(ByteString.copyFrom(bytes)).build();
+				.setDeltaT(deltat).addPacket(ByteString.copyFrom(bytes))
+				.build();
 
 		weblink.send(Envelope.newBuilder().setMavlink(mav).build());
 	}
@@ -40,8 +48,10 @@ public class GCSHookImpl implements GCSHooks {
 		weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER,
 				APIConstants.DEFAULT_TCP_PORT);
 
+		startTime = System.currentTimeMillis() * 1000;
+
 		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
-				.setPassword(password).build();
+				.setPassword(password).setStartTime(startTime).build();
 		Envelope msg = Envelope.newBuilder().setLogin(m).build();
 		weblink.send(msg);
 	}
