@@ -28,6 +28,7 @@ public class TestClient {
 				(byte) 0x01, (byte) 0xca, (byte) 0x8f };
 		webapi.filterMavlink(interfaceNum, payload);
 		webapi.flush();
+		webapi.close();
 
 		System.out.println("Test successful");
 	}

@@ -20,6 +20,7 @@ message MavlinkMsg {
 }
 
 // Set the vehicle ID that corresponds to a particular sysId on a particular interface
+// GCSes should also be described to the server using this same mechanism but use the special string "GCS" as the UUID
 message SetVehicleMsg {
 	// The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
 	required sint32 gcsInterface = 1;
@@ -29,6 +30,7 @@ message SetVehicleMsg {
 
 	// vehicleId need only unique for a particular user, and if the client uses a previously unknown vehicle ID a new vehicle
 	// record may be created on the server (underneath that user's account)
+	// GCSes should also be described to the server using this same mechanism but use the special string "GCS" as the UUID
 	required string vehicleUUID = 3;
 }
 

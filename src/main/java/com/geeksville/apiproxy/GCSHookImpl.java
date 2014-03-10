@@ -68,7 +68,16 @@ public class GCSHookImpl implements GCSHooks {
 
 	@Override
 	public void flush() throws IOException {
-		weblink.flush();
+		if (weblink != null)
+			weblink.flush();
+	}
+
+	@Override
+	public void close() throws IOException {
+		if (weblink != null) {
+			weblink.close();
+			weblink = null;
+		}
 	}
 
 }

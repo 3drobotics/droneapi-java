@@ -4,7 +4,14 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 
 /**
- * These are low level routines called by the GCS to hook into the proxy.
+ * These are low level routines called by the GCS to hook into the proxy. When
+ * the proxy calls in the expected sequence of operations are:
+ * 
+ * loginUser
+ * 
+ * setVehicleId (must be done before any data is sent from that vehicle)
+ * 
+ * filterMavlink (for each packet)
  * 
  * @author kevinh
  * 
@@ -48,7 +55,9 @@ public interface GCSHooks {
 	 * 
 	 * @param vehicleId
 	 *            a UUID for this vehicle, if the server has never seen this
-	 *            UUID before, a new vehicle record will be created
+	 *            UUID before, a new vehicle record will be created. Use the
+	 *            special string "gcs" for data from the GCS (not really a
+	 *            vehicle)
 	 * @param fromInterface
 	 *            the interface # this vehicle is connected on
 	 * @param mavlinkSysId
@@ -64,4 +73,12 @@ public interface GCSHooks {
 	 * @throws IOException
 	 */
 	void flush() throws IOException;
+
+	/**
+	 * Disconnects from web service
+	 * 
+	 * @throws IOException
+	 */
+	void close() throws IOException;
+
 }
