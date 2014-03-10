@@ -61,7 +61,7 @@ public class GCSHookImpl implements GCSHooks {
 			throws IOException {
 		SetVehicleMsg mav = SetVehicleMsg.newBuilder()
 				.setGcsInterface(interfaceId).setSysId(mavlinkSysId)
-				.setVehicleId(vehicleId).build();
+				.setVehicleUUID(vehicleId).build();
 
 		weblink.send(Envelope.newBuilder().setSetVehicle(mav).build());
 	}

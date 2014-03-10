@@ -12,12 +12,13 @@ public class TestClient {
 	 */
 	public static void runTest() throws UnknownHostException, IOException {
 		GCSHooks webapi = new GCSHookImpl();
-		webapi.loginUser("bob", "sekrit");
+		webapi.loginUser("test-bob@3drobotics.com", "sekrit");
 		webapi.flush();
 
 		int interfaceNum = 0;
 		int sysId = 1;
-		webapi.setVehicleId("blahblahvehicle", interfaceNum, sysId);
+		webapi.setVehicleId("550e8400-e29b-41d4-a716-446655440000",
+				interfaceNum, sysId);
 
 		byte[] payload = new byte[] { (byte) 0xfe, (byte) 0x0e, (byte) 0x9d,
 				(byte) 0x01, (byte) 0x01, (byte) 0x1d, (byte) 0xf9,

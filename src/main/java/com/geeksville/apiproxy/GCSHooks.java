@@ -47,6 +47,8 @@ public interface GCSHooks {
 	 * must call this for every vehicle that is connected.
 	 * 
 	 * @param vehicleId
+	 *            a UUID for this vehicle, if the server has never seen this
+	 *            UUID before, a new vehicle record will be created
 	 * @param fromInterface
 	 *            the interface # this vehicle is connected on
 	 * @param mavlinkSysId
