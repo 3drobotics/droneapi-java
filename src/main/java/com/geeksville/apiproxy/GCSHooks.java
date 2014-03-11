@@ -62,10 +62,12 @@ public interface GCSHooks {
 	 *            the interface # this vehicle is connected on
 	 * @param mavlinkSysId
 	 *            the mavlink sysid for this vehicle
+	 * @param canAcceptCommands
+	 *            this vehicle is controllable from the server
 	 * @throws IOException
 	 */
-	void setVehicleId(String vehicleId, int fromInterface, int mavlinkSysId)
-			throws IOException;
+	void setVehicleId(String vehicleId, int fromInterface, int mavlinkSysId,
+			boolean canAcceptCommands) throws IOException;
 
 	/**
 	 * Send any queued messages immedately

@@ -32,6 +32,10 @@ message SetVehicleMsg {
 	// record may be created on the server (underneath that user's account)
 	// GCSes should also be described to the server using this same mechanism but use the special string "GCS" as the UUID
 	required string vehicleUUID = 3;
+	
+	// If false the vehicle will not be able to respond to any commands sent from the server (either due to link limitations or the fact
+	// that this is merely a delayed upload of a stored log file)
+	required bool	canAcceptCommands = 4;
 }
 
 // Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment similar 

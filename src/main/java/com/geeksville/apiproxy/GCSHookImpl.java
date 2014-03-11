@@ -57,10 +57,11 @@ public class GCSHookImpl implements GCSHooks {
 	}
 
 	@Override
-	public void setVehicleId(String vehicleId, int interfaceId, int mavlinkSysId)
-			throws IOException {
+	public void setVehicleId(String vehicleId, int interfaceId,
+			int mavlinkSysId, boolean canAcceptCommands) throws IOException {
 		SetVehicleMsg mav = SetVehicleMsg.newBuilder()
 				.setGcsInterface(interfaceId).setSysId(mavlinkSysId)
+				.setCanAcceptCommands(canAcceptCommands)
 				.setVehicleUUID(vehicleId).build();
 
 		weblink.send(Envelope.newBuilder().setSetVehicle(mav).build());

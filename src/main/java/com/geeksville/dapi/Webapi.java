@@ -1144,6 +1144,10 @@ public final class Webapi {
     // required string vehicleUUID = 3;
     boolean hasVehicleUUID();
     String getVehicleUUID();
+    
+    // required bool canAcceptCommands = 4;
+    boolean hasCanAcceptCommands();
+    boolean getCanAcceptCommands();
   }
   public static final class SetVehicleMsg extends
       com.google.protobuf.GeneratedMessage
@@ -1226,10 +1230,21 @@ public final class Webapi {
       }
     }
     
+    // required bool canAcceptCommands = 4;
+    public static final int CANACCEPTCOMMANDS_FIELD_NUMBER = 4;
+    private boolean canAcceptCommands_;
+    public boolean hasCanAcceptCommands() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public boolean getCanAcceptCommands() {
+      return canAcceptCommands_;
+    }
+    
     private void initFields() {
       gcsInterface_ = 0;
       sysId_ = 0;
       vehicleUUID_ = "";
+      canAcceptCommands_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1248,6 +1263,10 @@ public final class Webapi {
         memoizedIsInitialized = 0;
         return false;
       }
+      if (!hasCanAcceptCommands()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1263,6 +1282,9 @@ public final class Webapi {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getVehicleUUIDBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(4, canAcceptCommands_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1284,6 +1306,10 @@ public final class Webapi {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, getVehicleUUIDBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, canAcceptCommands_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1415,6 +1441,8 @@ public final class Webapi {
         bitField0_ = (bitField0_ & ~0x00000002);
         vehicleUUID_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
+        canAcceptCommands_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -1465,6 +1493,10 @@ public final class Webapi {
           to_bitField0_ |= 0x00000004;
         }
         result.vehicleUUID_ = vehicleUUID_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.canAcceptCommands_ = canAcceptCommands_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1490,6 +1522,9 @@ public final class Webapi {
         if (other.hasVehicleUUID()) {
           setVehicleUUID(other.getVehicleUUID());
         }
+        if (other.hasCanAcceptCommands()) {
+          setCanAcceptCommands(other.getCanAcceptCommands());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1504,6 +1539,10 @@ public final class Webapi {
           return false;
         }
         if (!hasVehicleUUID()) {
+          
+          return false;
+        }
+        if (!hasCanAcceptCommands()) {
           
           return false;
         }
@@ -1546,6 +1585,11 @@ public final class Webapi {
             case 26: {
               bitField0_ |= 0x00000004;
               vehicleUUID_ = input.readBytes();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              canAcceptCommands_ = input.readBool();
               break;
             }
           }
@@ -1630,6 +1674,27 @@ public final class Webapi {
         bitField0_ |= 0x00000004;
         vehicleUUID_ = value;
         onChanged();
+      }
+      
+      // required bool canAcceptCommands = 4;
+      private boolean canAcceptCommands_ ;
+      public boolean hasCanAcceptCommands() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public boolean getCanAcceptCommands() {
+        return canAcceptCommands_;
+      }
+      public Builder setCanAcceptCommands(boolean value) {
+        bitField0_ |= 0x00000008;
+        canAcceptCommands_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCanAcceptCommands() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        canAcceptCommands_ = false;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.SetVehicleMsg)
@@ -2488,17 +2553,18 @@ public final class Webapi {
       "eksville.dapi\"A\n\010LoginMsg\022\020\n\010username\030\001 " +
       "\002(\t\022\020\n\010password\030\002 \002(\t\022\021\n\tstartTime\030\003 \001(\003" +
       "\"B\n\nMavlinkMsg\022\024\n\014srcInterface\030\001 \002(\021\022\016\n\006" +
-      "packet\030\002 \003(\014\022\016\n\006deltaT\030\003 \001(\003\"I\n\rSetVehic" +
+      "packet\030\002 \003(\014\022\016\n\006deltaT\030\003 \001(\003\"d\n\rSetVehic" +
       "leMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysId\030\002 \002" +
-      "(\005\022\023\n\013vehicleUUID\030\003 \002(\t\"\326\001\n\010Envelope\0222\n\004" +
-      "type\030\003 \001(\0162$.com.geeksville.dapi.Envelop" +
-      "eMsgCode\022,\n\005login\030\n \001(\0132\035.com.geeksville" +
-      ".dapi.LoginMsg\0220\n\007mavlink\030\013 \001(\0132\037.com.ge",
-      "eksville.dapi.MavlinkMsg\0226\n\nsetVehicle\030\014" +
-      " \001(\0132\".com.geeksville.dapi.SetVehicleMsg" +
-      "*N\n\017EnvelopeMsgCode\022\020\n\014LoginMsgCode\020\n\022\022\n" +
-      "\016MavlinkMsgCode\020\013\022\025\n\021SetVehicleMsgCode\020\014" +
-      "B\025\n\023com.geeksville.dapi"
+      "(\005\022\023\n\013vehicleUUID\030\003 \002(\t\022\031\n\021canAcceptComm" +
+      "ands\030\004 \002(\010\"\326\001\n\010Envelope\0222\n\004type\030\003 \001(\0162$." +
+      "com.geeksville.dapi.EnvelopeMsgCode\022,\n\005l" +
+      "ogin\030\n \001(\0132\035.com.geeksville.dapi.LoginMs",
+      "g\0220\n\007mavlink\030\013 \001(\0132\037.com.geeksville.dapi" +
+      ".MavlinkMsg\0226\n\nsetVehicle\030\014 \001(\0132\".com.ge" +
+      "eksville.dapi.SetVehicleMsg*N\n\017EnvelopeM" +
+      "sgCode\022\020\n\014LoginMsgCode\020\n\022\022\n\016MavlinkMsgCo" +
+      "de\020\013\022\025\n\021SetVehicleMsgCode\020\014B\025\n\023com.geeks" +
+      "ville.dapi"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2526,7 +2592,7 @@ public final class Webapi {
           internal_static_com_geeksville_dapi_SetVehicleMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_SetVehicleMsg_descriptor,
-              new java.lang.String[] { "GcsInterface", "SysId", "VehicleUUID", },
+              new java.lang.String[] { "GcsInterface", "SysId", "VehicleUUID", "CanAcceptCommands", },
               com.geeksville.dapi.Webapi.SetVehicleMsg.class,
               com.geeksville.dapi.Webapi.SetVehicleMsg.Builder.class);
           internal_static_com_geeksville_dapi_Envelope_descriptor =
