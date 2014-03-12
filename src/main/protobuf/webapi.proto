@@ -1,8 +1,81 @@
+/**
+ webapi.proto
+ 
+ This file specifies the wire protocol used for vehicles/GCS connection to the dronehub server.  Supporting documents
+ are available, but it is intended that _this file_ should be self describing enough for a developer to be able to
+ write a client adapter that can connect to the server. 
+ 
+ A basic understanding of Protocol Buffers is needed to understand this IDL.  For more information see:
+ https://developers.google.com/protocol-buffers/docs/overview
+ 
+ This protocol is currently a draft and encryption is not yet supported.  A future variant of this protocol will use SASL encapsulation
+ for encryption (http://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer).  A UDP variant may also be released at some point.
+ 
+ Connection establishment:
+ * Clients should open a TCP connection to port 5555 on <server name tbd> 
+ * Once the connection is open, the client should send an Envelope containing a LoginMsg (see documentation below)
+ * The server will respond with an Envelope containing a LoginResponseMsg
+ * Once login completes successfully client can send other message types (see documention for Envelope)
+ 
+ Wire encoding:
+ * Messages are always sent/received using the protobuf writeDelimited/readDelimited functions
+ * Every message sent over the wire is an Envelope (see documentation below)
+ * Envelope is a 'variant record' and should contain one (and only one) Message 
+ 
+Account creation message flow:
+ * (Optional) If the client wants to create a new user account client sends LoginMsg(with code = CHECK_USERNAME) as user is picking a username.
+   Server responds with LoginResponseMsg to indicate if username is available
+   Client sends LoginMsg(with code = CREATE) and the selected username and password
+   Server responds with LoginResponseMsg (if server populates message, the client should show the message to the user)
+
+Normal message flow for 'live' flights:
+ * Client sends LoginMsg with a valid username and password
+ * Server responds with LoginResponseMsg (if server populates message, the client should show the message to the user)
+ * (User arms vehicle)
+ * Client sends StartMissionMsg
+ * Server responds with MissionResponseMsg
+ * Client sends SetVehicleMsgs (one per vehicle the client is talking with).  These messages will indicate if mavlink from the server is accepted.
+ * Server does not respond
+ * Client sends numerous MavlinkMsgs - ideally for all mavlink, but if the TCP link begins to back up client can use heuristics to drop packets
+ * If server wants to send commands/queries to vehicles, it can send MavlinkMsgs to the client
+ * (User chooses to end the flight/disarm vehicle etc...)
+ * Client sends StopMissionMsg
+ * Server responds with MissionResponseMsg
+ * Client disconnects
+ 
+ Normal message flow for batch upload of old flights (used if internet connectivity was not available while GCS was connected to vehicle):
+ This message flow is the same as the 'live' flight except the SetVehicleMsgs will indicate that vehicle can not be contacted by server
+ 
+ For more information see developer documentation at https://docs.google.com/document/d/1ihKneLwA4hXmKS1W2pbG9lty_EAwbmy0giusUwQ8dto/edit
+ 
+ */
+ 
 package com.geeksville.dapi;
 
 option java_package = "com.geeksville.dapi";
 
-
+/**
+ The privacy level for missions (can be changed later through the web user interface)
+ This code does not affect _storage_ of the flight in the corpus for offline viewing.  That can be set with the 
+ StopMissionMsg.keepFlight field.
+ */
+enum PrivacyCode {
+    // Use whatever privacy level the user selected as their default (stored in the user account on the server)
+    DEFAULT = 0;
+   
+    // Only the user can see this mission
+    PRIVATE = 1;
+    
+    // Only others with the URL for this mission can see it, mission will not be publically listed
+    SHARED = 2;
+    
+    // Academic researchers will have access to this flight
+    RESEARCHER = 3;
+    
+    // Anyone can see this flight
+    PUBLIC = 4;
+}
+    
 /**
  A login/user-create/passwork-check request.  
  
@@ -43,6 +116,23 @@ message LoginMsg {
 	
 	// The version # of this protocol that is being used by this client (new versions of webapi.proto will increment this number)
 	optional int32 protocolVersion = 8 [default = 1];
+	
+	// Who can view new missions from this user?
+	// If specified users sharing defaults will be updated
+	optional PrivacyCode defaultViewPrivacy = 9 [default = PUBLIC];	
+	
+	// Who can control this vehicle via the web?
+	// If specified users sharing defaults will be updated
+	optional PrivacyCode defaultControlPrivacy = 10 [default = PRIVATE];
+}
+
+/**
+ An informational message from the user/GCS to other viewers/for storage in the log file
+ Examples would be "my house is here", "just crashed", etc...
+ */
+message NoteMsg {
+    // The message the user would like to store
+    required string note = 1;
 }
 
 /**
@@ -97,6 +187,45 @@ message LoginResponseMsg {
 }
 
 /**
+ Client should send this at the start of a mission. Server will respond with a MissionResponseMsg.
+*/
+message StartMissionMsg {
+    // a user description for this mission (can be added at beginning or end of mission, or never)
+    optional string notes = 1;
+    
+    // Who can view this mission
+    optional PrivacyCode viewPrivacy = 2 [default = DEFAULT];
+    
+    // Who can control this vehicle via the web	
+	optional PrivacyCode controlPrivacy = 3 [default = DEFAULT];
+	
+	// If true, the file will be stored for future offline viewing.  If client disconnects
+    // before sending the StopMissionMsg, the value for keep that was specified in the StartMissionMsg will be used
+    required bool keep = 4;
+}
+
+/**
+ Client should send this at the end of the mission.  Server will respond with a MissionResponseMsg
+ */
+message StopMissionMsg {
+    // a user description for this mission (can be added at beginning or end of mission, or never)
+    optional string notes = 2;
+    
+    // If true, the file will be stored for future offline viewing.  If client disconnects
+    // before sending the StopMissionMsg, the value for keep that was specified in the StartMissionMsg will be used
+    required bool keep = 3;
+}
+
+/**
+ Server sends this message in reply to StartMissionMsg or StopMissionMsg.  The common use-case is so the client can 
+ show a notification pointing to the webpage for flight viewing
+*/
+message MissionResponse {
+    // If specified, server would like to show the indicated message to the user (probably a nice URL to view the flight)
+    optional ShowMsg message = 2;
+}
+
+/**
  A message sent in either direction to indicate mavlink data which was received/sent.
 */
 message MavlinkMsg {
@@ -144,30 +273,37 @@ message SetVehicleMsg {
 	optional string softwareVersion = 9;
 }
 
-// Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment similar 
-// to how I've used protobufs in the past)
-enum EnvelopeMsgCode {
-	MavlinkMsgCode = 10;
-	LoginMsgCode = 11;
-	SetVehicleMsgCode = 12;
-	
-	LoginResponseMsgCode = 64;
-	ShowMsgCode = 65;
-}
-
 // Envelope to contain all the messages. At any time, ONLY 1 of the optional fields can be used.
 message Envelope {
+    // Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment 
+    // similar to how I've used protobufs in the past)
+    enum MsgCode {
+	    MavlinkMsgCode = 2;
+	
+	    LoginMsgCode = 32;
+	    SetVehicleMsgCode = 33;
+	    NoteMsgCode = 34;
+	
+	    LoginResponseMsgCode = 64;
+	    ShowMsgCode = 65;
+	    MissionResponseCode = 66;
+    }
+
   	// Optional optimization: Identifies which field is filled in.  If not specified receiver will need to check each optional payload below.
-  	optional EnvelopeMsgCode type = 3;
+  	optional MsgCode type = 1;
 
     // Payloads that can be sent in either direction
-    optional MavlinkMsg mavlink = 10;
+    optional MavlinkMsg mavlink = 2;
     	
 	// Client to server payloads
-	optional LoginMsg login = 11;
-	optional SetVehicleMsg setVehicle = 12;
+	optional LoginMsg login = 32;
+	optional SetVehicleMsg setVehicle = 33;
+	optional NoteMsg note = 34;
+	optional StartMissionMsg startMission = 35;
+	optional StopMissionMsg stopMission = 36;
 	
 	// Server to client payloads
 	optional LoginResponseMsg loginResponse = 64;
 	optional ShowMsg show = 65;
+	optional MissionResponse missionResponse = 66;
 }
