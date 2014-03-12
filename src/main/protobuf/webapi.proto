@@ -22,11 +22,11 @@
  * Every message sent over the wire is an Envelope (see documentation below)
  * Envelope is a 'variant record' and should contain one (and only one) Message 
  
-Account creation message flow:
- * (Optional) If the client wants to create a new user account client sends LoginMsg(with code = CHECK_USERNAME) as user is picking a username.
-   Server responds with LoginResponseMsg to indicate if username is available
-   Client sends LoginMsg(with code = CREATE) and the selected username and password
-   Server responds with LoginResponseMsg (if server populates message, the client should show the message to the user)
+Account creation message flow (optional):
+ * Client sends LoginMsg(with code = CHECK_USERNAME) as user is picking a username.
+ * Server responds with LoginResponseMsg to indicate if username is available
+ * Client sends LoginMsg(with code = CREATE) and the selected username and password
+ * Server responds with LoginResponseMsg (if server populates message, the client should show the message to the user)
 
 Normal message flow for 'live' flights:
  * Client sends LoginMsg with a valid username and password
