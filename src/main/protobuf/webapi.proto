@@ -85,7 +85,7 @@ enum PrivacyCode {
  A successful login must be completed before any further messages will be accepted by the server.
  */
 message LoginMsg {
-	enum RequestCode {
+    enum RequestCode {
         // Please log me in
         LOGIN = 0;
         
@@ -97,33 +97,33 @@ message LoginMsg {
     }
     required RequestCode code = 1;
     
-	required string username = 2;
+    required string username = 2;
     
-	optional string password = 3;
+    optional string password = 3;
 	
-	// Only used if creating a new user record
-	optional string email = 4;
+    // Only used if creating a new user record
+    optional string email = 4;
 
-	// If specified this is the clients notion of connection time (in UTC) as usecs since 1970
-	optional int64 startTime = 5;
+    // If specified this is the clients notion of connection time (in UTC) as usecs since 1970
+    optional int64 startTime = 5;
 	
-	// Autopilot type if known, preferably from the master gcs-types.txt definitions file.
-	// To add new definitions to the file, please submit a github pull-request.
-	optional string gcsName = 6;
+    // Autopilot type if known, preferably from the master gcs-types.txt definitions file.
+    // To add new definitions to the file, please submit a github pull-request.
+    optional string gcsName = 6;
 	
-	// GCS software version
-	optional string softwareVersion = 7;
+    // GCS software version
+    optional string softwareVersion = 7;
 	
-	// The version # of this protocol that is being used by this client (new versions of webapi.proto will increment this number)
-	optional int32 protocolVersion = 8 [default = 1];
+    // The version # of this protocol that is being used by this client (new versions of webapi.proto will increment this number)
+    optional int32 protocolVersion = 8 [default = 1];
 	
-	// Who can view new missions from this user?
-	// If specified users sharing defaults will be updated
-	optional PrivacyCode defaultViewPrivacy = 9 [default = PUBLIC];	
+    // Who can view new missions from this user?
+    // If specified users sharing defaults will be updated
+    optional PrivacyCode defaultViewPrivacy = 9 [default = PUBLIC];	
 	
-	// Who can control this vehicle via the web?
-	// If specified users sharing defaults will be updated
-	optional PrivacyCode defaultControlPrivacy = 10 [default = PRIVATE];
+    // Who can control this vehicle via the web?
+    // If specified users sharing defaults will be updated
+    optional PrivacyCode defaultControlPrivacy = 10 [default = PRIVATE];
 }
 
 /**
@@ -197,9 +197,9 @@ message StartMissionMsg {
     optional PrivacyCode viewPrivacy = 2 [default = DEFAULT];
     
     // Who can control this vehicle via the web	
-	optional PrivacyCode controlPrivacy = 3 [default = DEFAULT];
+    optional PrivacyCode controlPrivacy = 3 [default = DEFAULT];
 	
-	// If true, the file will be stored for future offline viewing.  If client disconnects
+    // If true, the file will be stored for future offline viewing.  If client disconnects
     // before sending the StopMissionMsg, the value for keep that was specified in the StartMissionMsg will be used
     required bool keep = 4;
 }
@@ -229,48 +229,48 @@ message MissionResponse {
  A message sent in either direction to indicate mavlink data which was received/sent.
 */
 message MavlinkMsg {
-	required sint32 srcInterface = 1;
-	repeated bytes packet = 2;
+    required sint32 srcInterface = 1;
+    repeated bytes packet = 2;
 
-	// If specified this is the delta time from the original connection time (in usecs)
-	optional int64 deltaT = 3;
+    // If specified this is the delta time from the original connection time (in usecs)
+    optional int64 deltaT = 3;
 }
 
 // Set the vehicle ID that corresponds to a particular sysId on a particular interface
 // GCSes should also be described to the server using this same mechanism but use the special string "GCS" as the UUID
 message SetVehicleMsg {
-	// The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
-	required sint32 gcsInterface = 1;
+    // The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+    required sint32 gcsInterface = 1;
 
-	// The mavlink sysId the vehicle is appearing as for this session/interface
-	required int32  sysId = 2;
+    // The mavlink sysId the vehicle is appearing as for this session/interface
+    required int32  sysId = 2;
 
-	// vehicleId need only unique for a particular user, and if the client uses a previously unknown vehicle ID a new vehicle
-	// record may be created on the server (underneath that user's account)
-	// GCSes should also be described to the server using this same mechanism but use the special string "GCS" as the UUID
-	required string vehicleUUID = 3;
+    // vehicleId need only unique for a particular user, and if the client uses a previously unknown vehicle ID a new vehicle
+    // record may be created on the server (underneath that user's account)
+    // GCSes should also be described to the server using this same mechanism but use the special string "GCS" as the UUID
+    required string vehicleUUID = 3;
 	
-	// If false the vehicle will not be able to respond to any commands sent from the server (either due to link limitations or the fact
-	// that this is merely a delayed upload of a stored log file)
-	required bool	canAcceptCommands = 4;
+    // If false the vehicle will not be able to respond to any commands sent from the server (either due to link limitations or the fact
+    // that this is merely a delayed upload of a stored log file)
+    required bool canAcceptCommands = 4;
 	
-	// A human readable name for this vehicle (i.e. My Bixler).  This will be used to update vehicle metadata on the server
-	optional string humanName = 5;
+    // A human readable name for this vehicle (i.e. My Bixler).  This will be used to update vehicle metadata on the server
+    optional string humanName = 5;
 	
-	// Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
-	// To add new definitions to the file, please submit a github pull-request.
-	optional string manufacturer = 6;
+    // Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+    // To add new definitions to the file, please submit a github pull-request.
+    optional string manufacturer = 6;
 	
-	// Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
-	// To add new definitions to the file, please submit a github pull-request.
-	optional string vehicleType = 7;
+    // Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+    // To add new definitions to the file, please submit a github pull-request.
+    optional string vehicleType = 7;
 	
-	// Autopilot type if known, preferably from the master autopilot-types.txt definitions file.
-	// To add new definitions to the file, please submit a github pull-request.
-	optional string autopilotType = 8;
+    // Autopilot type if known, preferably from the master autopilot-types.txt definitions file.
+    // To add new definitions to the file, please submit a github pull-request.
+    optional string autopilotType = 8;
 	
-	// Autopilot software version #
-	optional string softwareVersion = 9;
+    // Autopilot software version #
+    optional string softwareVersion = 9;
 }
 
 // Envelope to contain all the messages. At any time, ONLY 1 of the optional fields can be used.
@@ -278,32 +278,32 @@ message Envelope {
     // Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment 
     // similar to how I've used protobufs in the past)
     enum MsgCode {
-	    MavlinkMsgCode = 2;
+        MavlinkMsgCode = 2;
 	
-	    LoginMsgCode = 32;
-	    SetVehicleMsgCode = 33;
-	    NoteMsgCode = 34;
+	LoginMsgCode = 32;
+	SetVehicleMsgCode = 33;
+	NoteMsgCode = 34;
 	
-	    LoginResponseMsgCode = 64;
-	    ShowMsgCode = 65;
-	    MissionResponseCode = 66;
+	LoginResponseMsgCode = 64;
+	ShowMsgCode = 65;
+	MissionResponseCode = 66;
     }
 
-  	// Optional optimization: Identifies which field is filled in.  If not specified receiver will need to check each optional payload below.
-  	optional MsgCode type = 1;
+    // Optional optimization: Identifies which field is filled in.  If not specified receiver will need to check each optional payload below.
+    optional MsgCode type = 1;
 
     // Payloads that can be sent in either direction
     optional MavlinkMsg mavlink = 2;
     	
-	// Client to server payloads
-	optional LoginMsg login = 32;
-	optional SetVehicleMsg setVehicle = 33;
-	optional NoteMsg note = 34;
-	optional StartMissionMsg startMission = 35;
-	optional StopMissionMsg stopMission = 36;
+    // Client to server payloads
+    optional LoginMsg login = 32;
+    optional SetVehicleMsg setVehicle = 33;
+    optional NoteMsg note = 34;
+    optional StartMissionMsg startMission = 35;
+    optional StopMissionMsg stopMission = 36;
 	
-	// Server to client payloads
-	optional LoginResponseMsg loginResponse = 64;
-	optional ShowMsg show = 65;
-	optional MissionResponse missionResponse = 66;
+    // Server to client payloads
+    optional LoginResponseMsg loginResponse = 64;
+    optional ShowMsg show = 65;
+    optional MissionResponse missionResponse = 66;
 }
