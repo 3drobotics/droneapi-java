@@ -86,12 +86,84 @@ public final class Webapi {
     // @@protoc_insertion_point(enum_scope:com.geeksville.dapi.AccessCode)
   }
   
+  public enum LoginRequestCode
+      implements com.google.protobuf.ProtocolMessageEnum {
+    LOGIN(0, 0),
+    CREATE(1, 1),
+    CHECK_USERNAME(2, 2),
+    ;
+    
+    public static final int LOGIN_VALUE = 0;
+    public static final int CREATE_VALUE = 1;
+    public static final int CHECK_USERNAME_VALUE = 2;
+    
+    
+    public final int getNumber() { return value; }
+    
+    public static LoginRequestCode valueOf(int value) {
+      switch (value) {
+        case 0: return LOGIN;
+        case 1: return CREATE;
+        case 2: return CHECK_USERNAME;
+        default: return null;
+      }
+    }
+    
+    public static com.google.protobuf.Internal.EnumLiteMap<LoginRequestCode>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<LoginRequestCode>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<LoginRequestCode>() {
+            public LoginRequestCode findValueByNumber(int number) {
+              return LoginRequestCode.valueOf(number);
+            }
+          };
+    
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.geeksville.dapi.Webapi.getDescriptor().getEnumTypes().get(1);
+    }
+    
+    private static final LoginRequestCode[] VALUES = {
+      LOGIN, CREATE, CHECK_USERNAME, 
+    };
+    
+    public static LoginRequestCode valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+    
+    private final int index;
+    private final int value;
+    
+    private LoginRequestCode(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+    
+    // @@protoc_insertion_point(enum_scope:com.geeksville.dapi.LoginRequestCode)
+  }
+  
   public interface LoginMsgOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required .com.geeksville.dapi.LoginMsg.RequestCode code = 1;
+    // required .com.geeksville.dapi.LoginRequestCode code = 1;
     boolean hasCode();
-    com.geeksville.dapi.Webapi.LoginMsg.RequestCode getCode();
+    com.geeksville.dapi.Webapi.LoginRequestCode getCode();
     
     // required string username = 2;
     boolean hasUsername();
@@ -157,86 +229,14 @@ public final class Webapi {
       return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_LoginMsg_fieldAccessorTable;
     }
     
-    public enum RequestCode
-        implements com.google.protobuf.ProtocolMessageEnum {
-      LOGIN(0, 0),
-      CREATE(1, 1),
-      CHECK_USERNAME(2, 2),
-      ;
-      
-      public static final int LOGIN_VALUE = 0;
-      public static final int CREATE_VALUE = 1;
-      public static final int CHECK_USERNAME_VALUE = 2;
-      
-      
-      public final int getNumber() { return value; }
-      
-      public static RequestCode valueOf(int value) {
-        switch (value) {
-          case 0: return LOGIN;
-          case 1: return CREATE;
-          case 2: return CHECK_USERNAME;
-          default: return null;
-        }
-      }
-      
-      public static com.google.protobuf.Internal.EnumLiteMap<RequestCode>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static com.google.protobuf.Internal.EnumLiteMap<RequestCode>
-          internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<RequestCode>() {
-              public RequestCode findValueByNumber(int number) {
-                return RequestCode.valueOf(number);
-              }
-            };
-      
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(index);
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return com.geeksville.dapi.Webapi.LoginMsg.getDescriptor().getEnumTypes().get(0);
-      }
-      
-      private static final RequestCode[] VALUES = {
-        LOGIN, CREATE, CHECK_USERNAME, 
-      };
-      
-      public static RequestCode valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        return VALUES[desc.getIndex()];
-      }
-      
-      private final int index;
-      private final int value;
-      
-      private RequestCode(int index, int value) {
-        this.index = index;
-        this.value = value;
-      }
-      
-      // @@protoc_insertion_point(enum_scope:com.geeksville.dapi.LoginMsg.RequestCode)
-    }
-    
     private int bitField0_;
-    // required .com.geeksville.dapi.LoginMsg.RequestCode code = 1;
+    // required .com.geeksville.dapi.LoginRequestCode code = 1;
     public static final int CODE_FIELD_NUMBER = 1;
-    private com.geeksville.dapi.Webapi.LoginMsg.RequestCode code_;
+    private com.geeksville.dapi.Webapi.LoginRequestCode code_;
     public boolean hasCode() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public com.geeksville.dapi.Webapi.LoginMsg.RequestCode getCode() {
+    public com.geeksville.dapi.Webapi.LoginRequestCode getCode() {
       return code_;
     }
     
@@ -441,7 +441,7 @@ public final class Webapi {
     }
     
     private void initFields() {
-      code_ = com.geeksville.dapi.Webapi.LoginMsg.RequestCode.LOGIN;
+      code_ = com.geeksville.dapi.Webapi.LoginRequestCode.LOGIN;
       username_ = "";
       password_ = "";
       email_ = "";
@@ -675,7 +675,7 @@ public final class Webapi {
       
       public Builder clear() {
         super.clear();
-        code_ = com.geeksville.dapi.Webapi.LoginMsg.RequestCode.LOGIN;
+        code_ = com.geeksville.dapi.Webapi.LoginRequestCode.LOGIN;
         bitField0_ = (bitField0_ & ~0x00000001);
         username_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -860,7 +860,7 @@ public final class Webapi {
             }
             case 8: {
               int rawValue = input.readEnum();
-              com.geeksville.dapi.Webapi.LoginMsg.RequestCode value = com.geeksville.dapi.Webapi.LoginMsg.RequestCode.valueOf(rawValue);
+              com.geeksville.dapi.Webapi.LoginRequestCode value = com.geeksville.dapi.Webapi.LoginRequestCode.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(1, rawValue);
               } else {
@@ -932,15 +932,15 @@ public final class Webapi {
       
       private int bitField0_;
       
-      // required .com.geeksville.dapi.LoginMsg.RequestCode code = 1;
-      private com.geeksville.dapi.Webapi.LoginMsg.RequestCode code_ = com.geeksville.dapi.Webapi.LoginMsg.RequestCode.LOGIN;
+      // required .com.geeksville.dapi.LoginRequestCode code = 1;
+      private com.geeksville.dapi.Webapi.LoginRequestCode code_ = com.geeksville.dapi.Webapi.LoginRequestCode.LOGIN;
       public boolean hasCode() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public com.geeksville.dapi.Webapi.LoginMsg.RequestCode getCode() {
+      public com.geeksville.dapi.Webapi.LoginRequestCode getCode() {
         return code_;
       }
-      public Builder setCode(com.geeksville.dapi.Webapi.LoginMsg.RequestCode value) {
+      public Builder setCode(com.geeksville.dapi.Webapi.LoginRequestCode value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -951,7 +951,7 @@ public final class Webapi {
       }
       public Builder clearCode() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        code_ = com.geeksville.dapi.Webapi.LoginMsg.RequestCode.LOGIN;
+        code_ = com.geeksville.dapi.Webapi.LoginRequestCode.LOGIN;
         onChanged();
         return this;
       }
@@ -7719,63 +7719,63 @@ public final class Webapi {
   static {
     java.lang.String[] descriptorData = {
       "\n\036src/main/protobuf/webapi.proto\022\023com.ge" +
-      "eksville.dapi\"\227\003\n\010LoginMsg\0227\n\004code\030\001 \002(\016" +
-      "2).com.geeksville.dapi.LoginMsg.RequestC" +
-      "ode\022\020\n\010username\030\002 \002(\t\022\020\n\010password\030\003 \001(\t\022" +
-      "\r\n\005email\030\004 \001(\t\022\021\n\tstartTime\030\005 \001(\003\022\017\n\007gcs" +
-      "Name\030\006 \001(\t\022\027\n\017softwareVersion\030\007 \001(\t\022\032\n\017p" +
-      "rotocolVersion\030\010 \001(\005:\0011\022C\n\022defaultViewPr" +
-      "ivacy\030\t \001(\0162\037.com.geeksville.dapi.Access" +
-      "Code:\006PUBLIC\022G\n\025defaultControlPrivacy\030\n " +
-      "\001(\0162\037.com.geeksville.dapi.AccessCode:\007PR",
-      "IVATE\"8\n\013RequestCode\022\t\n\005LOGIN\020\000\022\n\n\006CREAT" +
-      "E\020\001\022\022\n\016CHECK_USERNAME\020\002\"\027\n\007NoteMsg\022\014\n\004no" +
-      "te\030\001 \002(\t\"\210\001\n\007ShowMsg\022\014\n\004text\030\001 \001(\t\022\013\n\003ur" +
-      "l\030\002 \001(\t\0227\n\010priority\030\003 \002(\0162%.com.geeksvil" +
-      "le.dapi.ShowMsg.Priority\")\n\010Priority\022\007\n\003" +
-      "LOW\020\000\022\n\n\006MEDIUM\020\n\022\010\n\004HIGH\020\024\"\356\001\n\020LoginRes" +
-      "ponseMsg\022@\n\004code\030\001 \002(\01622.com.geeksville." +
-      "dapi.LoginResponseMsg.ResponseCode\022-\n\007me" +
-      "ssage\030\002 \001(\0132\034.com.geeksville.dapi.ShowMs" +
-      "g\"i\n\014ResponseCode\022\006\n\002OK\020\000\022\020\n\014BAD_PASSWOR",
-      "D\020\001\022\016\n\nCALL_LATER\020\002\022\024\n\020NAME_UNAVAILABLE\020" +
-      "\003\022\031\n\025PROTOCOL_INCOMPATIBLE\020\004\"\257\001\n\017StartMi" +
-      "ssionMsg\022\r\n\005notes\030\001 \001(\t\022=\n\013viewPrivacy\030\002" +
-      " \001(\0162\037.com.geeksville.dapi.AccessCode:\007D" +
-      "EFAULT\022@\n\016controlPrivacy\030\003 \001(\0162\037.com.gee" +
-      "ksville.dapi.AccessCode:\007DEFAULT\022\014\n\004keep" +
-      "\030\004 \002(\010\"-\n\016StopMissionMsg\022\r\n\005notes\030\002 \001(\t\022" +
-      "\014\n\004keep\030\003 \002(\010\"@\n\017MissionResponse\022-\n\007mess" +
-      "age\030\002 \001(\0132\034.com.geeksville.dapi.ShowMsg\"" +
-      "B\n\nMavlinkMsg\022\024\n\014srcInterface\030\001 \002(\021\022\016\n\006p",
-      "acket\030\002 \003(\014\022\016\n\006deltaT\030\003 \001(\003\"\322\001\n\rSetVehic" +
-      "leMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysId\030\002 \002" +
-      "(\005\022\023\n\013vehicleUUID\030\003 \002(\t\022\031\n\021canAcceptComm" +
-      "ands\030\004 \002(\010\022\021\n\thumanName\030\005 \001(\t\022\024\n\014manufac" +
-      "turer\030\006 \001(\t\022\023\n\013vehicleType\030\007 \001(\t\022\025\n\rauto" +
-      "pilotType\030\010 \001(\t\022\027\n\017softwareVersion\030\t \001(\t" +
-      "\"\361\005\n\010Envelope\0223\n\004type\030\001 \001(\0162%.com.geeksv" +
-      "ille.dapi.Envelope.MsgCode\0220\n\007mavlink\030\002 " +
-      "\001(\0132\037.com.geeksville.dapi.MavlinkMsg\022,\n\005" +
-      "login\030  \001(\0132\035.com.geeksville.dapi.LoginM",
-      "sg\0226\n\nsetVehicle\030! \001(\0132\".com.geeksville." +
-      "dapi.SetVehicleMsg\022*\n\004note\030\" \001(\0132\034.com.g" +
-      "eeksville.dapi.NoteMsg\022:\n\014startMission\030#" +
-      " \001(\0132$.com.geeksville.dapi.StartMissionM" +
-      "sg\0228\n\013stopMission\030$ \001(\0132#.com.geeksville" +
-      ".dapi.StopMissionMsg\022<\n\rloginResponse\030@ " +
-      "\001(\0132%.com.geeksville.dapi.LoginResponseM" +
-      "sg\022*\n\004show\030A \001(\0132\034.com.geeksville.dapi.S" +
-      "howMsg\022=\n\017missionResponse\030B \001(\0132$.com.ge" +
-      "eksville.dapi.MissionResponse\"\314\001\n\007MsgCod",
-      "e\022\022\n\016MavlinkMsgCode\020\002\022\020\n\014LoginMsgCode\020 \022" +
-      "\025\n\021SetVehicleMsgCode\020!\022\017\n\013NoteMsgCode\020\"\022" +
-      "\027\n\023StartMissionMsgCode\020#\022\026\n\022StopMissionM" +
-      "sgCode\020$\022\030\n\024LoginResponseMsgCode\020@\022\017\n\013Sh" +
-      "owMsgCode\020A\022\027\n\023MissionResponseCode\020B*N\n\n" +
-      "AccessCode\022\013\n\007DEFAULT\020\000\022\013\n\007PRIVATE\020\n\022\n\n\006" +
-      "SHARED\020\024\022\016\n\nRESEARCHER\020\036\022\n\n\006PUBLIC\020(B\025\n\023" +
-      "com.geeksville.dapi"
+      "eksville.dapi\"\331\002\n\010LoginMsg\0223\n\004code\030\001 \002(\016" +
+      "2%.com.geeksville.dapi.LoginRequestCode\022" +
+      "\020\n\010username\030\002 \002(\t\022\020\n\010password\030\003 \001(\t\022\r\n\005e" +
+      "mail\030\004 \001(\t\022\021\n\tstartTime\030\005 \001(\003\022\017\n\007gcsName" +
+      "\030\006 \001(\t\022\027\n\017softwareVersion\030\007 \001(\t\022\032\n\017proto" +
+      "colVersion\030\010 \001(\005:\0011\022C\n\022defaultViewPrivac" +
+      "y\030\t \001(\0162\037.com.geeksville.dapi.AccessCode" +
+      ":\006PUBLIC\022G\n\025defaultControlPrivacy\030\n \001(\0162" +
+      "\037.com.geeksville.dapi.AccessCode:\007PRIVAT",
+      "E\"\027\n\007NoteMsg\022\014\n\004note\030\001 \002(\t\"\210\001\n\007ShowMsg\022\014" +
+      "\n\004text\030\001 \001(\t\022\013\n\003url\030\002 \001(\t\0227\n\010priority\030\003 " +
+      "\002(\0162%.com.geeksville.dapi.ShowMsg.Priori" +
+      "ty\")\n\010Priority\022\007\n\003LOW\020\000\022\n\n\006MEDIUM\020\n\022\010\n\004H" +
+      "IGH\020\024\"\356\001\n\020LoginResponseMsg\022@\n\004code\030\001 \002(\016" +
+      "22.com.geeksville.dapi.LoginResponseMsg." +
+      "ResponseCode\022-\n\007message\030\002 \001(\0132\034.com.geek" +
+      "sville.dapi.ShowMsg\"i\n\014ResponseCode\022\006\n\002O" +
+      "K\020\000\022\020\n\014BAD_PASSWORD\020\001\022\016\n\nCALL_LATER\020\002\022\024\n" +
+      "\020NAME_UNAVAILABLE\020\003\022\031\n\025PROTOCOL_INCOMPAT",
+      "IBLE\020\004\"\257\001\n\017StartMissionMsg\022\r\n\005notes\030\001 \001(" +
+      "\t\022=\n\013viewPrivacy\030\002 \001(\0162\037.com.geeksville." +
+      "dapi.AccessCode:\007DEFAULT\022@\n\016controlPriva" +
+      "cy\030\003 \001(\0162\037.com.geeksville.dapi.AccessCod" +
+      "e:\007DEFAULT\022\014\n\004keep\030\004 \002(\010\"-\n\016StopMissionM" +
+      "sg\022\r\n\005notes\030\002 \001(\t\022\014\n\004keep\030\003 \002(\010\"@\n\017Missi" +
+      "onResponse\022-\n\007message\030\002 \001(\0132\034.com.geeksv" +
+      "ille.dapi.ShowMsg\"B\n\nMavlinkMsg\022\024\n\014srcIn" +
+      "terface\030\001 \002(\021\022\016\n\006packet\030\002 \003(\014\022\016\n\006deltaT\030" +
+      "\003 \001(\003\"\322\001\n\rSetVehicleMsg\022\024\n\014gcsInterface\030",
+      "\001 \002(\021\022\r\n\005sysId\030\002 \002(\005\022\023\n\013vehicleUUID\030\003 \002(" +
+      "\t\022\031\n\021canAcceptCommands\030\004 \002(\010\022\021\n\thumanNam" +
+      "e\030\005 \001(\t\022\024\n\014manufacturer\030\006 \001(\t\022\023\n\013vehicle" +
+      "Type\030\007 \001(\t\022\025\n\rautopilotType\030\010 \001(\t\022\027\n\017sof" +
+      "twareVersion\030\t \001(\t\"\361\005\n\010Envelope\0223\n\004type\030" +
+      "\001 \001(\0162%.com.geeksville.dapi.Envelope.Msg" +
+      "Code\0220\n\007mavlink\030\002 \001(\0132\037.com.geeksville.d" +
+      "api.MavlinkMsg\022,\n\005login\030  \001(\0132\035.com.geek" +
+      "sville.dapi.LoginMsg\0226\n\nsetVehicle\030! \001(\013" +
+      "2\".com.geeksville.dapi.SetVehicleMsg\022*\n\004",
+      "note\030\" \001(\0132\034.com.geeksville.dapi.NoteMsg" +
+      "\022:\n\014startMission\030# \001(\0132$.com.geeksville." +
+      "dapi.StartMissionMsg\0228\n\013stopMission\030$ \001(" +
+      "\0132#.com.geeksville.dapi.StopMissionMsg\022<" +
+      "\n\rloginResponse\030@ \001(\0132%.com.geeksville.d" +
+      "api.LoginResponseMsg\022*\n\004show\030A \001(\0132\034.com" +
+      ".geeksville.dapi.ShowMsg\022=\n\017missionRespo" +
+      "nse\030B \001(\0132$.com.geeksville.dapi.MissionR" +
+      "esponse\"\314\001\n\007MsgCode\022\022\n\016MavlinkMsgCode\020\002\022" +
+      "\020\n\014LoginMsgCode\020 \022\025\n\021SetVehicleMsgCode\020!",
+      "\022\017\n\013NoteMsgCode\020\"\022\027\n\023StartMissionMsgCode" +
+      "\020#\022\026\n\022StopMissionMsgCode\020$\022\030\n\024LoginRespo" +
+      "nseMsgCode\020@\022\017\n\013ShowMsgCode\020A\022\027\n\023Mission" +
+      "ResponseCode\020B*N\n\nAccessCode\022\013\n\007DEFAULT\020" +
+      "\000\022\013\n\007PRIVATE\020\n\022\n\n\006SHARED\020\024\022\016\n\nRESEARCHER" +
+      "\020\036\022\n\n\006PUBLIC\020(*=\n\020LoginRequestCode\022\t\n\005LO" +
+      "GIN\020\000\022\n\n\006CREATE\020\001\022\022\n\016CHECK_USERNAME\020\002B\025\n" +
+      "\023com.geeksville.dapi"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
