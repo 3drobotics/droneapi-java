@@ -53,6 +53,7 @@ message LoginMsg {
 
     required LoginRequestCode code = 1;
     
+    // Primary key: a username (such as punkgeek or bob@apple.com)
     required string username = 2;
     
     optional string password = 3;
