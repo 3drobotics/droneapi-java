@@ -186,6 +186,7 @@ message MissionResponse {
  A message sent in either direction to indicate mavlink data which was received/sent.
 */
 message MavlinkMsg {
+    // The interface this packet arrived from, or -1 if generated locally by the GCS
     required sint32 srcInterface = 1;
     
     // The mavlink payload (including 0xfe start byte and the two byte CRC)
