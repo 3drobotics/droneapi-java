@@ -8,8 +8,10 @@
  A basic understanding of Protocol Buffers is needed to understand this IDL.  For more information see:
  https://developers.google.com/protocol-buffers/docs/overview
  
- This protocol is currently a draft and encryption is not yet supported.  A future variant of this protocol will use SASL encapsulation
- for encryption (http://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer).  A UDP variant may also be released at some point.
+ This protocol is currently a draft and encryption is not yet supported.  A future variant 
+ of this protocol will use SASL encapsulation for encryption 
+ (http://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer).  
+ A UDP variant may also be released at some point.
  
  Connection establishment:
  * Clients should open a TCP connection to port 5555 on <server name tbd> 
@@ -34,19 +36,24 @@ Normal message flow for 'live' flights:
  * (User arms vehicle)
  * Client sends StartMissionMsg
  * Server responds with MissionResponseMsg
- * Client sends SetVehicleMsgs (one per vehicle the client is talking with).  These messages will indicate if mavlink from the server is accepted.
+ * Client sends SetVehicleMsgs (one per vehicle the client is talking with).  These messages will indicate if mavlink 
+   from the server is accepted.
  * Server does not respond
- * Client sends numerous MavlinkMsgs - ideally for all mavlink, but if the TCP link begins to back up client can use heuristics to drop packets
+ * Client sends numerous MavlinkMsgs - ideally for all mavlink, but if the TCP link begins to back up client can use 
+   heuristics to drop packets
  * If server wants to send commands/queries to vehicles, it can send MavlinkMsgs to the client
  * (User chooses to end the flight/disarm vehicle etc...)
  * Client sends StopMissionMsg
  * Server responds with MissionResponseMsg
  * Client disconnects
  
- Normal message flow for batch upload of old flights (used if internet connectivity was not available while GCS was connected to vehicle):
- This message flow is the same as the 'live' flight except the SetVehicleMsgs will indicate that vehicle can not be contacted by server
+ Normal message flow for batch upload of old flights (used if internet connectivity 
+ was not available while GCS was connected to vehicle):
+  * This message flow is the same as the 'live' flight except the SetVehicleMsgs will indicate 
+    that vehicle can not be contacted by server
  
- For more information see developer documentation at https://docs.google.com/document/d/1ihKneLwA4hXmKS1W2pbG9lty_EAwbmy0giusUwQ8dto/edit
+ For more information see developer documentation at
+ https://docs.google.com/document/d/1ihKneLwA4hXmKS1W2pbG9lty_EAwbmy0giusUwQ8dto/edit
  
  */
  
@@ -59,21 +66,21 @@ option java_package = "com.geeksville.dapi";
  This code does not affect _storage_ of the flight in the corpus for offline viewing.  That can be set with the 
  StopMissionMsg.keepFlight field.
  */
-enum PrivacyCode {
+enum AccessCode {
     // Use whatever privacy level the user selected as their default (stored in the user account on the server)
     DEFAULT = 0;
    
     // Only the user can see this mission
-    PRIVATE = 1;
+    PRIVATE = 10;
     
     // Only others with the URL for this mission can see it, mission will not be publically listed
-    SHARED = 2;
+    SHARED = 20;
     
     // Academic researchers will have access to this flight
-    RESEARCHER = 3;
+    RESEARCHER = 30;
     
     // Anyone can see this flight
-    PUBLIC = 4;
+    PUBLIC = 40;
 }
     
 /**
@@ -119,11 +126,11 @@ message LoginMsg {
 	
     // Who can view new missions from this user?
     // If specified users sharing defaults will be updated
-    optional PrivacyCode defaultViewPrivacy = 9 [default = PUBLIC];	
+    optional AccessCode defaultViewPrivacy = 9 [default = PUBLIC];	
 	
     // Who can control this vehicle via the web?
     // If specified users sharing defaults will be updated
-    optional PrivacyCode defaultControlPrivacy = 10 [default = PRIVATE];
+    optional AccessCode defaultControlPrivacy = 10 [default = PRIVATE];
 }
 
 /**
@@ -152,10 +159,10 @@ message ShowMsg {
         
         // A message to show the user, but not urgent.  
         // For a text only GCS just print the text, for android use a Notification
-        MEDIUM = 1; 
+        MEDIUM = 10; 
         
         // This message is urgent, please raise a dialog/pop-up
-        HIGH = 2;
+        HIGH = 20;
     }
     required Priority priority = 3;    
 }
@@ -194,10 +201,10 @@ message StartMissionMsg {
     optional string notes = 1;
     
     // Who can view this mission
-    optional PrivacyCode viewPrivacy = 2 [default = DEFAULT];
+    optional AccessCode viewPrivacy = 2 [default = DEFAULT];
     
     // Who can control this vehicle via the web	
-    optional PrivacyCode controlPrivacy = 3 [default = DEFAULT];
+    optional AccessCode controlPrivacy = 3 [default = DEFAULT];
 	
     // If true, the file will be stored for future offline viewing.  If client disconnects
     // before sending the StopMissionMsg, the value for keep that was specified in the StartMissionMsg will be used
@@ -230,6 +237,8 @@ message MissionResponse {
 */
 message MavlinkMsg {
     required sint32 srcInterface = 1;
+    
+    // The mavlink payload (including 0xfe start byte and the two byte CRC)
     repeated bytes packet = 2;
 
     // If specified this is the delta time from the original connection time (in usecs)
@@ -283,6 +292,8 @@ message Envelope {
 	LoginMsgCode = 32;
 	SetVehicleMsgCode = 33;
 	NoteMsgCode = 34;
+	StartMissionMsgCode = 35;
+	StopMissionMsgCode = 36;
 	
 	LoginResponseMsgCode = 64;
 	ShowMsgCode = 65;

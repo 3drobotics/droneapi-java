@@ -8,44 +8,44 @@ public final class Webapi {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public enum PrivacyCode
+  public enum AccessCode
       implements com.google.protobuf.ProtocolMessageEnum {
     DEFAULT(0, 0),
-    PRIVATE(1, 1),
-    SHARED(2, 2),
-    RESEARCHER(3, 3),
-    PUBLIC(4, 4),
+    PRIVATE(1, 10),
+    SHARED(2, 20),
+    RESEARCHER(3, 30),
+    PUBLIC(4, 40),
     ;
     
     public static final int DEFAULT_VALUE = 0;
-    public static final int PRIVATE_VALUE = 1;
-    public static final int SHARED_VALUE = 2;
-    public static final int RESEARCHER_VALUE = 3;
-    public static final int PUBLIC_VALUE = 4;
+    public static final int PRIVATE_VALUE = 10;
+    public static final int SHARED_VALUE = 20;
+    public static final int RESEARCHER_VALUE = 30;
+    public static final int PUBLIC_VALUE = 40;
     
     
     public final int getNumber() { return value; }
     
-    public static PrivacyCode valueOf(int value) {
+    public static AccessCode valueOf(int value) {
       switch (value) {
         case 0: return DEFAULT;
-        case 1: return PRIVATE;
-        case 2: return SHARED;
-        case 3: return RESEARCHER;
-        case 4: return PUBLIC;
+        case 10: return PRIVATE;
+        case 20: return SHARED;
+        case 30: return RESEARCHER;
+        case 40: return PUBLIC;
         default: return null;
       }
     }
     
-    public static com.google.protobuf.Internal.EnumLiteMap<PrivacyCode>
+    public static com.google.protobuf.Internal.EnumLiteMap<AccessCode>
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<PrivacyCode>
+    private static com.google.protobuf.Internal.EnumLiteMap<AccessCode>
         internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<PrivacyCode>() {
-            public PrivacyCode findValueByNumber(int number) {
-              return PrivacyCode.valueOf(number);
+          new com.google.protobuf.Internal.EnumLiteMap<AccessCode>() {
+            public AccessCode findValueByNumber(int number) {
+              return AccessCode.valueOf(number);
             }
           };
     
@@ -62,11 +62,11 @@ public final class Webapi {
       return com.geeksville.dapi.Webapi.getDescriptor().getEnumTypes().get(0);
     }
     
-    private static final PrivacyCode[] VALUES = {
+    private static final AccessCode[] VALUES = {
       DEFAULT, PRIVATE, SHARED, RESEARCHER, PUBLIC, 
     };
     
-    public static PrivacyCode valueOf(
+    public static AccessCode valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
@@ -78,12 +78,12 @@ public final class Webapi {
     private final int index;
     private final int value;
     
-    private PrivacyCode(int index, int value) {
+    private AccessCode(int index, int value) {
       this.index = index;
       this.value = value;
     }
     
-    // @@protoc_insertion_point(enum_scope:com.geeksville.dapi.PrivacyCode)
+    // @@protoc_insertion_point(enum_scope:com.geeksville.dapi.AccessCode)
   }
   
   public interface LoginMsgOrBuilder
@@ -121,13 +121,13 @@ public final class Webapi {
     boolean hasProtocolVersion();
     int getProtocolVersion();
     
-    // optional .com.geeksville.dapi.PrivacyCode defaultViewPrivacy = 9 [default = PUBLIC];
+    // optional .com.geeksville.dapi.AccessCode defaultViewPrivacy = 9 [default = PUBLIC];
     boolean hasDefaultViewPrivacy();
-    com.geeksville.dapi.Webapi.PrivacyCode getDefaultViewPrivacy();
+    com.geeksville.dapi.Webapi.AccessCode getDefaultViewPrivacy();
     
-    // optional .com.geeksville.dapi.PrivacyCode defaultControlPrivacy = 10 [default = PRIVATE];
+    // optional .com.geeksville.dapi.AccessCode defaultControlPrivacy = 10 [default = PRIVATE];
     boolean hasDefaultControlPrivacy();
-    com.geeksville.dapi.Webapi.PrivacyCode getDefaultControlPrivacy();
+    com.geeksville.dapi.Webapi.AccessCode getDefaultControlPrivacy();
   }
   public static final class LoginMsg extends
       com.google.protobuf.GeneratedMessage
@@ -420,23 +420,23 @@ public final class Webapi {
       return protocolVersion_;
     }
     
-    // optional .com.geeksville.dapi.PrivacyCode defaultViewPrivacy = 9 [default = PUBLIC];
+    // optional .com.geeksville.dapi.AccessCode defaultViewPrivacy = 9 [default = PUBLIC];
     public static final int DEFAULTVIEWPRIVACY_FIELD_NUMBER = 9;
-    private com.geeksville.dapi.Webapi.PrivacyCode defaultViewPrivacy_;
+    private com.geeksville.dapi.Webapi.AccessCode defaultViewPrivacy_;
     public boolean hasDefaultViewPrivacy() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
-    public com.geeksville.dapi.Webapi.PrivacyCode getDefaultViewPrivacy() {
+    public com.geeksville.dapi.Webapi.AccessCode getDefaultViewPrivacy() {
       return defaultViewPrivacy_;
     }
     
-    // optional .com.geeksville.dapi.PrivacyCode defaultControlPrivacy = 10 [default = PRIVATE];
+    // optional .com.geeksville.dapi.AccessCode defaultControlPrivacy = 10 [default = PRIVATE];
     public static final int DEFAULTCONTROLPRIVACY_FIELD_NUMBER = 10;
-    private com.geeksville.dapi.Webapi.PrivacyCode defaultControlPrivacy_;
+    private com.geeksville.dapi.Webapi.AccessCode defaultControlPrivacy_;
     public boolean hasDefaultControlPrivacy() {
       return ((bitField0_ & 0x00000200) == 0x00000200);
     }
-    public com.geeksville.dapi.Webapi.PrivacyCode getDefaultControlPrivacy() {
+    public com.geeksville.dapi.Webapi.AccessCode getDefaultControlPrivacy() {
       return defaultControlPrivacy_;
     }
     
@@ -449,8 +449,8 @@ public final class Webapi {
       gcsName_ = "";
       softwareVersion_ = "";
       protocolVersion_ = 1;
-      defaultViewPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.PUBLIC;
-      defaultControlPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.PRIVATE;
+      defaultViewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.PUBLIC;
+      defaultControlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.PRIVATE;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -691,9 +691,9 @@ public final class Webapi {
         bitField0_ = (bitField0_ & ~0x00000040);
         protocolVersion_ = 1;
         bitField0_ = (bitField0_ & ~0x00000080);
-        defaultViewPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.PUBLIC;
+        defaultViewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.PUBLIC;
         bitField0_ = (bitField0_ & ~0x00000100);
-        defaultControlPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.PRIVATE;
+        defaultControlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.PRIVATE;
         bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
@@ -906,7 +906,7 @@ public final class Webapi {
             }
             case 72: {
               int rawValue = input.readEnum();
-              com.geeksville.dapi.Webapi.PrivacyCode value = com.geeksville.dapi.Webapi.PrivacyCode.valueOf(rawValue);
+              com.geeksville.dapi.Webapi.AccessCode value = com.geeksville.dapi.Webapi.AccessCode.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(9, rawValue);
               } else {
@@ -917,7 +917,7 @@ public final class Webapi {
             }
             case 80: {
               int rawValue = input.readEnum();
-              com.geeksville.dapi.Webapi.PrivacyCode value = com.geeksville.dapi.Webapi.PrivacyCode.valueOf(rawValue);
+              com.geeksville.dapi.Webapi.AccessCode value = com.geeksville.dapi.Webapi.AccessCode.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(10, rawValue);
               } else {
@@ -1178,15 +1178,15 @@ public final class Webapi {
         return this;
       }
       
-      // optional .com.geeksville.dapi.PrivacyCode defaultViewPrivacy = 9 [default = PUBLIC];
-      private com.geeksville.dapi.Webapi.PrivacyCode defaultViewPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.PUBLIC;
+      // optional .com.geeksville.dapi.AccessCode defaultViewPrivacy = 9 [default = PUBLIC];
+      private com.geeksville.dapi.Webapi.AccessCode defaultViewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.PUBLIC;
       public boolean hasDefaultViewPrivacy() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
-      public com.geeksville.dapi.Webapi.PrivacyCode getDefaultViewPrivacy() {
+      public com.geeksville.dapi.Webapi.AccessCode getDefaultViewPrivacy() {
         return defaultViewPrivacy_;
       }
-      public Builder setDefaultViewPrivacy(com.geeksville.dapi.Webapi.PrivacyCode value) {
+      public Builder setDefaultViewPrivacy(com.geeksville.dapi.Webapi.AccessCode value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1197,20 +1197,20 @@ public final class Webapi {
       }
       public Builder clearDefaultViewPrivacy() {
         bitField0_ = (bitField0_ & ~0x00000100);
-        defaultViewPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.PUBLIC;
+        defaultViewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.PUBLIC;
         onChanged();
         return this;
       }
       
-      // optional .com.geeksville.dapi.PrivacyCode defaultControlPrivacy = 10 [default = PRIVATE];
-      private com.geeksville.dapi.Webapi.PrivacyCode defaultControlPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.PRIVATE;
+      // optional .com.geeksville.dapi.AccessCode defaultControlPrivacy = 10 [default = PRIVATE];
+      private com.geeksville.dapi.Webapi.AccessCode defaultControlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.PRIVATE;
       public boolean hasDefaultControlPrivacy() {
         return ((bitField0_ & 0x00000200) == 0x00000200);
       }
-      public com.geeksville.dapi.Webapi.PrivacyCode getDefaultControlPrivacy() {
+      public com.geeksville.dapi.Webapi.AccessCode getDefaultControlPrivacy() {
         return defaultControlPrivacy_;
       }
-      public Builder setDefaultControlPrivacy(com.geeksville.dapi.Webapi.PrivacyCode value) {
+      public Builder setDefaultControlPrivacy(com.geeksville.dapi.Webapi.AccessCode value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1221,7 +1221,7 @@ public final class Webapi {
       }
       public Builder clearDefaultControlPrivacy() {
         bitField0_ = (bitField0_ & ~0x00000200);
-        defaultControlPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.PRIVATE;
+        defaultControlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.PRIVATE;
         onChanged();
         return this;
       }
@@ -1666,13 +1666,13 @@ public final class Webapi {
     public enum Priority
         implements com.google.protobuf.ProtocolMessageEnum {
       LOW(0, 0),
-      MEDIUM(1, 1),
-      HIGH(2, 2),
+      MEDIUM(1, 10),
+      HIGH(2, 20),
       ;
       
       public static final int LOW_VALUE = 0;
-      public static final int MEDIUM_VALUE = 1;
-      public static final int HIGH_VALUE = 2;
+      public static final int MEDIUM_VALUE = 10;
+      public static final int HIGH_VALUE = 20;
       
       
       public final int getNumber() { return value; }
@@ -1680,8 +1680,8 @@ public final class Webapi {
       public static Priority valueOf(int value) {
         switch (value) {
           case 0: return LOW;
-          case 1: return MEDIUM;
-          case 2: return HIGH;
+          case 10: return MEDIUM;
+          case 20: return HIGH;
           default: return null;
         }
       }
@@ -2830,13 +2830,13 @@ public final class Webapi {
     boolean hasNotes();
     String getNotes();
     
-    // optional .com.geeksville.dapi.PrivacyCode viewPrivacy = 2 [default = DEFAULT];
+    // optional .com.geeksville.dapi.AccessCode viewPrivacy = 2 [default = DEFAULT];
     boolean hasViewPrivacy();
-    com.geeksville.dapi.Webapi.PrivacyCode getViewPrivacy();
+    com.geeksville.dapi.Webapi.AccessCode getViewPrivacy();
     
-    // optional .com.geeksville.dapi.PrivacyCode controlPrivacy = 3 [default = DEFAULT];
+    // optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];
     boolean hasControlPrivacy();
-    com.geeksville.dapi.Webapi.PrivacyCode getControlPrivacy();
+    com.geeksville.dapi.Webapi.AccessCode getControlPrivacy();
     
     // required bool keep = 4;
     boolean hasKeep();
@@ -2903,23 +2903,23 @@ public final class Webapi {
       }
     }
     
-    // optional .com.geeksville.dapi.PrivacyCode viewPrivacy = 2 [default = DEFAULT];
+    // optional .com.geeksville.dapi.AccessCode viewPrivacy = 2 [default = DEFAULT];
     public static final int VIEWPRIVACY_FIELD_NUMBER = 2;
-    private com.geeksville.dapi.Webapi.PrivacyCode viewPrivacy_;
+    private com.geeksville.dapi.Webapi.AccessCode viewPrivacy_;
     public boolean hasViewPrivacy() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.geeksville.dapi.Webapi.PrivacyCode getViewPrivacy() {
+    public com.geeksville.dapi.Webapi.AccessCode getViewPrivacy() {
       return viewPrivacy_;
     }
     
-    // optional .com.geeksville.dapi.PrivacyCode controlPrivacy = 3 [default = DEFAULT];
+    // optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];
     public static final int CONTROLPRIVACY_FIELD_NUMBER = 3;
-    private com.geeksville.dapi.Webapi.PrivacyCode controlPrivacy_;
+    private com.geeksville.dapi.Webapi.AccessCode controlPrivacy_;
     public boolean hasControlPrivacy() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public com.geeksville.dapi.Webapi.PrivacyCode getControlPrivacy() {
+    public com.geeksville.dapi.Webapi.AccessCode getControlPrivacy() {
       return controlPrivacy_;
     }
     
@@ -2935,8 +2935,8 @@ public final class Webapi {
     
     private void initFields() {
       notes_ = "";
-      viewPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.DEFAULT;
-      controlPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.DEFAULT;
+      viewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
+      controlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
       keep_ = false;
     }
     private byte memoizedIsInitialized = -1;
@@ -3118,9 +3118,9 @@ public final class Webapi {
         super.clear();
         notes_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        viewPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.DEFAULT;
+        viewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
         bitField0_ = (bitField0_ & ~0x00000002);
-        controlPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.DEFAULT;
+        controlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
         bitField0_ = (bitField0_ & ~0x00000004);
         keep_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -3248,7 +3248,7 @@ public final class Webapi {
             }
             case 16: {
               int rawValue = input.readEnum();
-              com.geeksville.dapi.Webapi.PrivacyCode value = com.geeksville.dapi.Webapi.PrivacyCode.valueOf(rawValue);
+              com.geeksville.dapi.Webapi.AccessCode value = com.geeksville.dapi.Webapi.AccessCode.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
@@ -3259,7 +3259,7 @@ public final class Webapi {
             }
             case 24: {
               int rawValue = input.readEnum();
-              com.geeksville.dapi.Webapi.PrivacyCode value = com.geeksville.dapi.Webapi.PrivacyCode.valueOf(rawValue);
+              com.geeksville.dapi.Webapi.AccessCode value = com.geeksville.dapi.Webapi.AccessCode.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(3, rawValue);
               } else {
@@ -3315,15 +3315,15 @@ public final class Webapi {
         onChanged();
       }
       
-      // optional .com.geeksville.dapi.PrivacyCode viewPrivacy = 2 [default = DEFAULT];
-      private com.geeksville.dapi.Webapi.PrivacyCode viewPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.DEFAULT;
+      // optional .com.geeksville.dapi.AccessCode viewPrivacy = 2 [default = DEFAULT];
+      private com.geeksville.dapi.Webapi.AccessCode viewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
       public boolean hasViewPrivacy() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.geeksville.dapi.Webapi.PrivacyCode getViewPrivacy() {
+      public com.geeksville.dapi.Webapi.AccessCode getViewPrivacy() {
         return viewPrivacy_;
       }
-      public Builder setViewPrivacy(com.geeksville.dapi.Webapi.PrivacyCode value) {
+      public Builder setViewPrivacy(com.geeksville.dapi.Webapi.AccessCode value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -3334,20 +3334,20 @@ public final class Webapi {
       }
       public Builder clearViewPrivacy() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        viewPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.DEFAULT;
+        viewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
         onChanged();
         return this;
       }
       
-      // optional .com.geeksville.dapi.PrivacyCode controlPrivacy = 3 [default = DEFAULT];
-      private com.geeksville.dapi.Webapi.PrivacyCode controlPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.DEFAULT;
+      // optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];
+      private com.geeksville.dapi.Webapi.AccessCode controlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
       public boolean hasControlPrivacy() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public com.geeksville.dapi.Webapi.PrivacyCode getControlPrivacy() {
+      public com.geeksville.dapi.Webapi.AccessCode getControlPrivacy() {
         return controlPrivacy_;
       }
-      public Builder setControlPrivacy(com.geeksville.dapi.Webapi.PrivacyCode value) {
+      public Builder setControlPrivacy(com.geeksville.dapi.Webapi.AccessCode value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -3358,7 +3358,7 @@ public final class Webapi {
       }
       public Builder clearControlPrivacy() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        controlPrivacy_ = com.geeksville.dapi.Webapi.PrivacyCode.DEFAULT;
+        controlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
         onChanged();
         return this;
       }
@@ -5913,15 +5913,19 @@ public final class Webapi {
       LoginMsgCode(1, 32),
       SetVehicleMsgCode(2, 33),
       NoteMsgCode(3, 34),
-      LoginResponseMsgCode(4, 64),
-      ShowMsgCode(5, 65),
-      MissionResponseCode(6, 66),
+      StartMissionMsgCode(4, 35),
+      StopMissionMsgCode(5, 36),
+      LoginResponseMsgCode(6, 64),
+      ShowMsgCode(7, 65),
+      MissionResponseCode(8, 66),
       ;
       
       public static final int MavlinkMsgCode_VALUE = 2;
       public static final int LoginMsgCode_VALUE = 32;
       public static final int SetVehicleMsgCode_VALUE = 33;
       public static final int NoteMsgCode_VALUE = 34;
+      public static final int StartMissionMsgCode_VALUE = 35;
+      public static final int StopMissionMsgCode_VALUE = 36;
       public static final int LoginResponseMsgCode_VALUE = 64;
       public static final int ShowMsgCode_VALUE = 65;
       public static final int MissionResponseCode_VALUE = 66;
@@ -5935,6 +5939,8 @@ public final class Webapi {
           case 32: return LoginMsgCode;
           case 33: return SetVehicleMsgCode;
           case 34: return NoteMsgCode;
+          case 35: return StartMissionMsgCode;
+          case 36: return StopMissionMsgCode;
           case 64: return LoginResponseMsgCode;
           case 65: return ShowMsgCode;
           case 66: return MissionResponseCode;
@@ -5968,7 +5974,7 @@ public final class Webapi {
       }
       
       private static final MsgCode[] VALUES = {
-        MavlinkMsgCode, LoginMsgCode, SetVehicleMsgCode, NoteMsgCode, LoginResponseMsgCode, ShowMsgCode, MissionResponseCode, 
+        MavlinkMsgCode, LoginMsgCode, SetVehicleMsgCode, NoteMsgCode, StartMissionMsgCode, StopMissionMsgCode, LoginResponseMsgCode, ShowMsgCode, MissionResponseCode, 
       };
       
       public static MsgCode valueOf(
@@ -7713,62 +7719,63 @@ public final class Webapi {
   static {
     java.lang.String[] descriptorData = {
       "\n\036src/main/protobuf/webapi.proto\022\023com.ge" +
-      "eksville.dapi\"\231\003\n\010LoginMsg\0227\n\004code\030\001 \002(\016" +
+      "eksville.dapi\"\227\003\n\010LoginMsg\0227\n\004code\030\001 \002(\016" +
       "2).com.geeksville.dapi.LoginMsg.RequestC" +
       "ode\022\020\n\010username\030\002 \002(\t\022\020\n\010password\030\003 \001(\t\022" +
       "\r\n\005email\030\004 \001(\t\022\021\n\tstartTime\030\005 \001(\003\022\017\n\007gcs" +
       "Name\030\006 \001(\t\022\027\n\017softwareVersion\030\007 \001(\t\022\032\n\017p" +
-      "rotocolVersion\030\010 \001(\005:\0011\022D\n\022defaultViewPr" +
-      "ivacy\030\t \001(\0162 .com.geeksville.dapi.Privac" +
-      "yCode:\006PUBLIC\022H\n\025defaultControlPrivacy\030\n" +
-      " \001(\0162 .com.geeksville.dapi.PrivacyCode:\007",
-      "PRIVATE\"8\n\013RequestCode\022\t\n\005LOGIN\020\000\022\n\n\006CRE" +
-      "ATE\020\001\022\022\n\016CHECK_USERNAME\020\002\"\027\n\007NoteMsg\022\014\n\004" +
-      "note\030\001 \002(\t\"\210\001\n\007ShowMsg\022\014\n\004text\030\001 \001(\t\022\013\n\003" +
-      "url\030\002 \001(\t\0227\n\010priority\030\003 \002(\0162%.com.geeksv" +
-      "ille.dapi.ShowMsg.Priority\")\n\010Priority\022\007" +
-      "\n\003LOW\020\000\022\n\n\006MEDIUM\020\001\022\010\n\004HIGH\020\002\"\356\001\n\020LoginR" +
-      "esponseMsg\022@\n\004code\030\001 \002(\01622.com.geeksvill" +
-      "e.dapi.LoginResponseMsg.ResponseCode\022-\n\007" +
-      "message\030\002 \001(\0132\034.com.geeksville.dapi.Show" +
-      "Msg\"i\n\014ResponseCode\022\006\n\002OK\020\000\022\020\n\014BAD_PASSW",
-      "ORD\020\001\022\016\n\nCALL_LATER\020\002\022\024\n\020NAME_UNAVAILABL" +
-      "E\020\003\022\031\n\025PROTOCOL_INCOMPATIBLE\020\004\"\261\001\n\017Start" +
-      "MissionMsg\022\r\n\005notes\030\001 \001(\t\022>\n\013viewPrivacy" +
-      "\030\002 \001(\0162 .com.geeksville.dapi.PrivacyCode" +
-      ":\007DEFAULT\022A\n\016controlPrivacy\030\003 \001(\0162 .com." +
-      "geeksville.dapi.PrivacyCode:\007DEFAULT\022\014\n\004" +
-      "keep\030\004 \002(\010\"-\n\016StopMissionMsg\022\r\n\005notes\030\002 " +
-      "\001(\t\022\014\n\004keep\030\003 \002(\010\"@\n\017MissionResponse\022-\n\007" +
-      "message\030\002 \001(\0132\034.com.geeksville.dapi.Show" +
-      "Msg\"B\n\nMavlinkMsg\022\024\n\014srcInterface\030\001 \002(\021\022",
-      "\016\n\006packet\030\002 \003(\014\022\016\n\006deltaT\030\003 \001(\003\"\322\001\n\rSetV" +
-      "ehicleMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysId" +
-      "\030\002 \002(\005\022\023\n\013vehicleUUID\030\003 \002(\t\022\031\n\021canAccept" +
-      "Commands\030\004 \002(\010\022\021\n\thumanName\030\005 \001(\t\022\024\n\014man" +
-      "ufacturer\030\006 \001(\t\022\023\n\013vehicleType\030\007 \001(\t\022\025\n\r" +
-      "autopilotType\030\010 \001(\t\022\027\n\017softwareVersion\030\t" +
-      " \001(\t\"\300\005\n\010Envelope\0223\n\004type\030\001 \001(\0162%.com.ge" +
-      "eksville.dapi.Envelope.MsgCode\0220\n\007mavlin" +
-      "k\030\002 \001(\0132\037.com.geeksville.dapi.MavlinkMsg" +
-      "\022,\n\005login\030  \001(\0132\035.com.geeksville.dapi.Lo",
-      "ginMsg\0226\n\nsetVehicle\030! \001(\0132\".com.geeksvi" +
-      "lle.dapi.SetVehicleMsg\022*\n\004note\030\" \001(\0132\034.c" +
-      "om.geeksville.dapi.NoteMsg\022:\n\014startMissi" +
-      "on\030# \001(\0132$.com.geeksville.dapi.StartMiss" +
-      "ionMsg\0228\n\013stopMission\030$ \001(\0132#.com.geeksv" +
-      "ille.dapi.StopMissionMsg\022<\n\rloginRespons" +
-      "e\030@ \001(\0132%.com.geeksville.dapi.LoginRespo" +
-      "nseMsg\022*\n\004show\030A \001(\0132\034.com.geeksville.da" +
-      "pi.ShowMsg\022=\n\017missionResponse\030B \001(\0132$.co" +
-      "m.geeksville.dapi.MissionResponse\"\233\001\n\007Ms",
-      "gCode\022\022\n\016MavlinkMsgCode\020\002\022\020\n\014LoginMsgCod" +
-      "e\020 \022\025\n\021SetVehicleMsgCode\020!\022\017\n\013NoteMsgCod" +
-      "e\020\"\022\030\n\024LoginResponseMsgCode\020@\022\017\n\013ShowMsg" +
-      "Code\020A\022\027\n\023MissionResponseCode\020B*O\n\013Priva" +
-      "cyCode\022\013\n\007DEFAULT\020\000\022\013\n\007PRIVATE\020\001\022\n\n\006SHAR" +
-      "ED\020\002\022\016\n\nRESEARCHER\020\003\022\n\n\006PUBLIC\020\004B\025\n\023com." +
-      "geeksville.dapi"
+      "rotocolVersion\030\010 \001(\005:\0011\022C\n\022defaultViewPr" +
+      "ivacy\030\t \001(\0162\037.com.geeksville.dapi.Access" +
+      "Code:\006PUBLIC\022G\n\025defaultControlPrivacy\030\n " +
+      "\001(\0162\037.com.geeksville.dapi.AccessCode:\007PR",
+      "IVATE\"8\n\013RequestCode\022\t\n\005LOGIN\020\000\022\n\n\006CREAT" +
+      "E\020\001\022\022\n\016CHECK_USERNAME\020\002\"\027\n\007NoteMsg\022\014\n\004no" +
+      "te\030\001 \002(\t\"\210\001\n\007ShowMsg\022\014\n\004text\030\001 \001(\t\022\013\n\003ur" +
+      "l\030\002 \001(\t\0227\n\010priority\030\003 \002(\0162%.com.geeksvil" +
+      "le.dapi.ShowMsg.Priority\")\n\010Priority\022\007\n\003" +
+      "LOW\020\000\022\n\n\006MEDIUM\020\n\022\010\n\004HIGH\020\024\"\356\001\n\020LoginRes" +
+      "ponseMsg\022@\n\004code\030\001 \002(\01622.com.geeksville." +
+      "dapi.LoginResponseMsg.ResponseCode\022-\n\007me" +
+      "ssage\030\002 \001(\0132\034.com.geeksville.dapi.ShowMs" +
+      "g\"i\n\014ResponseCode\022\006\n\002OK\020\000\022\020\n\014BAD_PASSWOR",
+      "D\020\001\022\016\n\nCALL_LATER\020\002\022\024\n\020NAME_UNAVAILABLE\020" +
+      "\003\022\031\n\025PROTOCOL_INCOMPATIBLE\020\004\"\257\001\n\017StartMi" +
+      "ssionMsg\022\r\n\005notes\030\001 \001(\t\022=\n\013viewPrivacy\030\002" +
+      " \001(\0162\037.com.geeksville.dapi.AccessCode:\007D" +
+      "EFAULT\022@\n\016controlPrivacy\030\003 \001(\0162\037.com.gee" +
+      "ksville.dapi.AccessCode:\007DEFAULT\022\014\n\004keep" +
+      "\030\004 \002(\010\"-\n\016StopMissionMsg\022\r\n\005notes\030\002 \001(\t\022" +
+      "\014\n\004keep\030\003 \002(\010\"@\n\017MissionResponse\022-\n\007mess" +
+      "age\030\002 \001(\0132\034.com.geeksville.dapi.ShowMsg\"" +
+      "B\n\nMavlinkMsg\022\024\n\014srcInterface\030\001 \002(\021\022\016\n\006p",
+      "acket\030\002 \003(\014\022\016\n\006deltaT\030\003 \001(\003\"\322\001\n\rSetVehic" +
+      "leMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysId\030\002 \002" +
+      "(\005\022\023\n\013vehicleUUID\030\003 \002(\t\022\031\n\021canAcceptComm" +
+      "ands\030\004 \002(\010\022\021\n\thumanName\030\005 \001(\t\022\024\n\014manufac" +
+      "turer\030\006 \001(\t\022\023\n\013vehicleType\030\007 \001(\t\022\025\n\rauto" +
+      "pilotType\030\010 \001(\t\022\027\n\017softwareVersion\030\t \001(\t" +
+      "\"\361\005\n\010Envelope\0223\n\004type\030\001 \001(\0162%.com.geeksv" +
+      "ille.dapi.Envelope.MsgCode\0220\n\007mavlink\030\002 " +
+      "\001(\0132\037.com.geeksville.dapi.MavlinkMsg\022,\n\005" +
+      "login\030  \001(\0132\035.com.geeksville.dapi.LoginM",
+      "sg\0226\n\nsetVehicle\030! \001(\0132\".com.geeksville." +
+      "dapi.SetVehicleMsg\022*\n\004note\030\" \001(\0132\034.com.g" +
+      "eeksville.dapi.NoteMsg\022:\n\014startMission\030#" +
+      " \001(\0132$.com.geeksville.dapi.StartMissionM" +
+      "sg\0228\n\013stopMission\030$ \001(\0132#.com.geeksville" +
+      ".dapi.StopMissionMsg\022<\n\rloginResponse\030@ " +
+      "\001(\0132%.com.geeksville.dapi.LoginResponseM" +
+      "sg\022*\n\004show\030A \001(\0132\034.com.geeksville.dapi.S" +
+      "howMsg\022=\n\017missionResponse\030B \001(\0132$.com.ge" +
+      "eksville.dapi.MissionResponse\"\314\001\n\007MsgCod",
+      "e\022\022\n\016MavlinkMsgCode\020\002\022\020\n\014LoginMsgCode\020 \022" +
+      "\025\n\021SetVehicleMsgCode\020!\022\017\n\013NoteMsgCode\020\"\022" +
+      "\027\n\023StartMissionMsgCode\020#\022\026\n\022StopMissionM" +
+      "sgCode\020$\022\030\n\024LoginResponseMsgCode\020@\022\017\n\013Sh" +
+      "owMsgCode\020A\022\027\n\023MissionResponseCode\020B*N\n\n" +
+      "AccessCode\022\013\n\007DEFAULT\020\000\022\013\n\007PRIVATE\020\n\022\n\n\006" +
+      "SHARED\020\024\022\016\n\nRESEARCHER\020\036\022\n\n\006PUBLIC\020(B\025\n\023" +
+      "com.geeksville.dapi"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
