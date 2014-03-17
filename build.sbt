@@ -18,8 +18,33 @@ EclipseKeys.projectFlavor := EclipseProjectFlavor.Java
 
 publishMavenStyle := true
 
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+
 licenses := Seq("Apache 2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 
 homepage := Some(url("https://github.com/3drobotics/japi-proxy"))
 
+publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
 
+pomExtra := (
+<developers>
+  <developer>
+    <id>kevinh</id>
+    <name>Kevin Hester</name>
+    <email>kevinh@geeksville.com</email>
+    <organization>3D Robotics</organization>
+    <roles>
+      <role>architect</role>
+    </roles>
+  </developer>
+</developers>
+<scm>
+  <url>git@github.com:3drobotics/japi-proxy.git</url>
+  <connection>scm:git@github.com:3drobotics/japi-proxy.git</connection>
+</scm>)
