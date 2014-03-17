@@ -2,14 +2,15 @@
 
  This file specifies the wire protocol used for vehicles/GCS connection to the dronehub server.  Supporting documents
  are available, but it is intended that _this file_ should be self describing enough for a developer to be able to
- write a client adapter that can connect to the server. 
+ write a client adapter that can connect to the server.
  
- A basic understanding of Protocol Buffers is needed to understand this IDL.  For more information see:
+ A basic understanding of Protocol Buffers is needed to understand this protocol.  The actual .proto file is located in
+ src/main/protobuf/webapi.proto.  For more information see:
  https://developers.google.com/protocol-buffers/docs/overview
  
  This protocol is currently a draft and encryption is not yet supported.  A future variant 
  of this protocol will use SASL encapsulation for encryption 
- (http://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer).  
+ (http://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer).
  A UDP variant may also be released at some point.
 
 ## Connection establishment
