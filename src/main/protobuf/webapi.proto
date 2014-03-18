@@ -64,7 +64,7 @@ message LoginMsg {
     // If specified this is the clients notion of connection time (in UTC) as usecs since 1970
     optional int64 startTime = 5;
 	
-    // Autopilot type if known, preferably from the master gcs-types.txt definitions file.
+    // GCS type if known, preferably from the master gcs-types.txt definitions file.
     // To add new definitions to the file, please submit a github pull-request.
     optional string gcsName = 6;
 	
