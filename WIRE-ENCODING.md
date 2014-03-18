@@ -37,11 +37,11 @@
  * Client sends LoginMsg with a valid username and password
  * Server responds with LoginResponseMsg (if server populates message, the client should show the message to the user)
  * (User arms vehicle)
- * Client sends StartMissionMsg
  * Server responds with MissionResponseMsg
  * Client sends SetVehicleMsgs (one per vehicle the client is talking with).  These messages will indicate if mavlink 
    from the server is accepted.
  * Server does not respond
+ * Client sends StartMissionMsg (must be sent _AFTER_ SetVehicleMsgs)
  * Client sends numerous MavlinkMsgs - ideally for all mavlink, but if the TCP link begins to back up client can use 
    heuristics to drop packets
  * If server wants to send commands/queries to vehicles, it can send MavlinkMsgs to the client
