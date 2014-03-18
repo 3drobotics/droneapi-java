@@ -62,6 +62,7 @@ message LoginMsg {
     optional string email = 4;
 
     // If specified this is the clients notion of connection time (in UTC) as usecs since 1970
+    // Later deltaT messages are assumed to be an offset from this time
     optional int64 startTime = 5;
 	
     // GCS type if known, preferably from the master gcs-types.txt definitions file.
