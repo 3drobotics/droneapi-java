@@ -2,6 +2,8 @@ organization := "com.3drobotics"
 
 name := "japi-proxy"
 
+description := "A client library for drone API servers"
+
 version := "0.1-SNAPSHOT"
 
 scalaVersion := "2.10.3"
