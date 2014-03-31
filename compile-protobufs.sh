@@ -1,1 +1,1 @@
-protoc --java_out src/main/java src/main/protobuf/webapi.proto
+protoc --java_out src/main/java ../droneapi-protobuf/src/protobuf/webapi.proto
