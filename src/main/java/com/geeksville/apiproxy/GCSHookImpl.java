@@ -2,11 +2,14 @@ package com.geeksville.apiproxy;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.UUID;
 
 import com.geeksville.dapi.Webapi.Envelope;
 import com.geeksville.dapi.Webapi.LoginMsg;
 import com.geeksville.dapi.Webapi.MavlinkMsg;
 import com.geeksville.dapi.Webapi.SetVehicleMsg;
+import com.geeksville.dapi.Webapi.StartMissionMsg;
+import com.geeksville.dapi.Webapi.StopMissionMsg;
 import com.google.protobuf.ByteString;
 
 /**
@@ -39,7 +42,7 @@ public class GCSHookImpl implements GCSHooks {
 				.setDeltaT(deltat).addPacket(ByteString.copyFrom(bytes))
 				.build();
 
-		weblink.send(Envelope.newBuilder().setMavlink(mav).build());
+		send(Envelope.newBuilder().setMavlink(mav).build());
 	}
 
 	@Override
@@ -53,7 +56,7 @@ public class GCSHookImpl implements GCSHooks {
 		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
 				.setPassword(password).setStartTime(startTime).build();
 		Envelope msg = Envelope.newBuilder().setLogin(m).build();
-		weblink.send(msg);
+		send(msg);
 	}
 
 	@Override
@@ -64,7 +67,7 @@ public class GCSHookImpl implements GCSHooks {
 				.setCanAcceptCommands(canAcceptCommands)
 				.setVehicleUUID(vehicleId).build();
 
-		weblink.send(Envelope.newBuilder().setSetVehicle(mav).build());
+		send(Envelope.newBuilder().setSetVehicle(mav).build());
 	}
 
 	@Override
@@ -79,6 +82,26 @@ public class GCSHookImpl implements GCSHooks {
 			weblink.close();
 			weblink = null;
 		}
+	}
+
+	@Override
+	public void send(Envelope e) throws IOException {
+		weblink.send(e);
+	}
+
+	@Override
+	public void startMission(Boolean keep, UUID uuid) throws IOException {
+		StartMissionMsg mav = StartMissionMsg.newBuilder().setKeep(keep)
+				.setUuid(uuid.toString()).build();
+
+		send(Envelope.newBuilder().setStartMission(mav).build());
+	}
+
+	@Override
+	public void stopMission(Boolean keep) throws IOException {
+		StopMissionMsg mav = StopMissionMsg.newBuilder().setKeep(keep).build();
+
+		send(Envelope.newBuilder().setStopMission(mav).build());
 	}
 
 }

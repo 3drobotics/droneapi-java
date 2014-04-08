@@ -2,6 +2,9 @@ package com.geeksville.apiproxy;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.UUID;
+
+import com.geeksville.dapi.Webapi.Envelope;
 
 /**
  * These are low level routines called by the GCS to hook into the proxy. When
@@ -68,6 +71,20 @@ public interface GCSHooks {
 	 */
 	void setVehicleId(String vehicleId, int fromInterface, int mavlinkSysId,
 			boolean canAcceptCommands) throws IOException;
+
+	// / Begin a new mission
+	void startMission(Boolean keep, UUID uuid) throws IOException;
+
+	// / End a mission
+	void stopMission(Boolean keep) throws IOException;
+
+	/**
+	 * A low level packet send command
+	 * 
+	 * @param e
+	 * @throws IOException
+	 */
+	void send(Envelope e) throws IOException;
 
 	/**
 	 * Send any queued messages immedately
