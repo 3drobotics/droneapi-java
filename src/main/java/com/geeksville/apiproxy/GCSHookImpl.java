@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.geeksville.dapi.Webapi.Envelope;
 import com.geeksville.dapi.Webapi.LoginMsg;
+import com.geeksville.dapi.Webapi.LoginResponseMsg;
 import com.geeksville.dapi.Webapi.MavlinkMsg;
 import com.geeksville.dapi.Webapi.SetVehicleMsg;
 import com.geeksville.dapi.Webapi.StartMissionMsg;
@@ -57,6 +58,30 @@ public class GCSHookImpl implements GCSHooks {
 				.setPassword(password).setStartTime(startTime).build();
 		Envelope msg = Envelope.newBuilder().setLogin(m).build();
 		send(msg);
+		checkLoginOkay();
+	}
+
+	private Envelope readEnvelope() throws IOException {
+		return weblink.receive();
+	}
+
+	private LoginResponseMsg readLoginResponse() throws IOException {
+		flush(); // Make sure any previous commands has been sent
+		LoginResponseMsg r = readEnvelope().getLoginResponse();
+
+		// No matter what, if the server is telling us to hang up, we must bail
+		// immediately
+		if (r.getCode() == LoginResponseMsg.ResponseCode.CALL_LATER)
+			throw new CallbackLaterException(r.getMessage(),
+					r.getCallbackDelay());
+
+		return r;
+	}
+
+	private void checkLoginOkay() throws IOException {
+		LoginResponseMsg r = readLoginResponse();
+		if (r.getCode() != LoginResponseMsg.ResponseCode.OK)
+			throw new LoginFailedException(r.getMessage());
 	}
 
 	@Override
