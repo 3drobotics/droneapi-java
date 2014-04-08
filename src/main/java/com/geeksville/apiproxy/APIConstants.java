@@ -4,7 +4,7 @@ public class APIConstants {
 	/**
 	 * The default world wide drone broker
 	 */
-	public static final String DEFAULT_SERVER = "localhost";
+	public static final String DEFAULT_SERVER = "nestor.3dr.com";
 
 	/**
 	 * If using a raw TCP link to the server, use this port number
