@@ -1,5 +1,5 @@
 <projectDescription>
-  <name>japi-proxy</name>
+  <name>droneapi-java</name>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>

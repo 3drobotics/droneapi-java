@@ -1,15 +1,9 @@
 <classpath>
   <classpathentry kind="src" path="src/main/scala" output="target/classes"/>
   <classpathentry kind="src" path="src/main/java" output="target/classes"/>
-  <classpathentry kind="src" path="target/src_managed/main" output="target/classes"/>
-  <classpathentry kind="src" path="src/main/resources" output="target/classes"/>
-  <classpathentry kind="src" path="target/resource_managed/main" output="target/classes"/>
   <classpathentry kind="src" path="src/test/scala" output="target/test-classes"/>
   <classpathentry kind="src" path="src/test/java" output="target/test-classes"/>
-  <classpathentry kind="src" path="target/src_managed/test" output="target/test-classes"/>
-  <classpathentry kind="src" path="src/test/resources" output="target/test-classes"/>
-  <classpathentry kind="src" path="target/resource_managed/test" output="target/test-classes"/>
-  <classpathentry sourcepath="/home/kevinh/.ivy2/cache/com.google.protobuf/protobuf-java/srcs/protobuf-java-2.5.0-sources.jar" kind="lib" path="/home/kevinh/.ivy2/cache/com.google.protobuf/protobuf-java/bundles/protobuf-java-2.5.0.jar"/>
+  <classpathentry kind="lib" path="/home/kevinh/.ivy2/cache/com.google.protobuf/protobuf-java/bundles/protobuf-java-2.5.0.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="output" path="bin"/>
 </classpath>

@@ -12,3 +12,4 @@
 project/target
 .history
 target/
+*.sublime-workspace
