@@ -2246,6 +2246,10 @@ public final class Webapi {
     boolean hasMessage();
     com.geeksville.dapi.Webapi.ShowMsg getMessage();
     com.geeksville.dapi.Webapi.ShowMsgOrBuilder getMessageOrBuilder();
+    
+    // optional int32 callbackDelay = 3;
+    boolean hasCallbackDelay();
+    int getCallbackDelay();
   }
   public static final class LoginResponseMsg extends
       com.google.protobuf.GeneratedMessage
@@ -2282,6 +2286,7 @@ public final class Webapi {
       CALL_LATER(2, 2),
       NAME_UNAVAILABLE(3, 3),
       PROTOCOL_INCOMPATIBLE(4, 4),
+      SERVER_FAULT(5, 5),
       ;
       
       public static final int OK_VALUE = 0;
@@ -2289,6 +2294,7 @@ public final class Webapi {
       public static final int CALL_LATER_VALUE = 2;
       public static final int NAME_UNAVAILABLE_VALUE = 3;
       public static final int PROTOCOL_INCOMPATIBLE_VALUE = 4;
+      public static final int SERVER_FAULT_VALUE = 5;
       
       
       public final int getNumber() { return value; }
@@ -2300,6 +2306,7 @@ public final class Webapi {
           case 2: return CALL_LATER;
           case 3: return NAME_UNAVAILABLE;
           case 4: return PROTOCOL_INCOMPATIBLE;
+          case 5: return SERVER_FAULT;
           default: return null;
         }
       }
@@ -2330,7 +2337,7 @@ public final class Webapi {
       }
       
       private static final ResponseCode[] VALUES = {
-        OK, BAD_PASSWORD, CALL_LATER, NAME_UNAVAILABLE, PROTOCOL_INCOMPATIBLE, 
+        OK, BAD_PASSWORD, CALL_LATER, NAME_UNAVAILABLE, PROTOCOL_INCOMPATIBLE, SERVER_FAULT, 
       };
       
       public static ResponseCode valueOf(
@@ -2377,9 +2384,20 @@ public final class Webapi {
       return message_;
     }
     
+    // optional int32 callbackDelay = 3;
+    public static final int CALLBACKDELAY_FIELD_NUMBER = 3;
+    private int callbackDelay_;
+    public boolean hasCallbackDelay() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public int getCallbackDelay() {
+      return callbackDelay_;
+    }
+    
     private void initFields() {
       code_ = com.geeksville.dapi.Webapi.LoginResponseMsg.ResponseCode.OK;
       message_ = com.geeksville.dapi.Webapi.ShowMsg.getDefaultInstance();
+      callbackDelay_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2409,6 +2427,9 @@ public final class Webapi {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeMessage(2, message_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt32(3, callbackDelay_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -2425,6 +2446,10 @@ public final class Webapi {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, message_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, callbackDelay_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2559,6 +2584,8 @@ public final class Webapi {
           messageBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
+        callbackDelay_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -2609,6 +2636,10 @@ public final class Webapi {
         } else {
           result.message_ = messageBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.callbackDelay_ = callbackDelay_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2630,6 +2661,9 @@ public final class Webapi {
         }
         if (other.hasMessage()) {
           mergeMessage(other.getMessage());
+        }
+        if (other.hasCallbackDelay()) {
+          setCallbackDelay(other.getCallbackDelay());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2690,6 +2724,11 @@ public final class Webapi {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setMessage(subBuilder.buildPartial());
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              callbackDelay_ = input.readInt32();
               break;
             }
           }
@@ -2812,6 +2851,27 @@ public final class Webapi {
         return messageBuilder_;
       }
       
+      // optional int32 callbackDelay = 3;
+      private int callbackDelay_ ;
+      public boolean hasCallbackDelay() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public int getCallbackDelay() {
+        return callbackDelay_;
+      }
+      public Builder setCallbackDelay(int value) {
+        bitField0_ |= 0x00000004;
+        callbackDelay_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCallbackDelay() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        callbackDelay_ = 0;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.LoginResponseMsg)
     }
     
@@ -2841,6 +2901,10 @@ public final class Webapi {
     // required bool keep = 4;
     boolean hasKeep();
     boolean getKeep();
+    
+    // optional string uuid = 5;
+    boolean hasUuid();
+    String getUuid();
   }
   public static final class StartMissionMsg extends
       com.google.protobuf.GeneratedMessage
@@ -2933,11 +2997,44 @@ public final class Webapi {
       return keep_;
     }
     
+    // optional string uuid = 5;
+    public static final int UUID_FIELD_NUMBER = 5;
+    private java.lang.Object uuid_;
+    public boolean hasUuid() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public String getUuid() {
+      java.lang.Object ref = uuid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          uuid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUuidBytes() {
+      java.lang.Object ref = uuid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        uuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     private void initFields() {
       notes_ = "";
       viewPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
       controlPrivacy_ = com.geeksville.dapi.Webapi.AccessCode.DEFAULT;
       keep_ = false;
+      uuid_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2967,6 +3064,9 @@ public final class Webapi {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeBool(4, keep_);
       }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBytes(5, getUuidBytes());
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -2991,6 +3091,10 @@ public final class Webapi {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(4, keep_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, getUuidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3124,6 +3228,8 @@ public final class Webapi {
         bitField0_ = (bitField0_ & ~0x00000004);
         keep_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
+        uuid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -3178,6 +3284,10 @@ public final class Webapi {
           to_bitField0_ |= 0x00000008;
         }
         result.keep_ = keep_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.uuid_ = uuid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3205,6 +3315,9 @@ public final class Webapi {
         }
         if (other.hasKeep()) {
           setKeep(other.getKeep());
+        }
+        if (other.hasUuid()) {
+          setUuid(other.getUuid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3271,6 +3384,11 @@ public final class Webapi {
             case 32: {
               bitField0_ |= 0x00000008;
               keep_ = input.readBool();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000010;
+              uuid_ = input.readBytes();
               break;
             }
           }
@@ -3382,6 +3500,42 @@ public final class Webapi {
         keep_ = false;
         onChanged();
         return this;
+      }
+      
+      // optional string uuid = 5;
+      private java.lang.Object uuid_ = "";
+      public boolean hasUuid() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public String getUuid() {
+        java.lang.Object ref = uuid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          uuid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUuid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        uuid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUuid() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        uuid_ = getDefaultInstance().getUuid();
+        onChanged();
+        return this;
+      }
+      void setUuid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000010;
+        uuid_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.StartMissionMsg)
@@ -7731,51 +7885,52 @@ public final class Webapi {
       "te\030\001 \002(\t\"\210\001\n\007ShowMsg\022\014\n\004text\030\001 \001(\t\022\013\n\003ur" +
       "l\030\002 \001(\t\0227\n\010priority\030\003 \002(\0162%.com.geeksvil" +
       "le.dapi.ShowMsg.Priority\")\n\010Priority\022\007\n\003" +
-      "LOW\020\000\022\n\n\006MEDIUM\020\n\022\010\n\004HIGH\020\024\"\356\001\n\020LoginRes" +
+      "LOW\020\000\022\n\n\006MEDIUM\020\n\022\010\n\004HIGH\020\024\"\227\002\n\020LoginRes" +
       "ponseMsg\022@\n\004code\030\001 \002(\01622.com.geeksville." +
       "dapi.LoginResponseMsg.ResponseCode\022-\n\007me" +
       "ssage\030\002 \001(\0132\034.com.geeksville.dapi.ShowMs" +
-      "g\"i\n\014ResponseCode\022\006\n\002OK\020\000\022\020\n\014BAD_PASSWOR" +
-      "D\020\001\022\016\n\nCALL_LATER\020\002\022\024\n\020NAME_UNAVAILABLE\020" +
-      "\003\022\031\n\025PROTOCOL_INCOMPATIBLE\020\004\"\257\001\n\017StartMi",
-      "ssionMsg\022\r\n\005notes\030\001 \001(\t\022=\n\013viewPrivacy\030\002" +
-      " \001(\0162\037.com.geeksville.dapi.AccessCode:\007D" +
-      "EFAULT\022@\n\016controlPrivacy\030\003 \001(\0162\037.com.gee" +
-      "ksville.dapi.AccessCode:\007DEFAULT\022\014\n\004keep" +
-      "\030\004 \002(\010\"-\n\016StopMissionMsg\022\r\n\005notes\030\002 \001(\t\022" +
-      "\014\n\004keep\030\003 \002(\010\"@\n\017MissionResponse\022-\n\007mess" +
-      "age\030\002 \001(\0132\034.com.geeksville.dapi.ShowMsg\"" +
-      "B\n\nMavlinkMsg\022\024\n\014srcInterface\030\001 \002(\021\022\016\n\006p" +
-      "acket\030\002 \003(\014\022\016\n\006deltaT\030\003 \001(\003\"\322\001\n\rSetVehic" +
-      "leMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysId\030\002 \002",
-      "(\005\022\023\n\013vehicleUUID\030\003 \002(\t\022\031\n\021canAcceptComm" +
-      "ands\030\004 \002(\010\022\021\n\thumanName\030\005 \001(\t\022\024\n\014manufac" +
-      "turer\030\006 \001(\t\022\023\n\013vehicleType\030\007 \001(\t\022\025\n\rauto" +
-      "pilotType\030\010 \001(\t\022\027\n\017softwareVersion\030\t \001(\t" +
-      "\"\361\005\n\010Envelope\0223\n\004type\030\001 \001(\0162%.com.geeksv" +
-      "ille.dapi.Envelope.MsgCode\0220\n\007mavlink\030\002 " +
-      "\001(\0132\037.com.geeksville.dapi.MavlinkMsg\022,\n\005" +
-      "login\030  \001(\0132\035.com.geeksville.dapi.LoginM" +
-      "sg\0226\n\nsetVehicle\030! \001(\0132\".com.geeksville." +
-      "dapi.SetVehicleMsg\022*\n\004note\030\" \001(\0132\034.com.g",
-      "eeksville.dapi.NoteMsg\022:\n\014startMission\030#" +
-      " \001(\0132$.com.geeksville.dapi.StartMissionM" +
-      "sg\0228\n\013stopMission\030$ \001(\0132#.com.geeksville" +
-      ".dapi.StopMissionMsg\022<\n\rloginResponse\030@ " +
-      "\001(\0132%.com.geeksville.dapi.LoginResponseM" +
-      "sg\022*\n\004show\030A \001(\0132\034.com.geeksville.dapi.S" +
-      "howMsg\022=\n\017missionResponse\030B \001(\0132$.com.ge" +
-      "eksville.dapi.MissionResponse\"\314\001\n\007MsgCod" +
-      "e\022\022\n\016MavlinkMsgCode\020\002\022\020\n\014LoginMsgCode\020 \022" +
-      "\025\n\021SetVehicleMsgCode\020!\022\017\n\013NoteMsgCode\020\"\022",
-      "\027\n\023StartMissionMsgCode\020#\022\026\n\022StopMissionM" +
-      "sgCode\020$\022\030\n\024LoginResponseMsgCode\020@\022\017\n\013Sh" +
-      "owMsgCode\020A\022\027\n\023MissionResponseCode\020B*N\n\n" +
-      "AccessCode\022\013\n\007DEFAULT\020\000\022\013\n\007PRIVATE\020\n\022\n\n\006" +
-      "SHARED\020\024\022\016\n\nRESEARCHER\020\036\022\n\n\006PUBLIC\020(*=\n\020" +
-      "LoginRequestCode\022\t\n\005LOGIN\020\000\022\n\n\006CREATE\020\001\022" +
-      "\022\n\016CHECK_USERNAME\020\002B\025\n\023com.geeksville.da" +
-      "pi"
+      "g\022\025\n\rcallbackDelay\030\003 \001(\005\"{\n\014ResponseCode" +
+      "\022\006\n\002OK\020\000\022\020\n\014BAD_PASSWORD\020\001\022\016\n\nCALL_LATER" +
+      "\020\002\022\024\n\020NAME_UNAVAILABLE\020\003\022\031\n\025PROTOCOL_INC",
+      "OMPATIBLE\020\004\022\020\n\014SERVER_FAULT\020\005\"\275\001\n\017StartM" +
+      "issionMsg\022\r\n\005notes\030\001 \001(\t\022=\n\013viewPrivacy\030" +
+      "\002 \001(\0162\037.com.geeksville.dapi.AccessCode:\007" +
+      "DEFAULT\022@\n\016controlPrivacy\030\003 \001(\0162\037.com.ge" +
+      "eksville.dapi.AccessCode:\007DEFAULT\022\014\n\004kee" +
+      "p\030\004 \002(\010\022\014\n\004uuid\030\005 \001(\t\"-\n\016StopMissionMsg\022" +
+      "\r\n\005notes\030\002 \001(\t\022\014\n\004keep\030\003 \002(\010\"@\n\017MissionR" +
+      "esponse\022-\n\007message\030\002 \001(\0132\034.com.geeksvill" +
+      "e.dapi.ShowMsg\"B\n\nMavlinkMsg\022\024\n\014srcInter" +
+      "face\030\001 \002(\021\022\016\n\006packet\030\002 \003(\014\022\016\n\006deltaT\030\003 \001",
+      "(\003\"\322\001\n\rSetVehicleMsg\022\024\n\014gcsInterface\030\001 \002" +
+      "(\021\022\r\n\005sysId\030\002 \002(\005\022\023\n\013vehicleUUID\030\003 \002(\t\022\031" +
+      "\n\021canAcceptCommands\030\004 \002(\010\022\021\n\thumanName\030\005" +
+      " \001(\t\022\024\n\014manufacturer\030\006 \001(\t\022\023\n\013vehicleTyp" +
+      "e\030\007 \001(\t\022\025\n\rautopilotType\030\010 \001(\t\022\027\n\017softwa" +
+      "reVersion\030\t \001(\t\"\361\005\n\010Envelope\0223\n\004type\030\001 \001" +
+      "(\0162%.com.geeksville.dapi.Envelope.MsgCod" +
+      "e\0220\n\007mavlink\030\002 \001(\0132\037.com.geeksville.dapi" +
+      ".MavlinkMsg\022,\n\005login\030  \001(\0132\035.com.geeksvi" +
+      "lle.dapi.LoginMsg\0226\n\nsetVehicle\030! \001(\0132\".",
+      "com.geeksville.dapi.SetVehicleMsg\022*\n\004not" +
+      "e\030\" \001(\0132\034.com.geeksville.dapi.NoteMsg\022:\n" +
+      "\014startMission\030# \001(\0132$.com.geeksville.dap" +
+      "i.StartMissionMsg\0228\n\013stopMission\030$ \001(\0132#" +
+      ".com.geeksville.dapi.StopMissionMsg\022<\n\rl" +
+      "oginResponse\030@ \001(\0132%.com.geeksville.dapi" +
+      ".LoginResponseMsg\022*\n\004show\030A \001(\0132\034.com.ge" +
+      "eksville.dapi.ShowMsg\022=\n\017missionResponse" +
+      "\030B \001(\0132$.com.geeksville.dapi.MissionResp" +
+      "onse\"\314\001\n\007MsgCode\022\022\n\016MavlinkMsgCode\020\002\022\020\n\014",
+      "LoginMsgCode\020 \022\025\n\021SetVehicleMsgCode\020!\022\017\n" +
+      "\013NoteMsgCode\020\"\022\027\n\023StartMissionMsgCode\020#\022" +
+      "\026\n\022StopMissionMsgCode\020$\022\030\n\024LoginResponse" +
+      "MsgCode\020@\022\017\n\013ShowMsgCode\020A\022\027\n\023MissionRes" +
+      "ponseCode\020B*N\n\nAccessCode\022\013\n\007DEFAULT\020\000\022\013" +
+      "\n\007PRIVATE\020\n\022\n\n\006SHARED\020\024\022\016\n\nRESEARCHER\020\036\022" +
+      "\n\n\006PUBLIC\020(*=\n\020LoginRequestCode\022\t\n\005LOGIN" +
+      "\020\000\022\n\n\006CREATE\020\001\022\022\n\016CHECK_USERNAME\020\002B\025\n\023co" +
+      "m.geeksville.dapi"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -7811,7 +7966,7 @@ public final class Webapi {
           internal_static_com_geeksville_dapi_LoginResponseMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_LoginResponseMsg_descriptor,
-              new java.lang.String[] { "Code", "Message", },
+              new java.lang.String[] { "Code", "Message", "CallbackDelay", },
               com.geeksville.dapi.Webapi.LoginResponseMsg.class,
               com.geeksville.dapi.Webapi.LoginResponseMsg.Builder.class);
           internal_static_com_geeksville_dapi_StartMissionMsg_descriptor =
@@ -7819,7 +7974,7 @@ public final class Webapi {
           internal_static_com_geeksville_dapi_StartMissionMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_StartMissionMsg_descriptor,
-              new java.lang.String[] { "Notes", "ViewPrivacy", "ControlPrivacy", "Keep", },
+              new java.lang.String[] { "Notes", "ViewPrivacy", "ControlPrivacy", "Keep", "Uuid", },
               com.geeksville.dapi.Webapi.StartMissionMsg.class,
               com.geeksville.dapi.Webapi.StartMissionMsg.Builder.class);
           internal_static_com_geeksville_dapi_StopMissionMsg_descriptor =
