@@ -1,6 +1,6 @@
-organization := "com.3drobotics"
+organization := "org.diydrones"
 
-name := "japi-proxy"
+name := "droneapi-java"
 
 description := "A client library for drone API servers"
 
@@ -24,7 +24,7 @@ credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
 licenses := Seq("Apache 2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 
-homepage := Some(url("https://github.com/3drobotics/japi-proxy"))
+homepage := Some(url("https://github.com/diydrones/droneapi-java"))
 
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
