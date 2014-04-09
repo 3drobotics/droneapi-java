@@ -14,7 +14,7 @@ public final class Webapi {
    * <pre>
    **
    *The privacy level for missions (can be changed later through the web user interface)
-   *This code does not affect _storage_ of the flight in the corpus for offline viewing.  That can be set with the 
+   *This code does not affect _storage_ of the flight in the corpus for offline viewing.  That can be set with the
    *StopMissionMsg.keepFlight field.
    * </pre>
    */
@@ -501,7 +501,7 @@ public final class Webapi {
    *
    * <pre>
    **
-   *A login/user-create/passwork-check request.  
+   *A login/user-create/passwork-check request.
    *
    *Note: These three slightly different operations are overloaded into this one message type because for some platforms
    *there is a fair amount of hand coding for each new message type, and these messages are quite similar.
@@ -1243,7 +1243,7 @@ public final class Webapi {
      *
      * <pre>
      **
-     *A login/user-create/passwork-check request.  
+     *A login/user-create/passwork-check request.
      *
      *Note: These three slightly different operations are overloaded into this one message type because for some platforms
      *there is a fair amount of hand coding for each new message type, and these messages are quite similar.
@@ -2745,7 +2745,7 @@ public final class Webapi {
      * <code>optional string text = 1;</code>
      *
      * <pre>
-     * If specified, server would like to show the indicated message to the user 
+     * If specified, server would like to show the indicated message to the user
      * </pre>
      */
     boolean hasText();
@@ -2753,7 +2753,7 @@ public final class Webapi {
      * <code>optional string text = 1;</code>
      *
      * <pre>
-     * If specified, server would like to show the indicated message to the user 
+     * If specified, server would like to show the indicated message to the user
      * </pre>
      */
     java.lang.String getText();
@@ -2761,7 +2761,7 @@ public final class Webapi {
      * <code>optional string text = 1;</code>
      *
      * <pre>
-     * If specified, server would like to show the indicated message to the user 
+     * If specified, server would like to show the indicated message to the user
      * </pre>
      */
     com.google.protobuf.ByteString
@@ -2794,13 +2794,13 @@ public final class Webapi {
     com.google.protobuf.ByteString
         getUrlBytes();
 
-    // required .com.geeksville.dapi.ShowMsg.Priority priority = 3;
+    // required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];
     /**
-     * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3;</code>
+     * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];</code>
      */
     boolean hasPriority();
     /**
-     * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3;</code>
+     * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];</code>
      */
     com.geeksville.dapi.Webapi.ShowMsg.Priority getPriority();
   }
@@ -2938,7 +2938,7 @@ public final class Webapi {
        * <code>MEDIUM = 10;</code>
        *
        * <pre>
-       * A message to show the user, but not urgent.  
+       * A message to show the user, but not urgent.
        * For a text only GCS just print the text, for android use a Notification
        * </pre>
        */
@@ -2965,7 +2965,7 @@ public final class Webapi {
        * <code>MEDIUM = 10;</code>
        *
        * <pre>
-       * A message to show the user, but not urgent.  
+       * A message to show the user, but not urgent.
        * For a text only GCS just print the text, for android use a Notification
        * </pre>
        */
@@ -3046,7 +3046,7 @@ public final class Webapi {
      * <code>optional string text = 1;</code>
      *
      * <pre>
-     * If specified, server would like to show the indicated message to the user 
+     * If specified, server would like to show the indicated message to the user
      * </pre>
      */
     public boolean hasText() {
@@ -3056,7 +3056,7 @@ public final class Webapi {
      * <code>optional string text = 1;</code>
      *
      * <pre>
-     * If specified, server would like to show the indicated message to the user 
+     * If specified, server would like to show the indicated message to the user
      * </pre>
      */
     public java.lang.String getText() {
@@ -3077,7 +3077,7 @@ public final class Webapi {
      * <code>optional string text = 1;</code>
      *
      * <pre>
-     * If specified, server would like to show the indicated message to the user 
+     * If specified, server would like to show the indicated message to the user
      * </pre>
      */
     public com.google.protobuf.ByteString
@@ -3149,17 +3149,17 @@ public final class Webapi {
       }
     }
 
-    // required .com.geeksville.dapi.ShowMsg.Priority priority = 3;
+    // required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];
     public static final int PRIORITY_FIELD_NUMBER = 3;
     private com.geeksville.dapi.Webapi.ShowMsg.Priority priority_;
     /**
-     * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3;</code>
+     * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];</code>
      */
     public boolean hasPriority() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3;</code>
+     * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];</code>
      */
     public com.geeksville.dapi.Webapi.ShowMsg.Priority getPriority() {
       return priority_;
@@ -3168,7 +3168,7 @@ public final class Webapi {
     private void initFields() {
       text_ = "";
       url_ = "";
-      priority_ = com.geeksville.dapi.Webapi.ShowMsg.Priority.LOW;
+      priority_ = com.geeksville.dapi.Webapi.ShowMsg.Priority.MEDIUM;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3342,7 +3342,7 @@ public final class Webapi {
         bitField0_ = (bitField0_ & ~0x00000001);
         url_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        priority_ = com.geeksville.dapi.Webapi.ShowMsg.Priority.LOW;
+        priority_ = com.geeksville.dapi.Webapi.ShowMsg.Priority.MEDIUM;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -3450,7 +3450,7 @@ public final class Webapi {
        * <code>optional string text = 1;</code>
        *
        * <pre>
-       * If specified, server would like to show the indicated message to the user 
+       * If specified, server would like to show the indicated message to the user
        * </pre>
        */
       public boolean hasText() {
@@ -3460,7 +3460,7 @@ public final class Webapi {
        * <code>optional string text = 1;</code>
        *
        * <pre>
-       * If specified, server would like to show the indicated message to the user 
+       * If specified, server would like to show the indicated message to the user
        * </pre>
        */
       public java.lang.String getText() {
@@ -3478,7 +3478,7 @@ public final class Webapi {
        * <code>optional string text = 1;</code>
        *
        * <pre>
-       * If specified, server would like to show the indicated message to the user 
+       * If specified, server would like to show the indicated message to the user
        * </pre>
        */
       public com.google.protobuf.ByteString
@@ -3498,7 +3498,7 @@ public final class Webapi {
        * <code>optional string text = 1;</code>
        *
        * <pre>
-       * If specified, server would like to show the indicated message to the user 
+       * If specified, server would like to show the indicated message to the user
        * </pre>
        */
       public Builder setText(
@@ -3515,7 +3515,7 @@ public final class Webapi {
        * <code>optional string text = 1;</code>
        *
        * <pre>
-       * If specified, server would like to show the indicated message to the user 
+       * If specified, server would like to show the indicated message to the user
        * </pre>
        */
       public Builder clearText() {
@@ -3528,7 +3528,7 @@ public final class Webapi {
        * <code>optional string text = 1;</code>
        *
        * <pre>
-       * If specified, server would like to show the indicated message to the user 
+       * If specified, server would like to show the indicated message to the user
        * </pre>
        */
       public Builder setTextBytes(
@@ -3640,22 +3640,22 @@ public final class Webapi {
         return this;
       }
 
-      // required .com.geeksville.dapi.ShowMsg.Priority priority = 3;
-      private com.geeksville.dapi.Webapi.ShowMsg.Priority priority_ = com.geeksville.dapi.Webapi.ShowMsg.Priority.LOW;
+      // required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];
+      private com.geeksville.dapi.Webapi.ShowMsg.Priority priority_ = com.geeksville.dapi.Webapi.ShowMsg.Priority.MEDIUM;
       /**
-       * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3;</code>
+       * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];</code>
        */
       public boolean hasPriority() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3;</code>
+       * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];</code>
        */
       public com.geeksville.dapi.Webapi.ShowMsg.Priority getPriority() {
         return priority_;
       }
       /**
-       * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3;</code>
+       * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];</code>
        */
       public Builder setPriority(com.geeksville.dapi.Webapi.ShowMsg.Priority value) {
         if (value == null) {
@@ -3667,11 +3667,11 @@ public final class Webapi {
         return this;
       }
       /**
-       * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3;</code>
+       * <code>required .com.geeksville.dapi.ShowMsg.Priority priority = 3 [default = MEDIUM];</code>
        */
       public Builder clearPriority() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        priority_ = com.geeksville.dapi.Webapi.ShowMsg.Priority.LOW;
+        priority_ = com.geeksville.dapi.Webapi.ShowMsg.Priority.MEDIUM;
         onChanged();
         return this;
       }
@@ -4706,7 +4706,7 @@ public final class Webapi {
      * <code>optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];</code>
      *
      * <pre>
-     * Who can control this vehicle via the web	
+     * Who can control this vehicle via the web
      * </pre>
      */
     boolean hasControlPrivacy();
@@ -4714,7 +4714,7 @@ public final class Webapi {
      * <code>optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];</code>
      *
      * <pre>
-     * Who can control this vehicle via the web	
+     * Who can control this vehicle via the web
      * </pre>
      */
     com.geeksville.dapi.Webapi.AccessCode getControlPrivacy();
@@ -4988,7 +4988,7 @@ public final class Webapi {
      * <code>optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];</code>
      *
      * <pre>
-     * Who can control this vehicle via the web	
+     * Who can control this vehicle via the web
      * </pre>
      */
     public boolean hasControlPrivacy() {
@@ -4998,7 +4998,7 @@ public final class Webapi {
      * <code>optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];</code>
      *
      * <pre>
-     * Who can control this vehicle via the web	
+     * Who can control this vehicle via the web
      * </pre>
      */
     public com.geeksville.dapi.Webapi.AccessCode getControlPrivacy() {
@@ -5557,7 +5557,7 @@ public final class Webapi {
        * <code>optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];</code>
        *
        * <pre>
-       * Who can control this vehicle via the web	
+       * Who can control this vehicle via the web
        * </pre>
        */
       public boolean hasControlPrivacy() {
@@ -5567,7 +5567,7 @@ public final class Webapi {
        * <code>optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];</code>
        *
        * <pre>
-       * Who can control this vehicle via the web	
+       * Who can control this vehicle via the web
        * </pre>
        */
       public com.geeksville.dapi.Webapi.AccessCode getControlPrivacy() {
@@ -5577,7 +5577,7 @@ public final class Webapi {
        * <code>optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];</code>
        *
        * <pre>
-       * Who can control this vehicle via the web	
+       * Who can control this vehicle via the web
        * </pre>
        */
       public Builder setControlPrivacy(com.geeksville.dapi.Webapi.AccessCode value) {
@@ -5593,7 +5593,7 @@ public final class Webapi {
        * <code>optional .com.geeksville.dapi.AccessCode controlPrivacy = 3 [default = DEFAULT];</code>
        *
        * <pre>
-       * Who can control this vehicle via the web	
+       * Who can control this vehicle via the web
        * </pre>
        */
       public Builder clearControlPrivacy() {
@@ -6463,7 +6463,7 @@ public final class Webapi {
    *
    * <pre>
    **
-   *Server sends this message in reply to StartMissionMsg or StopMissionMsg.  The common use-case is so the client can 
+   *Server sends this message in reply to StartMissionMsg or StopMissionMsg.  The common use-case is so the client can
    *show a notification pointing to the webpage for flight viewing
    * </pre>
    */
@@ -6722,7 +6722,7 @@ public final class Webapi {
      *
      * <pre>
      **
-     *Server sends this message in reply to StartMissionMsg or StopMissionMsg.  The common use-case is so the client can 
+     *Server sends this message in reply to StartMissionMsg or StopMissionMsg.  The common use-case is so the client can
      *show a notification pointing to the webpage for flight viewing
      * </pre>
      */
@@ -7789,7 +7789,7 @@ public final class Webapi {
      * <code>required sint32 gcsInterface = 1;</code>
      *
      * <pre>
-     * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+     * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links)
      * </pre>
      */
     boolean hasGcsInterface();
@@ -7797,7 +7797,7 @@ public final class Webapi {
      * <code>required sint32 gcsInterface = 1;</code>
      *
      * <pre>
-     * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+     * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links)
      * </pre>
      */
     int getGcsInterface();
@@ -7905,7 +7905,7 @@ public final class Webapi {
      * <code>optional string manufacturer = 6;</code>
      *
      * <pre>
-     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -7914,7 +7914,7 @@ public final class Webapi {
      * <code>optional string manufacturer = 6;</code>
      *
      * <pre>
-     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -7923,7 +7923,7 @@ public final class Webapi {
      * <code>optional string manufacturer = 6;</code>
      *
      * <pre>
-     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -7935,7 +7935,7 @@ public final class Webapi {
      * <code>optional string vehicleType = 7;</code>
      *
      * <pre>
-     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -7944,7 +7944,7 @@ public final class Webapi {
      * <code>optional string vehicleType = 7;</code>
      *
      * <pre>
-     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -7953,7 +7953,7 @@ public final class Webapi {
      * <code>optional string vehicleType = 7;</code>
      *
      * <pre>
-     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -8165,7 +8165,7 @@ public final class Webapi {
      * <code>required sint32 gcsInterface = 1;</code>
      *
      * <pre>
-     * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+     * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links)
      * </pre>
      */
     public boolean hasGcsInterface() {
@@ -8175,7 +8175,7 @@ public final class Webapi {
      * <code>required sint32 gcsInterface = 1;</code>
      *
      * <pre>
-     * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+     * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links)
      * </pre>
      */
     public int getGcsInterface() {
@@ -8355,7 +8355,7 @@ public final class Webapi {
      * <code>optional string manufacturer = 6;</code>
      *
      * <pre>
-     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -8366,7 +8366,7 @@ public final class Webapi {
      * <code>optional string manufacturer = 6;</code>
      *
      * <pre>
-     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -8388,7 +8388,7 @@ public final class Webapi {
      * <code>optional string manufacturer = 6;</code>
      *
      * <pre>
-     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+     * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -8413,7 +8413,7 @@ public final class Webapi {
      * <code>optional string vehicleType = 7;</code>
      *
      * <pre>
-     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -8424,7 +8424,7 @@ public final class Webapi {
      * <code>optional string vehicleType = 7;</code>
      *
      * <pre>
-     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -8446,7 +8446,7 @@ public final class Webapi {
      * <code>optional string vehicleType = 7;</code>
      *
      * <pre>
-     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+     * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
      * To add new definitions to the file, please submit a github pull-request.
      * </pre>
      */
@@ -8995,7 +8995,7 @@ public final class Webapi {
        * <code>required sint32 gcsInterface = 1;</code>
        *
        * <pre>
-       * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+       * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links)
        * </pre>
        */
       public boolean hasGcsInterface() {
@@ -9005,7 +9005,7 @@ public final class Webapi {
        * <code>required sint32 gcsInterface = 1;</code>
        *
        * <pre>
-       * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+       * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links)
        * </pre>
        */
       public int getGcsInterface() {
@@ -9015,7 +9015,7 @@ public final class Webapi {
        * <code>required sint32 gcsInterface = 1;</code>
        *
        * <pre>
-       * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+       * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links)
        * </pre>
        */
       public Builder setGcsInterface(int value) {
@@ -9028,7 +9028,7 @@ public final class Webapi {
        * <code>required sint32 gcsInterface = 1;</code>
        *
        * <pre>
-       * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links) 
+       * The interface the gcs is using to reach this vehicle (to allow clashing sysIds on different radio links)
        * </pre>
        */
       public Builder clearGcsInterface() {
@@ -9354,7 +9354,7 @@ public final class Webapi {
        * <code>optional string manufacturer = 6;</code>
        *
        * <pre>
-       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9365,7 +9365,7 @@ public final class Webapi {
        * <code>optional string manufacturer = 6;</code>
        *
        * <pre>
-       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9384,7 +9384,7 @@ public final class Webapi {
        * <code>optional string manufacturer = 6;</code>
        *
        * <pre>
-       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9405,7 +9405,7 @@ public final class Webapi {
        * <code>optional string manufacturer = 6;</code>
        *
        * <pre>
-       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9423,7 +9423,7 @@ public final class Webapi {
        * <code>optional string manufacturer = 6;</code>
        *
        * <pre>
-       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9437,7 +9437,7 @@ public final class Webapi {
        * <code>optional string manufacturer = 6;</code>
        *
        * <pre>
-       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.  
+       * Vehicle manufacturer if known, preferably from the master vehicle-mfg.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9458,7 +9458,7 @@ public final class Webapi {
        * <code>optional string vehicleType = 7;</code>
        *
        * <pre>
-       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9469,7 +9469,7 @@ public final class Webapi {
        * <code>optional string vehicleType = 7;</code>
        *
        * <pre>
-       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9488,7 +9488,7 @@ public final class Webapi {
        * <code>optional string vehicleType = 7;</code>
        *
        * <pre>
-       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9509,7 +9509,7 @@ public final class Webapi {
        * <code>optional string vehicleType = 7;</code>
        *
        * <pre>
-       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9527,7 +9527,7 @@ public final class Webapi {
        * <code>optional string vehicleType = 7;</code>
        *
        * <pre>
-       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -9541,7 +9541,7 @@ public final class Webapi {
        * <code>optional string vehicleType = 7;</code>
        *
        * <pre>
-       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.  
+       * Vehicle type if known, preferably from the master vehicle-types.txt definitions file.
        * To add new definitions to the file, please submit a github pull-request.
        * </pre>
        */
@@ -10178,7 +10178,7 @@ public final class Webapi {
      * Protobuf enum {@code com.geeksville.dapi.Envelope.MsgCode}
      *
      * <pre>
-     * Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment 
+     * Enums used to decode the super large envelope variant (not using a variant record is also an option but this made for an easy experiment
      * similar to how I've used protobufs in the past)
      * </pre>
      */
@@ -12449,55 +12449,55 @@ public final class Webapi {
       "sville.dapi.AccessCode:\006PUBLIC\022G\n\025defaul" +
       "tControlPrivacy\030\n \001(\0162\037.com.geeksville.d" +
       "api.AccessCode:\007PRIVATE\"\027\n\007NoteMsg\022\014\n\004no",
-      "te\030\001 \002(\t\"\210\001\n\007ShowMsg\022\014\n\004text\030\001 \001(\t\022\013\n\003ur" +
-      "l\030\002 \001(\t\0227\n\010priority\030\003 \002(\0162%.com.geeksvil" +
-      "le.dapi.ShowMsg.Priority\")\n\010Priority\022\007\n\003" +
-      "LOW\020\000\022\n\n\006MEDIUM\020\n\022\010\n\004HIGH\020\024\"\227\002\n\020LoginRes" +
-      "ponseMsg\022@\n\004code\030\001 \002(\01622.com.geeksville." +
-      "dapi.LoginResponseMsg.ResponseCode\022-\n\007me" +
-      "ssage\030\002 \001(\0132\034.com.geeksville.dapi.ShowMs" +
-      "g\022\025\n\rcallbackDelay\030\003 \001(\005\"{\n\014ResponseCode" +
-      "\022\006\n\002OK\020\000\022\020\n\014BAD_PASSWORD\020\001\022\016\n\nCALL_LATER" +
-      "\020\002\022\024\n\020NAME_UNAVAILABLE\020\003\022\031\n\025PROTOCOL_INC",
-      "OMPATIBLE\020\004\022\020\n\014SERVER_FAULT\020\005\"\275\001\n\017StartM" +
-      "issionMsg\022\r\n\005notes\030\001 \001(\t\022=\n\013viewPrivacy\030" +
-      "\002 \001(\0162\037.com.geeksville.dapi.AccessCode:\007" +
-      "DEFAULT\022@\n\016controlPrivacy\030\003 \001(\0162\037.com.ge" +
-      "eksville.dapi.AccessCode:\007DEFAULT\022\014\n\004kee" +
-      "p\030\004 \002(\010\022\014\n\004uuid\030\005 \001(\t\"-\n\016StopMissionMsg\022" +
-      "\r\n\005notes\030\002 \001(\t\022\014\n\004keep\030\003 \002(\010\"@\n\017MissionR" +
-      "esponse\022-\n\007message\030\002 \001(\0132\034.com.geeksvill" +
-      "e.dapi.ShowMsg\"B\n\nMavlinkMsg\022\024\n\014srcInter" +
-      "face\030\001 \002(\021\022\016\n\006packet\030\002 \003(\014\022\016\n\006deltaT\030\003 \001",
-      "(\003\"\322\001\n\rSetVehicleMsg\022\024\n\014gcsInterface\030\001 \002" +
-      "(\021\022\r\n\005sysId\030\002 \002(\005\022\023\n\013vehicleUUID\030\003 \002(\t\022\031" +
-      "\n\021canAcceptCommands\030\004 \002(\010\022\021\n\thumanName\030\005" +
-      " \001(\t\022\024\n\014manufacturer\030\006 \001(\t\022\023\n\013vehicleTyp" +
-      "e\030\007 \001(\t\022\025\n\rautopilotType\030\010 \001(\t\022\027\n\017softwa" +
-      "reVersion\030\t \001(\t\"\361\005\n\010Envelope\0223\n\004type\030\001 \001" +
-      "(\0162%.com.geeksville.dapi.Envelope.MsgCod" +
-      "e\0220\n\007mavlink\030\002 \001(\0132\037.com.geeksville.dapi" +
-      ".MavlinkMsg\022,\n\005login\030  \001(\0132\035.com.geeksvi" +
-      "lle.dapi.LoginMsg\0226\n\nsetVehicle\030! \001(\0132\".",
-      "com.geeksville.dapi.SetVehicleMsg\022*\n\004not" +
-      "e\030\" \001(\0132\034.com.geeksville.dapi.NoteMsg\022:\n" +
-      "\014startMission\030# \001(\0132$.com.geeksville.dap" +
-      "i.StartMissionMsg\0228\n\013stopMission\030$ \001(\0132#" +
-      ".com.geeksville.dapi.StopMissionMsg\022<\n\rl" +
-      "oginResponse\030@ \001(\0132%.com.geeksville.dapi" +
-      ".LoginResponseMsg\022*\n\004show\030A \001(\0132\034.com.ge" +
-      "eksville.dapi.ShowMsg\022=\n\017missionResponse" +
-      "\030B \001(\0132$.com.geeksville.dapi.MissionResp" +
-      "onse\"\314\001\n\007MsgCode\022\022\n\016MavlinkMsgCode\020\002\022\020\n\014",
-      "LoginMsgCode\020 \022\025\n\021SetVehicleMsgCode\020!\022\017\n" +
-      "\013NoteMsgCode\020\"\022\027\n\023StartMissionMsgCode\020#\022" +
-      "\026\n\022StopMissionMsgCode\020$\022\030\n\024LoginResponse" +
-      "MsgCode\020@\022\017\n\013ShowMsgCode\020A\022\027\n\023MissionRes" +
-      "ponseCode\020B*N\n\nAccessCode\022\013\n\007DEFAULT\020\000\022\013" +
-      "\n\007PRIVATE\020\n\022\n\n\006SHARED\020\024\022\016\n\nRESEARCHER\020\036\022" +
-      "\n\n\006PUBLIC\020(*=\n\020LoginRequestCode\022\t\n\005LOGIN" +
-      "\020\000\022\n\n\006CREATE\020\001\022\022\n\016CHECK_USERNAME\020\002B\025\n\023co" +
-      "m.geeksville.dapi"
+      "te\030\001 \002(\t\"\220\001\n\007ShowMsg\022\014\n\004text\030\001 \001(\t\022\013\n\003ur" +
+      "l\030\002 \001(\t\022?\n\010priority\030\003 \002(\0162%.com.geeksvil" +
+      "le.dapi.ShowMsg.Priority:\006MEDIUM\")\n\010Prio" +
+      "rity\022\007\n\003LOW\020\000\022\n\n\006MEDIUM\020\n\022\010\n\004HIGH\020\024\"\227\002\n\020" +
+      "LoginResponseMsg\022@\n\004code\030\001 \002(\01622.com.gee" +
+      "ksville.dapi.LoginResponseMsg.ResponseCo" +
+      "de\022-\n\007message\030\002 \001(\0132\034.com.geeksville.dap" +
+      "i.ShowMsg\022\025\n\rcallbackDelay\030\003 \001(\005\"{\n\014Resp" +
+      "onseCode\022\006\n\002OK\020\000\022\020\n\014BAD_PASSWORD\020\001\022\016\n\nCA" +
+      "LL_LATER\020\002\022\024\n\020NAME_UNAVAILABLE\020\003\022\031\n\025PROT",
+      "OCOL_INCOMPATIBLE\020\004\022\020\n\014SERVER_FAULT\020\005\"\275\001" +
+      "\n\017StartMissionMsg\022\r\n\005notes\030\001 \001(\t\022=\n\013view" +
+      "Privacy\030\002 \001(\0162\037.com.geeksville.dapi.Acce" +
+      "ssCode:\007DEFAULT\022@\n\016controlPrivacy\030\003 \001(\0162" +
+      "\037.com.geeksville.dapi.AccessCode:\007DEFAUL" +
+      "T\022\014\n\004keep\030\004 \002(\010\022\014\n\004uuid\030\005 \001(\t\"-\n\016StopMis" +
+      "sionMsg\022\r\n\005notes\030\002 \001(\t\022\014\n\004keep\030\003 \002(\010\"@\n\017" +
+      "MissionResponse\022-\n\007message\030\002 \001(\0132\034.com.g" +
+      "eeksville.dapi.ShowMsg\"B\n\nMavlinkMsg\022\024\n\014" +
+      "srcInterface\030\001 \002(\021\022\016\n\006packet\030\002 \003(\014\022\016\n\006de",
+      "ltaT\030\003 \001(\003\"\322\001\n\rSetVehicleMsg\022\024\n\014gcsInter" +
+      "face\030\001 \002(\021\022\r\n\005sysId\030\002 \002(\005\022\023\n\013vehicleUUID" +
+      "\030\003 \002(\t\022\031\n\021canAcceptCommands\030\004 \002(\010\022\021\n\thum" +
+      "anName\030\005 \001(\t\022\024\n\014manufacturer\030\006 \001(\t\022\023\n\013ve" +
+      "hicleType\030\007 \001(\t\022\025\n\rautopilotType\030\010 \001(\t\022\027" +
+      "\n\017softwareVersion\030\t \001(\t\"\361\005\n\010Envelope\0223\n\004" +
+      "type\030\001 \001(\0162%.com.geeksville.dapi.Envelop" +
+      "e.MsgCode\0220\n\007mavlink\030\002 \001(\0132\037.com.geeksvi" +
+      "lle.dapi.MavlinkMsg\022,\n\005login\030  \001(\0132\035.com" +
+      ".geeksville.dapi.LoginMsg\0226\n\nsetVehicle\030",
+      "! \001(\0132\".com.geeksville.dapi.SetVehicleMs" +
+      "g\022*\n\004note\030\" \001(\0132\034.com.geeksville.dapi.No" +
+      "teMsg\022:\n\014startMission\030# \001(\0132$.com.geeksv" +
+      "ille.dapi.StartMissionMsg\0228\n\013stopMission" +
+      "\030$ \001(\0132#.com.geeksville.dapi.StopMission" +
+      "Msg\022<\n\rloginResponse\030@ \001(\0132%.com.geeksvi" +
+      "lle.dapi.LoginResponseMsg\022*\n\004show\030A \001(\0132" +
+      "\034.com.geeksville.dapi.ShowMsg\022=\n\017mission" +
+      "Response\030B \001(\0132$.com.geeksville.dapi.Mis" +
+      "sionResponse\"\314\001\n\007MsgCode\022\022\n\016MavlinkMsgCo",
+      "de\020\002\022\020\n\014LoginMsgCode\020 \022\025\n\021SetVehicleMsgC" +
+      "ode\020!\022\017\n\013NoteMsgCode\020\"\022\027\n\023StartMissionMs" +
+      "gCode\020#\022\026\n\022StopMissionMsgCode\020$\022\030\n\024Login" +
+      "ResponseMsgCode\020@\022\017\n\013ShowMsgCode\020A\022\027\n\023Mi" +
+      "ssionResponseCode\020B*N\n\nAccessCode\022\013\n\007DEF" +
+      "AULT\020\000\022\013\n\007PRIVATE\020\n\022\n\n\006SHARED\020\024\022\016\n\nRESEA" +
+      "RCHER\020\036\022\n\n\006PUBLIC\020(*=\n\020LoginRequestCode\022" +
+      "\t\n\005LOGIN\020\000\022\n\n\006CREATE\020\001\022\022\n\016CHECK_USERNAME" +
+      "\020\002B\025\n\023com.geeksville.dapi"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

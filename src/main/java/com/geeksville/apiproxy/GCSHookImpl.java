@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.geeksville.dapi.Webapi.Envelope;
 import com.geeksville.dapi.Webapi.LoginMsg;
+import com.geeksville.dapi.Webapi.LoginRequestCode;
 import com.geeksville.dapi.Webapi.LoginResponseMsg;
 import com.geeksville.dapi.Webapi.MavlinkMsg;
 import com.geeksville.dapi.Webapi.SetVehicleMsg;
@@ -55,7 +56,8 @@ public class GCSHookImpl implements GCSHooks {
 		startTime = System.currentTimeMillis() * 1000;
 
 		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
-				.setPassword(password).setStartTime(startTime).build();
+				.setCode(LoginRequestCode.LOGIN).setPassword(password)
+				.setStartTime(startTime).build();
 		Envelope msg = Envelope.newBuilder().setLogin(m).build();
 		send(msg);
 		checkLoginOkay();
