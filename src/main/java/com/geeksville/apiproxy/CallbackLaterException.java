@@ -10,7 +10,7 @@ public class CallbackLaterException extends APIException {
 	private static final long serialVersionUID = 8595682932382088086L;
 
 	public CallbackLaterException(ShowMsg message, int callbackDelay) {
-		// TODO Auto-generated constructor stub
+		super("Callback later:" + message.getText());
 	}
 
 }

@@ -15,8 +15,17 @@ public class TestClient extends GCSHookImpl {
 	public int interfaceNum = 0;
 
 	public void connect() throws UnknownHostException, IOException {
-		loginUser("test-bob@3drobotics.com", "sekrit");
-		flush();
+		super.connect();
+
+		String login = "test-bob";
+		String password = "sekrit";
+		String email = "test-bob@3drobotics.com";
+
+		// Create user if necessary/possible
+		if (isUsernameAvailable(login))
+			createUser(login, password, email);
+		else
+			loginUser(login, password);
 
 		int sysId = 1;
 		setVehicleId("550e8400-e29b-41d4-a716-446655440000", interfaceNum,
@@ -43,6 +52,7 @@ public class TestClient extends GCSHookImpl {
 	 */
 	public static void runTest() throws UnknownHostException, IOException {
 		TestClient webapi = new TestClient();
+		webapi.connect();
 		byte[] payload = new byte[] { (byte) 0xfe, (byte) 0x0e, (byte) 0x9d,
 				(byte) 0x01, (byte) 0x01, (byte) 0x1d, (byte) 0xf9,
 				(byte) 0x46, (byte) 0x01, (byte) 0x00, (byte) 0x33,

@@ -29,6 +29,13 @@ public class GCSHookImpl implements GCSHooks {
 	 */
 	private long startTime;
 
+	public void connect() throws UnknownHostException, IOException {
+		weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER,
+				APIConstants.DEFAULT_TCP_PORT);
+
+		startTime = System.currentTimeMillis() * 1000;
+	}
+
 	@Override
 	public void setCallback(GCSCallback cb) {
 		// TODO Auto-generated method stub
@@ -50,14 +57,34 @@ public class GCSHookImpl implements GCSHooks {
 	@Override
 	public void loginUser(String userName, String password)
 			throws UnknownHostException, IOException {
-		weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER,
-				APIConstants.DEFAULT_TCP_PORT);
-
-		startTime = System.currentTimeMillis() * 1000;
 
 		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
 				.setCode(LoginRequestCode.LOGIN).setPassword(password)
 				.setStartTime(startTime).build();
+		Envelope msg = Envelope.newBuilder().setLogin(m).build();
+		send(msg);
+		checkLoginOkay();
+	}
+
+	// / Ask server if the specified username is available for creation
+	public boolean isUsernameAvailable(String userName)
+			throws UnknownHostException, IOException {
+		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
+				.setCode(LoginRequestCode.CHECK_USERNAME).build();
+		Envelope msg = Envelope.newBuilder().setLogin(m).build();
+		send(msg);
+		LoginResponseMsg r = readLoginResponse();
+
+		return (r.getCode() == LoginResponseMsg.ResponseCode.OK);
+	}
+
+	// / Create a new user account
+	@Override
+	public void createUser(String userName, String password, String email)
+			throws UnknownHostException, IOException {
+		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
+				.setCode(LoginRequestCode.CREATE).setPassword(password)
+				.setEmail(email).setStartTime(startTime).build();
 		Envelope msg = Envelope.newBuilder().setLogin(m).build();
 		send(msg);
 		checkLoginOkay();

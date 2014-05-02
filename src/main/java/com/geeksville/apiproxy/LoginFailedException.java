@@ -10,7 +10,7 @@ public class LoginFailedException extends APIException {
 	private static final long serialVersionUID = 8014892179413821461L;
 
 	public LoginFailedException(ShowMsg message) {
-		// TODO Auto-generated constructor stub
+		super("LoginFailed:" + message.getText());
 	}
 
 }

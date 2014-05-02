@@ -8,6 +8,8 @@ version := "0.1-SNAPSHOT"
 
 scalaVersion := "2.10.3"
 
+javacOptions ++= Seq("-source", "1.6", "-target", "1.6") // Build for java6 because old android devices require it
+
 autoScalaLibrary := false // This is a pure java project
 
 crossPaths := false // disable using the Scala version in output paths and artifacts

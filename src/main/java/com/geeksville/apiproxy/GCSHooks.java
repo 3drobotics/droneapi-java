@@ -52,6 +52,9 @@ public interface GCSHooks {
 	void loginUser(String userName, String password)
 			throws UnknownHostException, IOException;
 
+	void createUser(String userName, String password, String email)
+			throws UnknownHostException, IOException;
+
 	/**
 	 * Associate a server vehicleId string with a particular mavlink sysId. GCS
 	 * must call this for every vehicle that is connected.
