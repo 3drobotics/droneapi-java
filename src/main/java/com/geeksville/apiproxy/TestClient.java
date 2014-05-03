@@ -62,6 +62,8 @@ public class TestClient extends GCSHookImpl {
 				(byte) 0x27, (byte) 0x01, (byte) 0xca, (byte) 0x8f };
 		webapi.filterMavlink(webapi.interfaceNum, payload1);
 		webapi.filterMavlink(webapi.interfaceNum, payload2);
+		webapi.filterMavlink(webapi.interfaceNum, payload1);
+		webapi.filterMavlink(webapi.interfaceNum, payload2);
 		webapi.close();
 	}
 
