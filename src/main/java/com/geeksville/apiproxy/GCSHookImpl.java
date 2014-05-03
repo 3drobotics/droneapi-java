@@ -24,6 +24,8 @@ public class GCSHookImpl implements GCSHooks {
 
 	private TCPProtobufClient weblink;
 
+	private boolean loggedIn = false;
+
 	/**
 	 * Time in usecs
 	 */
@@ -62,7 +64,7 @@ public class GCSHookImpl implements GCSHooks {
 				.setCode(LoginRequestCode.LOGIN).setPassword(password)
 				.setStartTime(startTime).build();
 		Envelope msg = Envelope.newBuilder().setLogin(m).build();
-		send(msg);
+		sendUnchecked(msg);
 		checkLoginOkay();
 	}
 
@@ -72,7 +74,7 @@ public class GCSHookImpl implements GCSHooks {
 		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
 				.setCode(LoginRequestCode.CHECK_USERNAME).build();
 		Envelope msg = Envelope.newBuilder().setLogin(m).build();
-		send(msg);
+		sendUnchecked(msg);
 		LoginResponseMsg r = readLoginResponse();
 
 		return (r.getCode() == LoginResponseMsg.ResponseCode.OK);
@@ -82,11 +84,15 @@ public class GCSHookImpl implements GCSHooks {
 	@Override
 	public void createUser(String userName, String password, String email)
 			throws UnknownHostException, IOException {
-		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
+		LoginMsg.Builder builder = LoginMsg.newBuilder().setUsername(userName)
 				.setCode(LoginRequestCode.CREATE).setPassword(password)
-				.setEmail(email).setStartTime(startTime).build();
-		Envelope msg = Envelope.newBuilder().setLogin(m).build();
-		send(msg);
+				.setStartTime(startTime);
+
+		if (email != null)
+			builder.setEmail(email);
+
+		Envelope msg = Envelope.newBuilder().setLogin(builder.build()).build();
+		sendUnchecked(msg);
 		checkLoginOkay();
 	}
 
@@ -111,6 +117,8 @@ public class GCSHookImpl implements GCSHooks {
 		LoginResponseMsg r = readLoginResponse();
 		if (r.getCode() != LoginResponseMsg.ResponseCode.OK)
 			throw new LoginFailedException(r.getMessage());
+
+		loggedIn = true;
 	}
 
 	@Override
@@ -140,7 +148,19 @@ public class GCSHookImpl implements GCSHooks {
 
 	@Override
 	public void send(Envelope e) throws IOException {
-		weblink.send(e);
+		if (loggedIn)
+			sendUnchecked(e);
+	}
+
+	/**
+	 * Send without checking to see if we are logged in
+	 * 
+	 * @param e
+	 * @throws IOException
+	 */
+	private void sendUnchecked(Envelope e) throws IOException {
+		if (weblink != null)
+			weblink.send(e);
 	}
 
 	@Override
