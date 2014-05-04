@@ -38,7 +38,7 @@ public class TCPProtobufClient implements IProtobufClient {
 	 * @param msg
 	 * @throws IOException
 	 */
-	public void send(Envelope msg) throws IOException {
+	public void send(Envelope msg, Boolean noBlock) throws IOException {
 		msg.writeDelimitedTo(out);
 	}
 

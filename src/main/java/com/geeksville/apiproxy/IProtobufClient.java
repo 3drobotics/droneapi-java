@@ -11,7 +11,7 @@ public interface IProtobufClient {
 	 * @param msg
 	 * @throws IOException
 	 */
-	void send(Envelope msg) throws IOException;
+	void send(Envelope msg, Boolean noBlock) throws IOException;
 
 	/**
 	 * Block until a message can be read

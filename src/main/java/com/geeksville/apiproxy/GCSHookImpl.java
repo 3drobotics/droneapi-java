@@ -54,7 +54,7 @@ public class GCSHookImpl implements GCSHooks {
 				.setDeltaT(deltat).addPacket(ByteString.copyFrom(bytes))
 				.build();
 
-		send(Envelope.newBuilder().setMavlink(mav).build());
+		sendNoBlock(Envelope.newBuilder().setMavlink(mav).build());
 	}
 
 	@Override
@@ -153,6 +153,11 @@ public class GCSHookImpl implements GCSHooks {
 			sendUnchecked(e);
 	}
 
+	public void sendNoBlock(Envelope e) throws IOException {
+		if (loggedIn && weblink != null)
+			weblink.send(e, true);
+	}
+
 	/**
 	 * Send without checking to see if we are logged in
 	 * 
@@ -161,7 +166,7 @@ public class GCSHookImpl implements GCSHooks {
 	 */
 	private void sendUnchecked(Envelope e) throws IOException {
 		if (weblink != null)
-			weblink.send(e);
+			weblink.send(e, false);
 	}
 
 	@Override

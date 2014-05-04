@@ -30,7 +30,7 @@ public class ZMQProtobufClient implements IProtobufClient {
 		ctx = new ZContext();
 		socket = ctx.createSocket(ZMQ.DEALER);
 
-		socket.setHWM(100);
+		socket.setHWM(1000);
 		socket.setLinger(200); // in msecs
 
 		// Use the following to get better client ids (must be unique)
@@ -46,10 +46,10 @@ public class ZMQProtobufClient implements IProtobufClient {
 	 * @param msg
 	 * @throws IOException
 	 */
-	public void send(Envelope msg) throws IOException {
-		System.out.println("Sending");
-		socket.sendMore(""); // FIXME - figure out why we need this.
-		socket.send(msg.toByteArray());
+	public void send(Envelope msg, Boolean noBlock) throws IOException {
+		// System.out.println("Sending");
+		socket.sendMore(""); // DEALER needs this placeholder
+		socket.send(msg.toByteArray(), noBlock ? ZMQ.NOBLOCK : 0);
 	}
 
 	/**
@@ -63,19 +63,20 @@ public class ZMQProtobufClient implements IProtobufClient {
 		System.out.println("Receiving");
 		// The DEALER socket gives us the address envelope and message
 		ZMsg msg = ZMsg.recvMsg(socket);
-		System.out.println("Recvd " + msg);
+		// System.out.println("Recvd " + msg);
 		// ZFrame address = msg.pop();
 		ZFrame content = msg.getLast();
 		assert (content != null);
-		System.out.println("Content " + content);
+		// System.out.println("Content " + content);
 
 		return Envelope.parseFrom(content.getData());
 	}
 
 	public void close() throws IOException {
 		System.out.println("Closing");
-		socket.close();
-		ctx.close();
+		// socket.close();
+		// ctx.close();
+		ctx.destroy();
 	}
 
 	public void flush() throws IOException {
