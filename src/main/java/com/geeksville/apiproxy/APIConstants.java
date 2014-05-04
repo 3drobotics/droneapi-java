@@ -10,4 +10,6 @@ public class APIConstants {
 	 * If using a raw TCP link to the server, use this port number
 	 */
 	public static final int DEFAULT_TCP_PORT = 5555;
+
+	public static final String ZMQ_URL = "tcp://127.0.0.1:5556";
 }

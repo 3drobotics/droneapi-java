@@ -16,7 +16,7 @@ import com.geeksville.dapi.Webapi.Envelope;
  * @author kevinh
  * 
  */
-public class TCPProtobufClient {
+public class TCPProtobufClient implements IProtobufClient {
 
 	private Socket socket;
 	private OutputStream out;
@@ -38,7 +38,7 @@ public class TCPProtobufClient {
 	 * @param msg
 	 * @throws IOException
 	 */
-	void send(Envelope msg) throws IOException {
+	public void send(Envelope msg) throws IOException {
 		msg.writeDelimitedTo(out);
 	}
 
@@ -48,17 +48,17 @@ public class TCPProtobufClient {
 	 * @return
 	 * @throws IOException
 	 */
-	Envelope receive() throws IOException {
+	public Envelope receive() throws IOException {
 		return Envelope.parseDelimitedFrom(in);
 	}
 
-	void close() throws IOException {
+	public void close() throws IOException {
 		out.close();
 		in.close();
 		socket.close();
 	}
 
-	void flush() throws IOException {
+	public void flush() throws IOException {
 		out.flush();
 	}
 }

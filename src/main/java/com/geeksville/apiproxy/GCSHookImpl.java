@@ -22,7 +22,7 @@ import com.google.protobuf.ByteString;
  */
 public class GCSHookImpl implements GCSHooks {
 
-	private TCPProtobufClient weblink;
+	private IProtobufClient weblink;
 
 	private boolean loggedIn = false;
 
@@ -32,8 +32,9 @@ public class GCSHookImpl implements GCSHooks {
 	private long startTime;
 
 	public void connect() throws UnknownHostException, IOException {
-		weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER,
-				APIConstants.DEFAULT_TCP_PORT);
+		// weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER,
+		// APIConstants.DEFAULT_TCP_PORT);
+		weblink = new ZMQProtobufClient(APIConstants.ZMQ_URL);
 
 		startTime = System.currentTimeMillis() * 1000;
 	}
