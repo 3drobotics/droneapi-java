@@ -22,64 +22,68 @@ import com.geeksville.dapi.Webapi.Envelope;
  */
 public class ZMQProtobufClient implements IProtobufClient {
 
-	private ZContext ctx;
-	private Socket socket;
+    private ZContext ctx;
+    private Socket socket;
 
-	ZMQProtobufClient(String zurl) {
-		System.out.println("Starting zmq client");
-		ctx = new ZContext();
-		socket = ctx.createSocket(ZMQ.DEALER);
+    ZMQProtobufClient(String zurl) {
+        System.out.println("Starting zmq client");
+        ctx = new ZContext();
 
-		socket.setHWM(1000);
-		socket.setLinger(200); // in msecs
+        // We use ROUTER rather than DEALER because we want ZMQ to drop packets
+        // (rather than blocking)
+        // if we are not connected to the server.
+        socket = ctx.createSocket(ZMQ.ROUTER);
 
-		// Use the following to get better client ids (must be unique)
-		String identity = UUID.randomUUID().toString();
-		socket.setIdentity(identity.getBytes(ZMQ.CHARSET));
+        socket.setHWM(10);
+        socket.setLinger(200); // in msecs
 
-		socket.connect(zurl);
-	}
+        // Use the following to get better client ids (must be unique)
+        String identity = UUID.randomUUID().toString();
+        socket.setIdentity(identity.getBytes(ZMQ.CHARSET));
 
-	/**
-	 * Send a message
-	 * 
-	 * @param msg
-	 * @throws IOException
-	 */
-	public void send(Envelope msg, Boolean noBlock) throws IOException {
-		// System.out.println("Sending");
-		socket.sendMore(""); // DEALER needs this placeholder
-		socket.send(msg.toByteArray(), noBlock ? ZMQ.NOBLOCK : 0);
-	}
+        socket.connect(zurl);
+    }
 
-	/**
-	 * Block until a message can be read
-	 * 
-	 * @return
-	 * @throws IOException
-	 */
-	public Envelope receive() throws IOException {
+    /**
+     * Send a message
+     * 
+     * @param msg
+     * @throws IOException
+     */
+    public void send(Envelope msg, Boolean noBlock) throws IOException {
+        //System.out.println("Sending");
+        socket.sendMore("SERVER"); // destination identity 
+        socket.sendMore(""); // A zero delemiter before payload
+        socket.send(msg.toByteArray(), noBlock ? ZMQ.NOBLOCK : 0);
+    }
 
-		System.out.println("Receiving");
-		// The DEALER socket gives us the address envelope and message
-		ZMsg msg = ZMsg.recvMsg(socket);
-		// System.out.println("Recvd " + msg);
-		// ZFrame address = msg.pop();
-		ZFrame content = msg.getLast();
-		assert (content != null);
-		// System.out.println("Content " + content);
+    /**
+     * Block until a message can be read
+     * 
+     * @return
+     * @throws IOException
+     */
+    public Envelope receive() throws IOException {
 
-		return Envelope.parseFrom(content.getData());
-	}
+        //System.out.println("Receiving");
+        // The DEALER socket gives us the address envelope and message
+        ZMsg msg = ZMsg.recvMsg(socket);
+        //System.out.println("Recvd " + msg);
+        ZFrame content = msg.getLast();
+        assert (content != null);
+        //System.out.println("Content " + content);
 
-	public void close() throws IOException {
-		System.out.println("Closing");
-		// socket.close();
-		// ctx.close();
-		ctx.destroy();
-	}
+        return Envelope.parseFrom(content.getData());
+    }
 
-	public void flush() throws IOException {
-		// FIXME
-	}
+    public void close() throws IOException {
+        System.out.println("Closing");
+        // socket.close();
+        // ctx.close();
+        ctx.destroy();
+    }
+
+    public void flush() throws IOException {
+        // FIXME
+    }
 }
