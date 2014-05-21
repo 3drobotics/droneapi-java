@@ -16,7 +16,7 @@ crossPaths := false // disable using the Scala version in output paths and artif
 
 libraryDependencies += "com.google.protobuf" % "protobuf-java" % "2.5.0" withSources()
 
-libraryDependencies += "org.zeromq" % "jeromq" % "0.3.2" withSources()
+libraryDependencies += "org.zeromq" % "jeromq" % "0.3.4" withSources()
 
 mainClass in (Compile, run) := Some( "com.geeksville.apiproxy.TestClient")
 

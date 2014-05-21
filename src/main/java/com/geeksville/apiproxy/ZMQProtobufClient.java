@@ -26,7 +26,7 @@ public class ZMQProtobufClient implements IProtobufClient {
     private Socket socket;
 
     ZMQProtobufClient(String zurl) {
-        System.out.println("Starting zmq client");
+        System.out.println("Starting zmq client to " + zurl);
         ctx = new ZContext();
 
         // We use ROUTER rather than DEALER because we want ZMQ to drop packets
