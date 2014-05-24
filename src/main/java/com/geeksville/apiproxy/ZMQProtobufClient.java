@@ -35,7 +35,7 @@ public class ZMQProtobufClient implements IProtobufClient {
         // if we are not connected to the server.
         socket = ctx.createSocket(ZMQ.ROUTER);
 
-        socket.setHWM(100);
+        socket.setHWM(20);
         socket.setLinger(200); // in msecs
 
         // Use the following to get better client ids (must be unique)
@@ -54,7 +54,7 @@ public class ZMQProtobufClient implements IProtobufClient {
      * @throws IOException
      */
     public void send(Envelope msg, Boolean noBlock) throws IOException {
-        //System.out.println("Sending");
+        //System.out.println("Sending " + msg);
         socket.sendMore("SERVER"); // destination identity 
         socket.sendMore(""); // A zero delemiter before payload
         socket.send(msg.toByteArray(), noBlock ? ZMQ.NOBLOCK : 0);

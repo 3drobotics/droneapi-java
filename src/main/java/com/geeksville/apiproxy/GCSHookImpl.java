@@ -49,8 +49,10 @@ public class GCSHookImpl implements GCSHooks {
             flush();
 
             Envelope env = weblink.receive(timeout);
-            if(env != null && env.hasPingResponse() && env.getPingResponse().getNonce() == nonce)
+            if(env != null && env.hasPingResponse() && env.getPingResponse().getNonce() == nonce) {
+                System.out.println("Connected");
                 return; 
+            }
 
             if(env != null)
                 System.out.println("Discarding " + env);
