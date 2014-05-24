@@ -8,9 +8,9 @@ import java.util.UUID;
 
 import org.zeromq.ZContext;
 import org.zeromq.ZFrame;
-import org.zeromq.ZMQ;
-import org.zeromq.ZMQ.Socket;
 import org.zeromq.ZMsg;
+import org.zeromq.ZMQ;
+import org.zeromq.ZMQ.*;
 
 import com.geeksville.dapi.Webapi.Envelope;
 
@@ -24,6 +24,7 @@ public class ZMQProtobufClient implements IProtobufClient {
 
     private ZContext ctx;
     private Socket socket;
+    private PollItem[] items;
 
     ZMQProtobufClient(String zurl) {
         System.out.println("Starting zmq client to " + zurl);
@@ -34,7 +35,7 @@ public class ZMQProtobufClient implements IProtobufClient {
         // if we are not connected to the server.
         socket = ctx.createSocket(ZMQ.ROUTER);
 
-        socket.setHWM(10);
+        socket.setHWM(100);
         socket.setLinger(200); // in msecs
 
         // Use the following to get better client ids (must be unique)
@@ -42,6 +43,8 @@ public class ZMQProtobufClient implements IProtobufClient {
         socket.setIdentity(identity.getBytes(ZMQ.CHARSET));
 
         socket.connect(zurl);
+
+        items  = new PollItem[] { new PollItem(socket, Poller.POLLIN) };
     }
 
     /**
@@ -63,17 +66,22 @@ public class ZMQProtobufClient implements IProtobufClient {
      * @return
      * @throws IOException
      */
-    public Envelope receive() throws IOException {
+    public Envelope receive(long timeout) throws IOException {
 
-        //System.out.println("Receiving");
-        // The DEALER socket gives us the address envelope and message
-        ZMsg msg = ZMsg.recvMsg(socket);
-        //System.out.println("Recvd " + msg);
-        ZFrame content = msg.getLast();
-        assert (content != null);
-        //System.out.println("Content " + content);
+        ZMQ.poll(items, timeout);
+        if (items[0].isReadable()) {
+            //System.out.println("Receiving");
+            // The DEALER socket gives us the address envelope and message
+            ZMsg msg = ZMsg.recvMsg(socket);
+            //System.out.println("Recvd " + msg);
+            ZFrame content = msg.getLast();
+            assert (content != null);
+            //System.out.println("Content " + content);
 
-        return Envelope.parseFrom(content.getData());
+            return Envelope.parseFrom(content.getData());
+        }
+        else
+            return null; // timed out
     }
 
     public void close() throws IOException {

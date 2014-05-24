@@ -3,15 +3,9 @@ package com.geeksville.apiproxy;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.UUID;
+import java.util.Random;
 
-import com.geeksville.dapi.Webapi.Envelope;
-import com.geeksville.dapi.Webapi.LoginMsg;
-import com.geeksville.dapi.Webapi.LoginRequestCode;
-import com.geeksville.dapi.Webapi.LoginResponseMsg;
-import com.geeksville.dapi.Webapi.MavlinkMsg;
-import com.geeksville.dapi.Webapi.SetVehicleMsg;
-import com.geeksville.dapi.Webapi.StartMissionMsg;
-import com.geeksville.dapi.Webapi.StopMissionMsg;
+import com.geeksville.dapi.Webapi.*;
 import com.google.protobuf.ByteString;
 
 /**
@@ -22,166 +16,203 @@ import com.google.protobuf.ByteString;
  */
 public class GCSHookImpl implements GCSHooks {
 
-	private IProtobufClient weblink;
+    private IProtobufClient weblink;
 
-	private boolean loggedIn = false;
+    private boolean loggedIn = false;
 
-	/**
-	 * Time in usecs
-	 */
-	private long startTime;
+    /**
+     * Time in usecs
+     */
+    private long startTime;
 
-	public void connect() throws UnknownHostException, IOException {
-		// weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER,
-		// APIConstants.DEFAULT_TCP_PORT);
-		weblink = new ZMQProtobufClient(APIConstants.ZMQ_URL);
+    private Random random = new Random(System.currentTimeMillis());
 
-		startTime = System.currentTimeMillis() * 1000;
-	}
+    /// We must receive a reply to any message within this period or we consider the link dropped
+    private static long receiveTimeout = 30 * 1000;
 
-	@Override
-	public void setCallback(GCSCallback cb) {
-		// TODO Auto-generated method stub
+    public void connect() throws UnknownHostException, IOException {
+        //weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER, APIConstants.DEFAULT_TCP_PORT);
+        weblink = new ZMQProtobufClient(APIConstants.ZMQ_URL);
+        waitConnected(5000);
 
-	}
+        startTime = System.currentTimeMillis() * 1000;
+    }
 
-	@Override
-	public void filterMavlink(int fromInterface, byte[] bytes)
-			throws IOException {
-		long deltat = (System.currentTimeMillis() * 1000) - startTime;
+    private void waitConnected(long timeoutMsec) throws IOException {
+        int nonce = random.nextInt();
+        Envelope ping = Envelope.newBuilder().setPing(PingMsg.newBuilder().setNonce(nonce).build()).build();
 
-		MavlinkMsg mav = MavlinkMsg.newBuilder().setSrcInterface(fromInterface)
-				.setDeltaT(deltat).addPacket(ByteString.copyFrom(bytes))
-				.build();
+        long timeout = 300; // Check every 100ms
+        while(timeoutMsec > 0) {
+            System.out.println("Sending ping");
+            weblink.send(ping, true);
+            flush();
 
-		sendNoBlock(Envelope.newBuilder().setMavlink(mav).build());
-	}
+            Envelope env = weblink.receive(timeout);
+            if(env != null && env.hasPingResponse() && env.getPingResponse().getNonce() == nonce)
+                return; 
 
-	@Override
-	public void loginUser(String userName, String password)
-			throws UnknownHostException, IOException {
+            if(env != null)
+                System.out.println("Discarding " + env);
 
-		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
-				.setCode(LoginRequestCode.LOGIN).setPassword(password)
-				.setStartTime(startTime).build();
-		Envelope msg = Envelope.newBuilder().setLogin(m).build();
-		sendUnchecked(msg);
-		checkLoginOkay();
-	}
+            timeoutMsec -= timeout;
+        }
+        throw new IOException("Protocol connection timeout");
+    }
 
-	// / Ask server if the specified username is available for creation
-	public boolean isUsernameAvailable(String userName)
-			throws UnknownHostException, IOException {
-		LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
-				.setCode(LoginRequestCode.CHECK_USERNAME).build();
-		Envelope msg = Envelope.newBuilder().setLogin(m).build();
-		sendUnchecked(msg);
-		LoginResponseMsg r = readLoginResponse();
 
-		return (r.getCode() == LoginResponseMsg.ResponseCode.OK);
-	}
+    @Override
+    public void setCallback(GCSCallback cb) {
+        // TODO Auto-generated method stub
 
-	// / Create a new user account
-	@Override
-	public void createUser(String userName, String password, String email)
-			throws UnknownHostException, IOException {
-		LoginMsg.Builder builder = LoginMsg.newBuilder().setUsername(userName)
-				.setCode(LoginRequestCode.CREATE).setPassword(password)
-				.setStartTime(startTime);
+    }
 
-		if (email != null)
-			builder.setEmail(email);
+    @Override
+    public void filterMavlink(int fromInterface, byte[] bytes)
+            throws IOException {
+        long deltat = (System.currentTimeMillis() * 1000) - startTime;
 
-		Envelope msg = Envelope.newBuilder().setLogin(builder.build()).build();
-		sendUnchecked(msg);
-		checkLoginOkay();
-	}
+        MavlinkMsg mav = MavlinkMsg.newBuilder().setSrcInterface(fromInterface)
+                .setDeltaT(deltat).addPacket(ByteString.copyFrom(bytes))
+                .build();
 
-	private Envelope readEnvelope() throws IOException {
-		return weblink.receive();
-	}
+        sendNoBlock(Envelope.newBuilder().setMavlink(mav).build());
+    }
 
-	private LoginResponseMsg readLoginResponse() throws IOException {
-		flush(); // Make sure any previous commands has been sent
-		LoginResponseMsg r = readEnvelope().getLoginResponse();
+    @Override
+    public void loginUser(String userName, String password)
+            throws UnknownHostException, IOException {
 
-		// No matter what, if the server is telling us to hang up, we must bail
-		// immediately
-		if (r.getCode() == LoginResponseMsg.ResponseCode.CALL_LATER)
-			throw new CallbackLaterException(r.getMessage(),
-					r.getCallbackDelay());
+        LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
+                .setCode(LoginRequestCode.LOGIN).setPassword(password)
+                .setStartTime(startTime).build();
+        Envelope msg = Envelope.newBuilder().setLogin(m).build();
+        sendUnchecked(msg);
+        checkLoginOkay();
+    }
 
-		return r;
-	}
+    // / Ask server if the specified username is available for creation
+    public boolean isUsernameAvailable(String userName)
+            throws UnknownHostException, IOException {
+        //System.out.println("Checking if username available");
+        LoginMsg m = LoginMsg.newBuilder().setUsername(userName)
+                .setCode(LoginRequestCode.CHECK_USERNAME).build();
+        Envelope msg = Envelope.newBuilder().setLogin(m).build();
+        sendUnchecked(msg);
+        LoginResponseMsg r = readLoginResponse();
+        //System.out.println("username available " + r.getCode());
 
-	private void checkLoginOkay() throws IOException {
-		LoginResponseMsg r = readLoginResponse();
-		if (r.getCode() != LoginResponseMsg.ResponseCode.OK)
-			throw new LoginFailedException(r.getMessage());
+        return (r.getCode() == LoginResponseMsg.ResponseCode.OK);
+    }
 
-		loggedIn = true;
-	}
+    // / Create a new user account
+    @Override
+    public void createUser(String userName, String password, String email)
+            throws UnknownHostException, IOException {
+        LoginMsg.Builder builder = LoginMsg.newBuilder().setUsername(userName)
+                .setCode(LoginRequestCode.CREATE).setPassword(password)
+                .setStartTime(startTime);
 
-	@Override
-	public void setVehicleId(String vehicleId, int interfaceId,
-			int mavlinkSysId, boolean canAcceptCommands) throws IOException {
-		SetVehicleMsg mav = SetVehicleMsg.newBuilder()
-				.setGcsInterface(interfaceId).setSysId(mavlinkSysId)
-				.setCanAcceptCommands(canAcceptCommands)
-				.setVehicleUUID(vehicleId).build();
+        if (email != null)
+            builder.setEmail(email);
 
-		send(Envelope.newBuilder().setSetVehicle(mav).build());
-	}
+        Envelope msg = Envelope.newBuilder().setLogin(builder.build()).build();
+        sendUnchecked(msg);
+        checkLoginOkay();
+    }
 
-	@Override
-	public void flush() throws IOException {
-		if (weblink != null)
-			weblink.flush();
-	}
+    private Envelope readEnvelope() throws IOException {
+        return weblink.receive(receiveTimeout);
+    }
 
-	@Override
-	public void close() throws IOException {
-		if (weblink != null) {
-			weblink.close();
-			weblink = null;
-		}
-	}
+    private LoginResponseMsg readLoginResponse() throws IOException {
+        flush(); // Make sure any previous commands has been sent        
+        while(true) {
+            Envelope env = readEnvelope();
 
-	@Override
-	public void send(Envelope e) throws IOException {
-		if (loggedIn)
-			sendUnchecked(e);
-	}
+            // Ignore msgs that are not login responses
+            if(env.hasLoginResponse()) {
+                LoginResponseMsg r = env.getLoginResponse();
 
-	public void sendNoBlock(Envelope e) throws IOException {
-		if (loggedIn && weblink != null)
-			weblink.send(e, true);
-	}
+                // No matter what, if the server is telling us to hang up, we must bail
+                // immediately
+                if (r.getCode() == LoginResponseMsg.ResponseCode.CALL_LATER)
+                    throw new CallbackLaterException(r.getMessage(), r.getCallbackDelay());
 
-	/**
-	 * Send without checking to see if we are logged in
-	 * 
-	 * @param e
-	 * @throws IOException
-	 */
-	private void sendUnchecked(Envelope e) throws IOException {
-		if (weblink != null)
-			weblink.send(e, false);
-	}
+                return r;
+            }
+            // else System.out.println("Ignoring non login resp: " + env);
+        }
+    }
 
-	@Override
-	public void startMission(Boolean keep, UUID uuid) throws IOException {
-		StartMissionMsg mav = StartMissionMsg.newBuilder().setKeep(keep)
-				.setUuid(uuid.toString()).build();
+    private void checkLoginOkay() throws IOException {
+        LoginResponseMsg r = readLoginResponse();
+        if (r.getCode() != LoginResponseMsg.ResponseCode.OK)
+            throw new LoginFailedException(r.getMessage());
 
-		send(Envelope.newBuilder().setStartMission(mav).build());
-	}
+        loggedIn = true;
+    }
 
-	@Override
-	public void stopMission(Boolean keep) throws IOException {
-		StopMissionMsg mav = StopMissionMsg.newBuilder().setKeep(keep).build();
+    @Override
+    public void setVehicleId(String vehicleId, int interfaceId,
+            int mavlinkSysId, boolean canAcceptCommands) throws IOException {
+        SenderIdMsg mav = SenderIdMsg.newBuilder()
+                .setGcsInterface(interfaceId).setSysId(mavlinkSysId)
+                .setCanAcceptCommands(canAcceptCommands)
+                .setVehicleUUID(vehicleId).build();
 
-		send(Envelope.newBuilder().setStopMission(mav).build());
-	}
+        send(Envelope.newBuilder().setSetSender(mav).build());
+    }
+
+    @Override
+    public void flush() throws IOException {
+        if (weblink != null)
+            weblink.flush();
+    }
+
+    @Override
+    public void close() throws IOException {
+        if (weblink != null) {
+            weblink.close();
+            weblink = null;
+        }
+    }
+
+    @Override
+    public void send(Envelope e) throws IOException {
+        if (loggedIn)
+            sendUnchecked(e);
+    }
+
+    public void sendNoBlock(Envelope e) throws IOException {
+        if (loggedIn && weblink != null)
+            weblink.send(e, true);
+    }
+
+    /**
+     * Send without checking to see if we are logged in
+     * 
+     * @param e
+     * @throws IOException
+     */
+    private void sendUnchecked(Envelope e) throws IOException {
+        if (weblink != null)
+            weblink.send(e, false);
+    }
+
+    @Override
+    public void startMission(Boolean keep, UUID uuid) throws IOException {
+        StartMissionMsg mav = StartMissionMsg.newBuilder().setKeep(keep)
+                .setUuid(uuid.toString()).build();
+
+        send(Envelope.newBuilder().setStartMission(mav).build());
+    }
+
+    @Override
+    public void stopMission(Boolean keep) throws IOException {
+        StopMissionMsg mav = StopMissionMsg.newBuilder().setKeep(keep).build();
+
+        send(Envelope.newBuilder().setStopMission(mav).build());
+    }
 
 }

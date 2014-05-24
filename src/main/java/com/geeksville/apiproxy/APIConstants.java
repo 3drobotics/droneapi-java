@@ -11,5 +11,5 @@ public class APIConstants {
 	 */
 	public static final int DEFAULT_TCP_PORT = 5555; 
 
-	public static final String ZMQ_URL = "tcp://localhost:5556";
+	public static final String ZMQ_URL = "tcp://api.3dr.com:5556";
 }

@@ -16,10 +16,11 @@ public interface IProtobufClient {
 	/**
 	 * Block until a message can be read
 	 * 
-	 * @return
+     * @param timeout in msecs, or -1 for infinite
+	 * @return null if we timeout
 	 * @throws IOException
 	 */
-	Envelope receive() throws IOException;
+	Envelope receive(long timeout) throws IOException;
 
 	void close() throws IOException;
 

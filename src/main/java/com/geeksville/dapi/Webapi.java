@@ -7020,6 +7020,868 @@ public final class Webapi {
     // @@protoc_insertion_point(class_scope:com.geeksville.dapi.MissionResponse)
   }
 
+  public interface PingMsgOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required sint32 nonce = 1;
+    /**
+     * <code>required sint32 nonce = 1;</code>
+     *
+     * <pre>
+     * A code that can be used to uniquely identify this ping
+     * </pre>
+     */
+    boolean hasNonce();
+    /**
+     * <code>required sint32 nonce = 1;</code>
+     *
+     * <pre>
+     * A code that can be used to uniquely identify this ping
+     * </pre>
+     */
+    int getNonce();
+  }
+  /**
+   * Protobuf type {@code com.geeksville.dapi.PingMsg}
+   *
+   * <pre>
+   **
+   *A ping message can be sent at any time from either side of the link (no login required).  The other side
+   *should respond with a PingResponseMsg
+   * </pre>
+   */
+  public static final class PingMsg extends
+      com.google.protobuf.GeneratedMessage
+      implements PingMsgOrBuilder {
+    // Use PingMsg.newBuilder() to construct.
+    private PingMsg(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private PingMsg(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final PingMsg defaultInstance;
+    public static PingMsg getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public PingMsg getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PingMsg(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              nonce_ = input.readSInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingMsg_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingMsg_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.geeksville.dapi.Webapi.PingMsg.class, com.geeksville.dapi.Webapi.PingMsg.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<PingMsg> PARSER =
+        new com.google.protobuf.AbstractParser<PingMsg>() {
+      public PingMsg parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PingMsg(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PingMsg> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // required sint32 nonce = 1;
+    public static final int NONCE_FIELD_NUMBER = 1;
+    private int nonce_;
+    /**
+     * <code>required sint32 nonce = 1;</code>
+     *
+     * <pre>
+     * A code that can be used to uniquely identify this ping
+     * </pre>
+     */
+    public boolean hasNonce() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required sint32 nonce = 1;</code>
+     *
+     * <pre>
+     * A code that can be used to uniquely identify this ping
+     * </pre>
+     */
+    public int getNonce() {
+      return nonce_;
+    }
+
+    private void initFields() {
+      nonce_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasNonce()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeSInt32(1, nonce_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(1, nonce_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.geeksville.dapi.Webapi.PingMsg parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.geeksville.dapi.Webapi.PingMsg parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.geeksville.dapi.Webapi.PingMsg prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.geeksville.dapi.PingMsg}
+     *
+     * <pre>
+     **
+     *A ping message can be sent at any time from either side of the link (no login required).  The other side
+     *should respond with a PingResponseMsg
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.geeksville.dapi.Webapi.PingMsgOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingMsg_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingMsg_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.geeksville.dapi.Webapi.PingMsg.class, com.geeksville.dapi.Webapi.PingMsg.Builder.class);
+      }
+
+      // Construct using com.geeksville.dapi.Webapi.PingMsg.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        nonce_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingMsg_descriptor;
+      }
+
+      public com.geeksville.dapi.Webapi.PingMsg getDefaultInstanceForType() {
+        return com.geeksville.dapi.Webapi.PingMsg.getDefaultInstance();
+      }
+
+      public com.geeksville.dapi.Webapi.PingMsg build() {
+        com.geeksville.dapi.Webapi.PingMsg result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.geeksville.dapi.Webapi.PingMsg buildPartial() {
+        com.geeksville.dapi.Webapi.PingMsg result = new com.geeksville.dapi.Webapi.PingMsg(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.nonce_ = nonce_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.geeksville.dapi.Webapi.PingMsg) {
+          return mergeFrom((com.geeksville.dapi.Webapi.PingMsg)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.geeksville.dapi.Webapi.PingMsg other) {
+        if (other == com.geeksville.dapi.Webapi.PingMsg.getDefaultInstance()) return this;
+        if (other.hasNonce()) {
+          setNonce(other.getNonce());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasNonce()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.geeksville.dapi.Webapi.PingMsg parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.geeksville.dapi.Webapi.PingMsg) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required sint32 nonce = 1;
+      private int nonce_ ;
+      /**
+       * <code>required sint32 nonce = 1;</code>
+       *
+       * <pre>
+       * A code that can be used to uniquely identify this ping
+       * </pre>
+       */
+      public boolean hasNonce() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required sint32 nonce = 1;</code>
+       *
+       * <pre>
+       * A code that can be used to uniquely identify this ping
+       * </pre>
+       */
+      public int getNonce() {
+        return nonce_;
+      }
+      /**
+       * <code>required sint32 nonce = 1;</code>
+       *
+       * <pre>
+       * A code that can be used to uniquely identify this ping
+       * </pre>
+       */
+      public Builder setNonce(int value) {
+        bitField0_ |= 0x00000001;
+        nonce_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required sint32 nonce = 1;</code>
+       *
+       * <pre>
+       * A code that can be used to uniquely identify this ping
+       * </pre>
+       */
+      public Builder clearNonce() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        nonce_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.PingMsg)
+    }
+
+    static {
+      defaultInstance = new PingMsg(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:com.geeksville.dapi.PingMsg)
+  }
+
+  public interface PingResponseMsgOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required sint32 nonce = 1;
+    /**
+     * <code>required sint32 nonce = 1;</code>
+     */
+    boolean hasNonce();
+    /**
+     * <code>required sint32 nonce = 1;</code>
+     */
+    int getNonce();
+  }
+  /**
+   * Protobuf type {@code com.geeksville.dapi.PingResponseMsg}
+   *
+   * <pre>
+   **
+   *A response to a PingMsg message.
+   * </pre>
+   */
+  public static final class PingResponseMsg extends
+      com.google.protobuf.GeneratedMessage
+      implements PingResponseMsgOrBuilder {
+    // Use PingResponseMsg.newBuilder() to construct.
+    private PingResponseMsg(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private PingResponseMsg(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final PingResponseMsg defaultInstance;
+    public static PingResponseMsg getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public PingResponseMsg getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PingResponseMsg(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              nonce_ = input.readSInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingResponseMsg_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingResponseMsg_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.geeksville.dapi.Webapi.PingResponseMsg.class, com.geeksville.dapi.Webapi.PingResponseMsg.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<PingResponseMsg> PARSER =
+        new com.google.protobuf.AbstractParser<PingResponseMsg>() {
+      public PingResponseMsg parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PingResponseMsg(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PingResponseMsg> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // required sint32 nonce = 1;
+    public static final int NONCE_FIELD_NUMBER = 1;
+    private int nonce_;
+    /**
+     * <code>required sint32 nonce = 1;</code>
+     */
+    public boolean hasNonce() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required sint32 nonce = 1;</code>
+     */
+    public int getNonce() {
+      return nonce_;
+    }
+
+    private void initFields() {
+      nonce_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasNonce()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeSInt32(1, nonce_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(1, nonce_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.geeksville.dapi.Webapi.PingResponseMsg parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.geeksville.dapi.Webapi.PingResponseMsg prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.geeksville.dapi.PingResponseMsg}
+     *
+     * <pre>
+     **
+     *A response to a PingMsg message.
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.geeksville.dapi.Webapi.PingResponseMsgOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingResponseMsg_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingResponseMsg_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.geeksville.dapi.Webapi.PingResponseMsg.class, com.geeksville.dapi.Webapi.PingResponseMsg.Builder.class);
+      }
+
+      // Construct using com.geeksville.dapi.Webapi.PingResponseMsg.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        nonce_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_PingResponseMsg_descriptor;
+      }
+
+      public com.geeksville.dapi.Webapi.PingResponseMsg getDefaultInstanceForType() {
+        return com.geeksville.dapi.Webapi.PingResponseMsg.getDefaultInstance();
+      }
+
+      public com.geeksville.dapi.Webapi.PingResponseMsg build() {
+        com.geeksville.dapi.Webapi.PingResponseMsg result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.geeksville.dapi.Webapi.PingResponseMsg buildPartial() {
+        com.geeksville.dapi.Webapi.PingResponseMsg result = new com.geeksville.dapi.Webapi.PingResponseMsg(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.nonce_ = nonce_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.geeksville.dapi.Webapi.PingResponseMsg) {
+          return mergeFrom((com.geeksville.dapi.Webapi.PingResponseMsg)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.geeksville.dapi.Webapi.PingResponseMsg other) {
+        if (other == com.geeksville.dapi.Webapi.PingResponseMsg.getDefaultInstance()) return this;
+        if (other.hasNonce()) {
+          setNonce(other.getNonce());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasNonce()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.geeksville.dapi.Webapi.PingResponseMsg parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.geeksville.dapi.Webapi.PingResponseMsg) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required sint32 nonce = 1;
+      private int nonce_ ;
+      /**
+       * <code>required sint32 nonce = 1;</code>
+       */
+      public boolean hasNonce() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required sint32 nonce = 1;</code>
+       */
+      public int getNonce() {
+        return nonce_;
+      }
+      /**
+       * <code>required sint32 nonce = 1;</code>
+       */
+      public Builder setNonce(int value) {
+        bitField0_ |= 0x00000001;
+        nonce_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required sint32 nonce = 1;</code>
+       */
+      public Builder clearNonce() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        nonce_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.PingResponseMsg)
+    }
+
+    static {
+      defaultInstance = new PingResponseMsg(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:com.geeksville.dapi.PingResponseMsg)
+  }
+
   public interface MavlinkMsgOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -7781,7 +8643,7 @@ public final class Webapi {
     // @@protoc_insertion_point(class_scope:com.geeksville.dapi.MavlinkMsg)
   }
 
-  public interface SetVehicleMsgOrBuilder
+  public interface SenderIdMsgOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
     // required sint32 gcsInterface = 1;
@@ -8016,31 +8878,55 @@ public final class Webapi {
      */
     com.google.protobuf.ByteString
         getSoftwareVersionBytes();
+
+    // optional bool wantPipe = 10;
+    /**
+     * <code>optional bool wantPipe = 10;</code>
+     *
+     * <pre>
+     * If present and set to true, the client would like the server to find the specified vehicleUUID on a _different_
+     * client connection and tunnel any mavlink sent on this link to/from that vehicle (translating sysIds as necessary).
+     * This pipe allows an easy mechanism for API clients to have full control of vehicles that have called into the
+     * web server.
+     * </pre>
+     */
+    boolean hasWantPipe();
+    /**
+     * <code>optional bool wantPipe = 10;</code>
+     *
+     * <pre>
+     * If present and set to true, the client would like the server to find the specified vehicleUUID on a _different_
+     * client connection and tunnel any mavlink sent on this link to/from that vehicle (translating sysIds as necessary).
+     * This pipe allows an easy mechanism for API clients to have full control of vehicles that have called into the
+     * web server.
+     * </pre>
+     */
+    boolean getWantPipe();
   }
   /**
-   * Protobuf type {@code com.geeksville.dapi.SetVehicleMsg}
+   * Protobuf type {@code com.geeksville.dapi.SenderIdMsg}
    *
    * <pre>
-   * Set the vehicle ID that corresponds to a particular sysId on a particular interface
-   * GCSes should also be described to the server using this same mechanism but use the special string "GCS" as the UUID
+   * If the client would like to control vehicles from _other_ connections it can set wantPipe to true (see below for
+   * documentation)
    * </pre>
    */
-  public static final class SetVehicleMsg extends
+  public static final class SenderIdMsg extends
       com.google.protobuf.GeneratedMessage
-      implements SetVehicleMsgOrBuilder {
-    // Use SetVehicleMsg.newBuilder() to construct.
-    private SetVehicleMsg(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      implements SenderIdMsgOrBuilder {
+    // Use SenderIdMsg.newBuilder() to construct.
+    private SenderIdMsg(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private SetVehicleMsg(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private SenderIdMsg(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final SetVehicleMsg defaultInstance;
-    public static SetVehicleMsg getDefaultInstance() {
+    private static final SenderIdMsg defaultInstance;
+    public static SenderIdMsg getDefaultInstance() {
       return defaultInstance;
     }
 
-    public SetVehicleMsg getDefaultInstanceForType() {
+    public SenderIdMsg getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -8050,7 +8936,7 @@ public final class Webapi {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private SetVehicleMsg(
+    private SenderIdMsg(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -8118,6 +9004,11 @@ public final class Webapi {
               softwareVersion_ = input.readBytes();
               break;
             }
+            case 80: {
+              bitField0_ |= 0x00000200;
+              wantPipe_ = input.readBool();
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -8132,28 +9023,28 @@ public final class Webapi {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SetVehicleMsg_descriptor;
+      return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SenderIdMsg_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SetVehicleMsg_fieldAccessorTable
+      return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SenderIdMsg_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.geeksville.dapi.Webapi.SetVehicleMsg.class, com.geeksville.dapi.Webapi.SetVehicleMsg.Builder.class);
+              com.geeksville.dapi.Webapi.SenderIdMsg.class, com.geeksville.dapi.Webapi.SenderIdMsg.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<SetVehicleMsg> PARSER =
-        new com.google.protobuf.AbstractParser<SetVehicleMsg>() {
-      public SetVehicleMsg parsePartialFrom(
+    public static com.google.protobuf.Parser<SenderIdMsg> PARSER =
+        new com.google.protobuf.AbstractParser<SenderIdMsg>() {
+      public SenderIdMsg parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SetVehicleMsg(input, extensionRegistry);
+        return new SenderIdMsg(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<SetVehicleMsg> getParserForType() {
+    public com.google.protobuf.Parser<SenderIdMsg> getParserForType() {
       return PARSER;
     }
 
@@ -8577,6 +9468,36 @@ public final class Webapi {
       }
     }
 
+    // optional bool wantPipe = 10;
+    public static final int WANTPIPE_FIELD_NUMBER = 10;
+    private boolean wantPipe_;
+    /**
+     * <code>optional bool wantPipe = 10;</code>
+     *
+     * <pre>
+     * If present and set to true, the client would like the server to find the specified vehicleUUID on a _different_
+     * client connection and tunnel any mavlink sent on this link to/from that vehicle (translating sysIds as necessary).
+     * This pipe allows an easy mechanism for API clients to have full control of vehicles that have called into the
+     * web server.
+     * </pre>
+     */
+    public boolean hasWantPipe() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    /**
+     * <code>optional bool wantPipe = 10;</code>
+     *
+     * <pre>
+     * If present and set to true, the client would like the server to find the specified vehicleUUID on a _different_
+     * client connection and tunnel any mavlink sent on this link to/from that vehicle (translating sysIds as necessary).
+     * This pipe allows an easy mechanism for API clients to have full control of vehicles that have called into the
+     * web server.
+     * </pre>
+     */
+    public boolean getWantPipe() {
+      return wantPipe_;
+    }
+
     private void initFields() {
       gcsInterface_ = 0;
       sysId_ = 0;
@@ -8587,6 +9508,7 @@ public final class Webapi {
       vehicleType_ = "";
       autopilotType_ = "";
       softwareVersion_ = "";
+      wantPipe_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -8643,6 +9565,9 @@ public final class Webapi {
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeBytes(9, getSoftwareVersionBytes());
       }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeBool(10, wantPipe_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -8688,6 +9613,10 @@ public final class Webapi {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(9, getSoftwareVersionBytes());
       }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(10, wantPipe_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
@@ -8700,53 +9629,53 @@ public final class Webapi {
       return super.writeReplace();
     }
 
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseFrom(
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseFrom(
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseFrom(byte[] data)
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseFrom(
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseFrom(java.io.InputStream input)
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseFrom(
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseDelimitedFrom(java.io.InputStream input)
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseDelimitedFrom(
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseFrom(
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.geeksville.dapi.Webapi.SetVehicleMsg parseFrom(
+    public static com.geeksville.dapi.Webapi.SenderIdMsg parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -8755,7 +9684,7 @@ public final class Webapi {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.geeksville.dapi.Webapi.SetVehicleMsg prototype) {
+    public static Builder newBuilder(com.geeksville.dapi.Webapi.SenderIdMsg prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -8767,29 +9696,29 @@ public final class Webapi {
       return builder;
     }
     /**
-     * Protobuf type {@code com.geeksville.dapi.SetVehicleMsg}
+     * Protobuf type {@code com.geeksville.dapi.SenderIdMsg}
      *
      * <pre>
-     * Set the vehicle ID that corresponds to a particular sysId on a particular interface
-     * GCSes should also be described to the server using this same mechanism but use the special string "GCS" as the UUID
+     * If the client would like to control vehicles from _other_ connections it can set wantPipe to true (see below for
+     * documentation)
      * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.geeksville.dapi.Webapi.SetVehicleMsgOrBuilder {
+       implements com.geeksville.dapi.Webapi.SenderIdMsgOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SetVehicleMsg_descriptor;
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SenderIdMsg_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SetVehicleMsg_fieldAccessorTable
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SenderIdMsg_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.geeksville.dapi.Webapi.SetVehicleMsg.class, com.geeksville.dapi.Webapi.SetVehicleMsg.Builder.class);
+                com.geeksville.dapi.Webapi.SenderIdMsg.class, com.geeksville.dapi.Webapi.SenderIdMsg.Builder.class);
       }
 
-      // Construct using com.geeksville.dapi.Webapi.SetVehicleMsg.newBuilder()
+      // Construct using com.geeksville.dapi.Webapi.SenderIdMsg.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8827,6 +9756,8 @@ public final class Webapi {
         bitField0_ = (bitField0_ & ~0x00000080);
         softwareVersion_ = "";
         bitField0_ = (bitField0_ & ~0x00000100);
+        wantPipe_ = false;
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
 
@@ -8836,23 +9767,23 @@ public final class Webapi {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SetVehicleMsg_descriptor;
+        return com.geeksville.dapi.Webapi.internal_static_com_geeksville_dapi_SenderIdMsg_descriptor;
       }
 
-      public com.geeksville.dapi.Webapi.SetVehicleMsg getDefaultInstanceForType() {
-        return com.geeksville.dapi.Webapi.SetVehicleMsg.getDefaultInstance();
+      public com.geeksville.dapi.Webapi.SenderIdMsg getDefaultInstanceForType() {
+        return com.geeksville.dapi.Webapi.SenderIdMsg.getDefaultInstance();
       }
 
-      public com.geeksville.dapi.Webapi.SetVehicleMsg build() {
-        com.geeksville.dapi.Webapi.SetVehicleMsg result = buildPartial();
+      public com.geeksville.dapi.Webapi.SenderIdMsg build() {
+        com.geeksville.dapi.Webapi.SenderIdMsg result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.geeksville.dapi.Webapi.SetVehicleMsg buildPartial() {
-        com.geeksville.dapi.Webapi.SetVehicleMsg result = new com.geeksville.dapi.Webapi.SetVehicleMsg(this);
+      public com.geeksville.dapi.Webapi.SenderIdMsg buildPartial() {
+        com.geeksville.dapi.Webapi.SenderIdMsg result = new com.geeksville.dapi.Webapi.SenderIdMsg(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -8891,22 +9822,26 @@ public final class Webapi {
           to_bitField0_ |= 0x00000100;
         }
         result.softwareVersion_ = softwareVersion_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.wantPipe_ = wantPipe_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.geeksville.dapi.Webapi.SetVehicleMsg) {
-          return mergeFrom((com.geeksville.dapi.Webapi.SetVehicleMsg)other);
+        if (other instanceof com.geeksville.dapi.Webapi.SenderIdMsg) {
+          return mergeFrom((com.geeksville.dapi.Webapi.SenderIdMsg)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.geeksville.dapi.Webapi.SetVehicleMsg other) {
-        if (other == com.geeksville.dapi.Webapi.SetVehicleMsg.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.geeksville.dapi.Webapi.SenderIdMsg other) {
+        if (other == com.geeksville.dapi.Webapi.SenderIdMsg.getDefaultInstance()) return this;
         if (other.hasGcsInterface()) {
           setGcsInterface(other.getGcsInterface());
         }
@@ -8946,6 +9881,9 @@ public final class Webapi {
           softwareVersion_ = other.softwareVersion_;
           onChanged();
         }
+        if (other.hasWantPipe()) {
+          setWantPipe(other.getWantPipe());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -8974,11 +9912,11 @@ public final class Webapi {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.geeksville.dapi.Webapi.SetVehicleMsg parsedMessage = null;
+        com.geeksville.dapi.Webapi.SenderIdMsg parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.geeksville.dapi.Webapi.SetVehicleMsg) e.getUnfinishedMessage();
+          parsedMessage = (com.geeksville.dapi.Webapi.SenderIdMsg) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -9758,15 +10696,76 @@ public final class Webapi {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.SetVehicleMsg)
+      // optional bool wantPipe = 10;
+      private boolean wantPipe_ ;
+      /**
+       * <code>optional bool wantPipe = 10;</code>
+       *
+       * <pre>
+       * If present and set to true, the client would like the server to find the specified vehicleUUID on a _different_
+       * client connection and tunnel any mavlink sent on this link to/from that vehicle (translating sysIds as necessary).
+       * This pipe allows an easy mechanism for API clients to have full control of vehicles that have called into the
+       * web server.
+       * </pre>
+       */
+      public boolean hasWantPipe() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      /**
+       * <code>optional bool wantPipe = 10;</code>
+       *
+       * <pre>
+       * If present and set to true, the client would like the server to find the specified vehicleUUID on a _different_
+       * client connection and tunnel any mavlink sent on this link to/from that vehicle (translating sysIds as necessary).
+       * This pipe allows an easy mechanism for API clients to have full control of vehicles that have called into the
+       * web server.
+       * </pre>
+       */
+      public boolean getWantPipe() {
+        return wantPipe_;
+      }
+      /**
+       * <code>optional bool wantPipe = 10;</code>
+       *
+       * <pre>
+       * If present and set to true, the client would like the server to find the specified vehicleUUID on a _different_
+       * client connection and tunnel any mavlink sent on this link to/from that vehicle (translating sysIds as necessary).
+       * This pipe allows an easy mechanism for API clients to have full control of vehicles that have called into the
+       * web server.
+       * </pre>
+       */
+      public Builder setWantPipe(boolean value) {
+        bitField0_ |= 0x00000200;
+        wantPipe_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool wantPipe = 10;</code>
+       *
+       * <pre>
+       * If present and set to true, the client would like the server to find the specified vehicleUUID on a _different_
+       * client connection and tunnel any mavlink sent on this link to/from that vehicle (translating sysIds as necessary).
+       * This pipe allows an easy mechanism for API clients to have full control of vehicles that have called into the
+       * web server.
+       * </pre>
+       */
+      public Builder clearWantPipe() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        wantPipe_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.SenderIdMsg)
     }
 
     static {
-      defaultInstance = new SetVehicleMsg(true);
+      defaultInstance = new SenderIdMsg(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:com.geeksville.dapi.SetVehicleMsg)
+    // @@protoc_insertion_point(class_scope:com.geeksville.dapi.SenderIdMsg)
   }
 
   public interface EnvelopeOrBuilder
@@ -9842,19 +10841,19 @@ public final class Webapi {
      */
     com.geeksville.dapi.Webapi.LoginMsgOrBuilder getLoginOrBuilder();
 
-    // optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;
+    // optional .com.geeksville.dapi.SenderIdMsg setSender = 33;
     /**
-     * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+     * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
      */
-    boolean hasSetVehicle();
+    boolean hasSetSender();
     /**
-     * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+     * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
      */
-    com.geeksville.dapi.Webapi.SetVehicleMsg getSetVehicle();
+    com.geeksville.dapi.Webapi.SenderIdMsg getSetSender();
     /**
-     * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+     * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
      */
-    com.geeksville.dapi.Webapi.SetVehicleMsgOrBuilder getSetVehicleOrBuilder();
+    com.geeksville.dapi.Webapi.SenderIdMsgOrBuilder getSetSenderOrBuilder();
 
     // optional .com.geeksville.dapi.NoteMsg note = 34;
     /**
@@ -9897,6 +10896,20 @@ public final class Webapi {
      * <code>optional .com.geeksville.dapi.StopMissionMsg stopMission = 36;</code>
      */
     com.geeksville.dapi.Webapi.StopMissionMsgOrBuilder getStopMissionOrBuilder();
+
+    // optional .com.geeksville.dapi.PingMsg ping = 37;
+    /**
+     * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+     */
+    boolean hasPing();
+    /**
+     * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+     */
+    com.geeksville.dapi.Webapi.PingMsg getPing();
+    /**
+     * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+     */
+    com.geeksville.dapi.Webapi.PingMsgOrBuilder getPingOrBuilder();
 
     // optional .com.geeksville.dapi.LoginResponseMsg loginResponse = 64;
     /**
@@ -9951,6 +10964,20 @@ public final class Webapi {
      * <code>optional .com.geeksville.dapi.MissionResponse missionResponse = 66;</code>
      */
     com.geeksville.dapi.Webapi.MissionResponseOrBuilder getMissionResponseOrBuilder();
+
+    // optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;
+    /**
+     * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+     */
+    boolean hasPingResponse();
+    /**
+     * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+     */
+    com.geeksville.dapi.Webapi.PingResponseMsg getPingResponse();
+    /**
+     * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+     */
+    com.geeksville.dapi.Webapi.PingResponseMsgOrBuilder getPingResponseOrBuilder();
   }
   /**
    * Protobuf type {@code com.geeksville.dapi.Envelope}
@@ -10045,14 +11072,14 @@ public final class Webapi {
               break;
             }
             case 266: {
-              com.geeksville.dapi.Webapi.SetVehicleMsg.Builder subBuilder = null;
+              com.geeksville.dapi.Webapi.SenderIdMsg.Builder subBuilder = null;
               if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                subBuilder = setVehicle_.toBuilder();
+                subBuilder = setSender_.toBuilder();
               }
-              setVehicle_ = input.readMessage(com.geeksville.dapi.Webapi.SetVehicleMsg.PARSER, extensionRegistry);
+              setSender_ = input.readMessage(com.geeksville.dapi.Webapi.SenderIdMsg.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(setVehicle_);
-                setVehicle_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(setSender_);
+                setSender_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000008;
               break;
@@ -10096,9 +11123,22 @@ public final class Webapi {
               bitField0_ |= 0x00000040;
               break;
             }
+            case 298: {
+              com.geeksville.dapi.Webapi.PingMsg.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000080) == 0x00000080)) {
+                subBuilder = ping_.toBuilder();
+              }
+              ping_ = input.readMessage(com.geeksville.dapi.Webapi.PingMsg.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ping_);
+                ping_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000080;
+              break;
+            }
             case 514: {
               com.geeksville.dapi.Webapi.LoginResponseMsg.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000080) == 0x00000080)) {
+              if (((bitField0_ & 0x00000100) == 0x00000100)) {
                 subBuilder = loginResponse_.toBuilder();
               }
               loginResponse_ = input.readMessage(com.geeksville.dapi.Webapi.LoginResponseMsg.PARSER, extensionRegistry);
@@ -10106,12 +11146,12 @@ public final class Webapi {
                 subBuilder.mergeFrom(loginResponse_);
                 loginResponse_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000080;
+              bitField0_ |= 0x00000100;
               break;
             }
             case 522: {
               com.geeksville.dapi.Webapi.ShowMsg.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000100) == 0x00000100)) {
+              if (((bitField0_ & 0x00000200) == 0x00000200)) {
                 subBuilder = show_.toBuilder();
               }
               show_ = input.readMessage(com.geeksville.dapi.Webapi.ShowMsg.PARSER, extensionRegistry);
@@ -10119,12 +11159,12 @@ public final class Webapi {
                 subBuilder.mergeFrom(show_);
                 show_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000100;
+              bitField0_ |= 0x00000200;
               break;
             }
             case 530: {
               com.geeksville.dapi.Webapi.MissionResponse.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000200) == 0x00000200)) {
+              if (((bitField0_ & 0x00000400) == 0x00000400)) {
                 subBuilder = missionResponse_.toBuilder();
               }
               missionResponse_ = input.readMessage(com.geeksville.dapi.Webapi.MissionResponse.PARSER, extensionRegistry);
@@ -10132,7 +11172,20 @@ public final class Webapi {
                 subBuilder.mergeFrom(missionResponse_);
                 missionResponse_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000200;
+              bitField0_ |= 0x00000400;
+              break;
+            }
+            case 538: {
+              com.geeksville.dapi.Webapi.PingResponseMsg.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000800) == 0x00000800)) {
+                subBuilder = pingResponse_.toBuilder();
+              }
+              pingResponse_ = input.readMessage(com.geeksville.dapi.Webapi.PingResponseMsg.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(pingResponse_);
+                pingResponse_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000800;
               break;
             }
           }
@@ -10193,9 +11246,9 @@ public final class Webapi {
        */
       LoginMsgCode(1, 32),
       /**
-       * <code>SetVehicleMsgCode = 33;</code>
+       * <code>SenderIdMsgCode = 33;</code>
        */
-      SetVehicleMsgCode(2, 33),
+      SenderIdMsgCode(2, 33),
       /**
        * <code>NoteMsgCode = 34;</code>
        */
@@ -10209,17 +11262,25 @@ public final class Webapi {
        */
       StopMissionMsgCode(5, 36),
       /**
+       * <code>PingMsgCode = 37;</code>
+       */
+      PingMsgCode(6, 37),
+      /**
        * <code>LoginResponseMsgCode = 64;</code>
        */
-      LoginResponseMsgCode(6, 64),
+      LoginResponseMsgCode(7, 64),
       /**
        * <code>ShowMsgCode = 65;</code>
        */
-      ShowMsgCode(7, 65),
+      ShowMsgCode(8, 65),
       /**
        * <code>MissionResponseCode = 66;</code>
        */
-      MissionResponseCode(8, 66),
+      MissionResponseCode(9, 66),
+      /**
+       * <code>PingResponseMsgCode = 67;</code>
+       */
+      PingResponseMsgCode(10, 67),
       ;
 
       /**
@@ -10231,9 +11292,9 @@ public final class Webapi {
        */
       public static final int LoginMsgCode_VALUE = 32;
       /**
-       * <code>SetVehicleMsgCode = 33;</code>
+       * <code>SenderIdMsgCode = 33;</code>
        */
-      public static final int SetVehicleMsgCode_VALUE = 33;
+      public static final int SenderIdMsgCode_VALUE = 33;
       /**
        * <code>NoteMsgCode = 34;</code>
        */
@@ -10247,6 +11308,10 @@ public final class Webapi {
        */
       public static final int StopMissionMsgCode_VALUE = 36;
       /**
+       * <code>PingMsgCode = 37;</code>
+       */
+      public static final int PingMsgCode_VALUE = 37;
+      /**
        * <code>LoginResponseMsgCode = 64;</code>
        */
       public static final int LoginResponseMsgCode_VALUE = 64;
@@ -10258,6 +11323,10 @@ public final class Webapi {
        * <code>MissionResponseCode = 66;</code>
        */
       public static final int MissionResponseCode_VALUE = 66;
+      /**
+       * <code>PingResponseMsgCode = 67;</code>
+       */
+      public static final int PingResponseMsgCode_VALUE = 67;
 
 
       public final int getNumber() { return value; }
@@ -10266,13 +11335,15 @@ public final class Webapi {
         switch (value) {
           case 2: return MavlinkMsgCode;
           case 32: return LoginMsgCode;
-          case 33: return SetVehicleMsgCode;
+          case 33: return SenderIdMsgCode;
           case 34: return NoteMsgCode;
           case 35: return StartMissionMsgCode;
           case 36: return StopMissionMsgCode;
+          case 37: return PingMsgCode;
           case 64: return LoginResponseMsgCode;
           case 65: return ShowMsgCode;
           case 66: return MissionResponseCode;
+          case 67: return PingResponseMsgCode;
           default: return null;
         }
       }
@@ -10417,26 +11488,26 @@ public final class Webapi {
       return login_;
     }
 
-    // optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;
-    public static final int SETVEHICLE_FIELD_NUMBER = 33;
-    private com.geeksville.dapi.Webapi.SetVehicleMsg setVehicle_;
+    // optional .com.geeksville.dapi.SenderIdMsg setSender = 33;
+    public static final int SETSENDER_FIELD_NUMBER = 33;
+    private com.geeksville.dapi.Webapi.SenderIdMsg setSender_;
     /**
-     * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+     * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
      */
-    public boolean hasSetVehicle() {
+    public boolean hasSetSender() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+     * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
      */
-    public com.geeksville.dapi.Webapi.SetVehicleMsg getSetVehicle() {
-      return setVehicle_;
+    public com.geeksville.dapi.Webapi.SenderIdMsg getSetSender() {
+      return setSender_;
     }
     /**
-     * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+     * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
      */
-    public com.geeksville.dapi.Webapi.SetVehicleMsgOrBuilder getSetVehicleOrBuilder() {
-      return setVehicle_;
+    public com.geeksville.dapi.Webapi.SenderIdMsgOrBuilder getSetSenderOrBuilder() {
+      return setSender_;
     }
 
     // optional .com.geeksville.dapi.NoteMsg note = 34;
@@ -10505,6 +11576,28 @@ public final class Webapi {
       return stopMission_;
     }
 
+    // optional .com.geeksville.dapi.PingMsg ping = 37;
+    public static final int PING_FIELD_NUMBER = 37;
+    private com.geeksville.dapi.Webapi.PingMsg ping_;
+    /**
+     * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+     */
+    public boolean hasPing() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+     */
+    public com.geeksville.dapi.Webapi.PingMsg getPing() {
+      return ping_;
+    }
+    /**
+     * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+     */
+    public com.geeksville.dapi.Webapi.PingMsgOrBuilder getPingOrBuilder() {
+      return ping_;
+    }
+
     // optional .com.geeksville.dapi.LoginResponseMsg loginResponse = 64;
     public static final int LOGINRESPONSE_FIELD_NUMBER = 64;
     private com.geeksville.dapi.Webapi.LoginResponseMsg loginResponse_;
@@ -10516,7 +11609,7 @@ public final class Webapi {
      * </pre>
      */
     public boolean hasLoginResponse() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
      * <code>optional .com.geeksville.dapi.LoginResponseMsg loginResponse = 64;</code>
@@ -10546,7 +11639,7 @@ public final class Webapi {
      * <code>optional .com.geeksville.dapi.ShowMsg show = 65;</code>
      */
     public boolean hasShow() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     /**
      * <code>optional .com.geeksville.dapi.ShowMsg show = 65;</code>
@@ -10568,7 +11661,7 @@ public final class Webapi {
      * <code>optional .com.geeksville.dapi.MissionResponse missionResponse = 66;</code>
      */
     public boolean hasMissionResponse() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
+      return ((bitField0_ & 0x00000400) == 0x00000400);
     }
     /**
      * <code>optional .com.geeksville.dapi.MissionResponse missionResponse = 66;</code>
@@ -10583,17 +11676,41 @@ public final class Webapi {
       return missionResponse_;
     }
 
+    // optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;
+    public static final int PINGRESPONSE_FIELD_NUMBER = 67;
+    private com.geeksville.dapi.Webapi.PingResponseMsg pingResponse_;
+    /**
+     * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+     */
+    public boolean hasPingResponse() {
+      return ((bitField0_ & 0x00000800) == 0x00000800);
+    }
+    /**
+     * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+     */
+    public com.geeksville.dapi.Webapi.PingResponseMsg getPingResponse() {
+      return pingResponse_;
+    }
+    /**
+     * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+     */
+    public com.geeksville.dapi.Webapi.PingResponseMsgOrBuilder getPingResponseOrBuilder() {
+      return pingResponse_;
+    }
+
     private void initFields() {
       type_ = com.geeksville.dapi.Webapi.Envelope.MsgCode.MavlinkMsgCode;
       mavlink_ = com.geeksville.dapi.Webapi.MavlinkMsg.getDefaultInstance();
       login_ = com.geeksville.dapi.Webapi.LoginMsg.getDefaultInstance();
-      setVehicle_ = com.geeksville.dapi.Webapi.SetVehicleMsg.getDefaultInstance();
+      setSender_ = com.geeksville.dapi.Webapi.SenderIdMsg.getDefaultInstance();
       note_ = com.geeksville.dapi.Webapi.NoteMsg.getDefaultInstance();
       startMission_ = com.geeksville.dapi.Webapi.StartMissionMsg.getDefaultInstance();
       stopMission_ = com.geeksville.dapi.Webapi.StopMissionMsg.getDefaultInstance();
+      ping_ = com.geeksville.dapi.Webapi.PingMsg.getDefaultInstance();
       loginResponse_ = com.geeksville.dapi.Webapi.LoginResponseMsg.getDefaultInstance();
       show_ = com.geeksville.dapi.Webapi.ShowMsg.getDefaultInstance();
       missionResponse_ = com.geeksville.dapi.Webapi.MissionResponse.getDefaultInstance();
+      pingResponse_ = com.geeksville.dapi.Webapi.PingResponseMsg.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -10612,8 +11729,8 @@ public final class Webapi {
           return false;
         }
       }
-      if (hasSetVehicle()) {
-        if (!getSetVehicle().isInitialized()) {
+      if (hasSetSender()) {
+        if (!getSetSender().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -10636,6 +11753,12 @@ public final class Webapi {
           return false;
         }
       }
+      if (hasPing()) {
+        if (!getPing().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       if (hasLoginResponse()) {
         if (!getLoginResponse().isInitialized()) {
           memoizedIsInitialized = 0;
@@ -10650,6 +11773,12 @@ public final class Webapi {
       }
       if (hasMissionResponse()) {
         if (!getMissionResponse().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasPingResponse()) {
+        if (!getPingResponse().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -10671,7 +11800,7 @@ public final class Webapi {
         output.writeMessage(32, login_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(33, setVehicle_);
+        output.writeMessage(33, setSender_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeMessage(34, note_);
@@ -10683,13 +11812,19 @@ public final class Webapi {
         output.writeMessage(36, stopMission_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeMessage(64, loginResponse_);
+        output.writeMessage(37, ping_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeMessage(65, show_);
+        output.writeMessage(64, loginResponse_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeMessage(65, show_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
         output.writeMessage(66, missionResponse_);
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        output.writeMessage(67, pingResponse_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -10714,7 +11849,7 @@ public final class Webapi {
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(33, setVehicle_);
+          .computeMessageSize(33, setSender_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -10730,15 +11865,23 @@ public final class Webapi {
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(64, loginResponse_);
+          .computeMessageSize(37, ping_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(65, show_);
+          .computeMessageSize(64, loginResponse_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(65, show_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(66, missionResponse_);
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(67, pingResponse_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -10854,13 +11997,15 @@ public final class Webapi {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getMavlinkFieldBuilder();
           getLoginFieldBuilder();
-          getSetVehicleFieldBuilder();
+          getSetSenderFieldBuilder();
           getNoteFieldBuilder();
           getStartMissionFieldBuilder();
           getStopMissionFieldBuilder();
+          getPingFieldBuilder();
           getLoginResponseFieldBuilder();
           getShowFieldBuilder();
           getMissionResponseFieldBuilder();
+          getPingResponseFieldBuilder();
         }
       }
       private static Builder create() {
@@ -10883,10 +12028,10 @@ public final class Webapi {
           loginBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
-        if (setVehicleBuilder_ == null) {
-          setVehicle_ = com.geeksville.dapi.Webapi.SetVehicleMsg.getDefaultInstance();
+        if (setSenderBuilder_ == null) {
+          setSender_ = com.geeksville.dapi.Webapi.SenderIdMsg.getDefaultInstance();
         } else {
-          setVehicleBuilder_.clear();
+          setSenderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         if (noteBuilder_ == null) {
@@ -10907,24 +12052,36 @@ public final class Webapi {
           stopMissionBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000040);
+        if (pingBuilder_ == null) {
+          ping_ = com.geeksville.dapi.Webapi.PingMsg.getDefaultInstance();
+        } else {
+          pingBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
         if (loginResponseBuilder_ == null) {
           loginResponse_ = com.geeksville.dapi.Webapi.LoginResponseMsg.getDefaultInstance();
         } else {
           loginResponseBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         if (showBuilder_ == null) {
           show_ = com.geeksville.dapi.Webapi.ShowMsg.getDefaultInstance();
         } else {
           showBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         if (missionResponseBuilder_ == null) {
           missionResponse_ = com.geeksville.dapi.Webapi.MissionResponse.getDefaultInstance();
         } else {
           missionResponseBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000400);
+        if (pingResponseBuilder_ == null) {
+          pingResponse_ = com.geeksville.dapi.Webapi.PingResponseMsg.getDefaultInstance();
+        } else {
+          pingResponseBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000800);
         return this;
       }
 
@@ -10976,10 +12133,10 @@ public final class Webapi {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        if (setVehicleBuilder_ == null) {
-          result.setVehicle_ = setVehicle_;
+        if (setSenderBuilder_ == null) {
+          result.setSender_ = setSender_;
         } else {
-          result.setVehicle_ = setVehicleBuilder_.build();
+          result.setSender_ = setSenderBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
@@ -11008,26 +12165,42 @@ public final class Webapi {
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
         }
+        if (pingBuilder_ == null) {
+          result.ping_ = ping_;
+        } else {
+          result.ping_ = pingBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
         if (loginResponseBuilder_ == null) {
           result.loginResponse_ = loginResponse_;
         } else {
           result.loginResponse_ = loginResponseBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000100;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
         }
         if (showBuilder_ == null) {
           result.show_ = show_;
         } else {
           result.show_ = showBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
-          to_bitField0_ |= 0x00000200;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000400;
         }
         if (missionResponseBuilder_ == null) {
           result.missionResponse_ = missionResponse_;
         } else {
           result.missionResponse_ = missionResponseBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+          to_bitField0_ |= 0x00000800;
+        }
+        if (pingResponseBuilder_ == null) {
+          result.pingResponse_ = pingResponse_;
+        } else {
+          result.pingResponse_ = pingResponseBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -11054,8 +12227,8 @@ public final class Webapi {
         if (other.hasLogin()) {
           mergeLogin(other.getLogin());
         }
-        if (other.hasSetVehicle()) {
-          mergeSetVehicle(other.getSetVehicle());
+        if (other.hasSetSender()) {
+          mergeSetSender(other.getSetSender());
         }
         if (other.hasNote()) {
           mergeNote(other.getNote());
@@ -11066,6 +12239,9 @@ public final class Webapi {
         if (other.hasStopMission()) {
           mergeStopMission(other.getStopMission());
         }
+        if (other.hasPing()) {
+          mergePing(other.getPing());
+        }
         if (other.hasLoginResponse()) {
           mergeLoginResponse(other.getLoginResponse());
         }
@@ -11074,6 +12250,9 @@ public final class Webapi {
         }
         if (other.hasMissionResponse()) {
           mergeMissionResponse(other.getMissionResponse());
+        }
+        if (other.hasPingResponse()) {
+          mergePingResponse(other.getPingResponse());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -11092,8 +12271,8 @@ public final class Webapi {
             return false;
           }
         }
-        if (hasSetVehicle()) {
-          if (!getSetVehicle().isInitialized()) {
+        if (hasSetSender()) {
+          if (!getSetSender().isInitialized()) {
             
             return false;
           }
@@ -11116,6 +12295,12 @@ public final class Webapi {
             return false;
           }
         }
+        if (hasPing()) {
+          if (!getPing().isInitialized()) {
+            
+            return false;
+          }
+        }
         if (hasLoginResponse()) {
           if (!getLoginResponse().isInitialized()) {
             
@@ -11130,6 +12315,12 @@ public final class Webapi {
         }
         if (hasMissionResponse()) {
           if (!getMissionResponse().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasPingResponse()) {
+          if (!getPingResponse().isInitialized()) {
             
             return false;
           }
@@ -11514,121 +12705,121 @@ public final class Webapi {
         return loginBuilder_;
       }
 
-      // optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;
-      private com.geeksville.dapi.Webapi.SetVehicleMsg setVehicle_ = com.geeksville.dapi.Webapi.SetVehicleMsg.getDefaultInstance();
+      // optional .com.geeksville.dapi.SenderIdMsg setSender = 33;
+      private com.geeksville.dapi.Webapi.SenderIdMsg setSender_ = com.geeksville.dapi.Webapi.SenderIdMsg.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.geeksville.dapi.Webapi.SetVehicleMsg, com.geeksville.dapi.Webapi.SetVehicleMsg.Builder, com.geeksville.dapi.Webapi.SetVehicleMsgOrBuilder> setVehicleBuilder_;
+          com.geeksville.dapi.Webapi.SenderIdMsg, com.geeksville.dapi.Webapi.SenderIdMsg.Builder, com.geeksville.dapi.Webapi.SenderIdMsgOrBuilder> setSenderBuilder_;
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
-      public boolean hasSetVehicle() {
+      public boolean hasSetSender() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
-      public com.geeksville.dapi.Webapi.SetVehicleMsg getSetVehicle() {
-        if (setVehicleBuilder_ == null) {
-          return setVehicle_;
+      public com.geeksville.dapi.Webapi.SenderIdMsg getSetSender() {
+        if (setSenderBuilder_ == null) {
+          return setSender_;
         } else {
-          return setVehicleBuilder_.getMessage();
+          return setSenderBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
-      public Builder setSetVehicle(com.geeksville.dapi.Webapi.SetVehicleMsg value) {
-        if (setVehicleBuilder_ == null) {
+      public Builder setSetSender(com.geeksville.dapi.Webapi.SenderIdMsg value) {
+        if (setSenderBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          setVehicle_ = value;
+          setSender_ = value;
           onChanged();
         } else {
-          setVehicleBuilder_.setMessage(value);
+          setSenderBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
-      public Builder setSetVehicle(
-          com.geeksville.dapi.Webapi.SetVehicleMsg.Builder builderForValue) {
-        if (setVehicleBuilder_ == null) {
-          setVehicle_ = builderForValue.build();
+      public Builder setSetSender(
+          com.geeksville.dapi.Webapi.SenderIdMsg.Builder builderForValue) {
+        if (setSenderBuilder_ == null) {
+          setSender_ = builderForValue.build();
           onChanged();
         } else {
-          setVehicleBuilder_.setMessage(builderForValue.build());
+          setSenderBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
-      public Builder mergeSetVehicle(com.geeksville.dapi.Webapi.SetVehicleMsg value) {
-        if (setVehicleBuilder_ == null) {
+      public Builder mergeSetSender(com.geeksville.dapi.Webapi.SenderIdMsg value) {
+        if (setSenderBuilder_ == null) {
           if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              setVehicle_ != com.geeksville.dapi.Webapi.SetVehicleMsg.getDefaultInstance()) {
-            setVehicle_ =
-              com.geeksville.dapi.Webapi.SetVehicleMsg.newBuilder(setVehicle_).mergeFrom(value).buildPartial();
+              setSender_ != com.geeksville.dapi.Webapi.SenderIdMsg.getDefaultInstance()) {
+            setSender_ =
+              com.geeksville.dapi.Webapi.SenderIdMsg.newBuilder(setSender_).mergeFrom(value).buildPartial();
           } else {
-            setVehicle_ = value;
+            setSender_ = value;
           }
           onChanged();
         } else {
-          setVehicleBuilder_.mergeFrom(value);
+          setSenderBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
-      public Builder clearSetVehicle() {
-        if (setVehicleBuilder_ == null) {
-          setVehicle_ = com.geeksville.dapi.Webapi.SetVehicleMsg.getDefaultInstance();
+      public Builder clearSetSender() {
+        if (setSenderBuilder_ == null) {
+          setSender_ = com.geeksville.dapi.Webapi.SenderIdMsg.getDefaultInstance();
           onChanged();
         } else {
-          setVehicleBuilder_.clear();
+          setSenderBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
-      public com.geeksville.dapi.Webapi.SetVehicleMsg.Builder getSetVehicleBuilder() {
+      public com.geeksville.dapi.Webapi.SenderIdMsg.Builder getSetSenderBuilder() {
         bitField0_ |= 0x00000008;
         onChanged();
-        return getSetVehicleFieldBuilder().getBuilder();
+        return getSetSenderFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
-      public com.geeksville.dapi.Webapi.SetVehicleMsgOrBuilder getSetVehicleOrBuilder() {
-        if (setVehicleBuilder_ != null) {
-          return setVehicleBuilder_.getMessageOrBuilder();
+      public com.geeksville.dapi.Webapi.SenderIdMsgOrBuilder getSetSenderOrBuilder() {
+        if (setSenderBuilder_ != null) {
+          return setSenderBuilder_.getMessageOrBuilder();
         } else {
-          return setVehicle_;
+          return setSender_;
         }
       }
       /**
-       * <code>optional .com.geeksville.dapi.SetVehicleMsg setVehicle = 33;</code>
+       * <code>optional .com.geeksville.dapi.SenderIdMsg setSender = 33;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          com.geeksville.dapi.Webapi.SetVehicleMsg, com.geeksville.dapi.Webapi.SetVehicleMsg.Builder, com.geeksville.dapi.Webapi.SetVehicleMsgOrBuilder> 
-          getSetVehicleFieldBuilder() {
-        if (setVehicleBuilder_ == null) {
-          setVehicleBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.geeksville.dapi.Webapi.SetVehicleMsg, com.geeksville.dapi.Webapi.SetVehicleMsg.Builder, com.geeksville.dapi.Webapi.SetVehicleMsgOrBuilder>(
-                  setVehicle_,
+          com.geeksville.dapi.Webapi.SenderIdMsg, com.geeksville.dapi.Webapi.SenderIdMsg.Builder, com.geeksville.dapi.Webapi.SenderIdMsgOrBuilder> 
+          getSetSenderFieldBuilder() {
+        if (setSenderBuilder_ == null) {
+          setSenderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.geeksville.dapi.Webapi.SenderIdMsg, com.geeksville.dapi.Webapi.SenderIdMsg.Builder, com.geeksville.dapi.Webapi.SenderIdMsgOrBuilder>(
+                  setSender_,
                   getParentForChildren(),
                   isClean());
-          setVehicle_ = null;
+          setSender_ = null;
         }
-        return setVehicleBuilder_;
+        return setSenderBuilder_;
       }
 
       // optional .com.geeksville.dapi.NoteMsg note = 34;
@@ -11982,6 +13173,123 @@ public final class Webapi {
         return stopMissionBuilder_;
       }
 
+      // optional .com.geeksville.dapi.PingMsg ping = 37;
+      private com.geeksville.dapi.Webapi.PingMsg ping_ = com.geeksville.dapi.Webapi.PingMsg.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.geeksville.dapi.Webapi.PingMsg, com.geeksville.dapi.Webapi.PingMsg.Builder, com.geeksville.dapi.Webapi.PingMsgOrBuilder> pingBuilder_;
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      public boolean hasPing() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      public com.geeksville.dapi.Webapi.PingMsg getPing() {
+        if (pingBuilder_ == null) {
+          return ping_;
+        } else {
+          return pingBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      public Builder setPing(com.geeksville.dapi.Webapi.PingMsg value) {
+        if (pingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ping_ = value;
+          onChanged();
+        } else {
+          pingBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      public Builder setPing(
+          com.geeksville.dapi.Webapi.PingMsg.Builder builderForValue) {
+        if (pingBuilder_ == null) {
+          ping_ = builderForValue.build();
+          onChanged();
+        } else {
+          pingBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      public Builder mergePing(com.geeksville.dapi.Webapi.PingMsg value) {
+        if (pingBuilder_ == null) {
+          if (((bitField0_ & 0x00000080) == 0x00000080) &&
+              ping_ != com.geeksville.dapi.Webapi.PingMsg.getDefaultInstance()) {
+            ping_ =
+              com.geeksville.dapi.Webapi.PingMsg.newBuilder(ping_).mergeFrom(value).buildPartial();
+          } else {
+            ping_ = value;
+          }
+          onChanged();
+        } else {
+          pingBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      public Builder clearPing() {
+        if (pingBuilder_ == null) {
+          ping_ = com.geeksville.dapi.Webapi.PingMsg.getDefaultInstance();
+          onChanged();
+        } else {
+          pingBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
+        return this;
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      public com.geeksville.dapi.Webapi.PingMsg.Builder getPingBuilder() {
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return getPingFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      public com.geeksville.dapi.Webapi.PingMsgOrBuilder getPingOrBuilder() {
+        if (pingBuilder_ != null) {
+          return pingBuilder_.getMessageOrBuilder();
+        } else {
+          return ping_;
+        }
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingMsg ping = 37;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.geeksville.dapi.Webapi.PingMsg, com.geeksville.dapi.Webapi.PingMsg.Builder, com.geeksville.dapi.Webapi.PingMsgOrBuilder> 
+          getPingFieldBuilder() {
+        if (pingBuilder_ == null) {
+          pingBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.geeksville.dapi.Webapi.PingMsg, com.geeksville.dapi.Webapi.PingMsg.Builder, com.geeksville.dapi.Webapi.PingMsgOrBuilder>(
+                  ping_,
+                  getParentForChildren(),
+                  isClean());
+          ping_ = null;
+        }
+        return pingBuilder_;
+      }
+
       // optional .com.geeksville.dapi.LoginResponseMsg loginResponse = 64;
       private com.geeksville.dapi.Webapi.LoginResponseMsg loginResponse_ = com.geeksville.dapi.Webapi.LoginResponseMsg.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
@@ -11994,7 +13302,7 @@ public final class Webapi {
        * </pre>
        */
       public boolean hasLoginResponse() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
        * <code>optional .com.geeksville.dapi.LoginResponseMsg loginResponse = 64;</code>
@@ -12027,7 +13335,7 @@ public final class Webapi {
         } else {
           loginResponseBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       /**
@@ -12045,7 +13353,7 @@ public final class Webapi {
         } else {
           loginResponseBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       /**
@@ -12057,7 +13365,7 @@ public final class Webapi {
        */
       public Builder mergeLoginResponse(com.geeksville.dapi.Webapi.LoginResponseMsg value) {
         if (loginResponseBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080) &&
+          if (((bitField0_ & 0x00000100) == 0x00000100) &&
               loginResponse_ != com.geeksville.dapi.Webapi.LoginResponseMsg.getDefaultInstance()) {
             loginResponse_ =
               com.geeksville.dapi.Webapi.LoginResponseMsg.newBuilder(loginResponse_).mergeFrom(value).buildPartial();
@@ -12068,7 +13376,7 @@ public final class Webapi {
         } else {
           loginResponseBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       /**
@@ -12085,7 +13393,7 @@ public final class Webapi {
         } else {
           loginResponseBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       /**
@@ -12096,7 +13404,7 @@ public final class Webapi {
        * </pre>
        */
       public com.geeksville.dapi.Webapi.LoginResponseMsg.Builder getLoginResponseBuilder() {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         onChanged();
         return getLoginResponseFieldBuilder().getBuilder();
       }
@@ -12143,7 +13451,7 @@ public final class Webapi {
        * <code>optional .com.geeksville.dapi.ShowMsg show = 65;</code>
        */
       public boolean hasShow() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       /**
        * <code>optional .com.geeksville.dapi.ShowMsg show = 65;</code>
@@ -12168,7 +13476,7 @@ public final class Webapi {
         } else {
           showBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       /**
@@ -12182,7 +13490,7 @@ public final class Webapi {
         } else {
           showBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       /**
@@ -12190,7 +13498,7 @@ public final class Webapi {
        */
       public Builder mergeShow(com.geeksville.dapi.Webapi.ShowMsg value) {
         if (showBuilder_ == null) {
-          if (((bitField0_ & 0x00000100) == 0x00000100) &&
+          if (((bitField0_ & 0x00000200) == 0x00000200) &&
               show_ != com.geeksville.dapi.Webapi.ShowMsg.getDefaultInstance()) {
             show_ =
               com.geeksville.dapi.Webapi.ShowMsg.newBuilder(show_).mergeFrom(value).buildPartial();
@@ -12201,7 +13509,7 @@ public final class Webapi {
         } else {
           showBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       /**
@@ -12214,14 +13522,14 @@ public final class Webapi {
         } else {
           showBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       /**
        * <code>optional .com.geeksville.dapi.ShowMsg show = 65;</code>
        */
       public com.geeksville.dapi.Webapi.ShowMsg.Builder getShowBuilder() {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         onChanged();
         return getShowFieldBuilder().getBuilder();
       }
@@ -12260,7 +13568,7 @@ public final class Webapi {
        * <code>optional .com.geeksville.dapi.MissionResponse missionResponse = 66;</code>
        */
       public boolean hasMissionResponse() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       /**
        * <code>optional .com.geeksville.dapi.MissionResponse missionResponse = 66;</code>
@@ -12285,7 +13593,7 @@ public final class Webapi {
         } else {
           missionResponseBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000400;
         return this;
       }
       /**
@@ -12299,7 +13607,7 @@ public final class Webapi {
         } else {
           missionResponseBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000400;
         return this;
       }
       /**
@@ -12307,7 +13615,7 @@ public final class Webapi {
        */
       public Builder mergeMissionResponse(com.geeksville.dapi.Webapi.MissionResponse value) {
         if (missionResponseBuilder_ == null) {
-          if (((bitField0_ & 0x00000200) == 0x00000200) &&
+          if (((bitField0_ & 0x00000400) == 0x00000400) &&
               missionResponse_ != com.geeksville.dapi.Webapi.MissionResponse.getDefaultInstance()) {
             missionResponse_ =
               com.geeksville.dapi.Webapi.MissionResponse.newBuilder(missionResponse_).mergeFrom(value).buildPartial();
@@ -12318,7 +13626,7 @@ public final class Webapi {
         } else {
           missionResponseBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000400;
         return this;
       }
       /**
@@ -12331,14 +13639,14 @@ public final class Webapi {
         } else {
           missionResponseBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000400);
         return this;
       }
       /**
        * <code>optional .com.geeksville.dapi.MissionResponse missionResponse = 66;</code>
        */
       public com.geeksville.dapi.Webapi.MissionResponse.Builder getMissionResponseBuilder() {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000400;
         onChanged();
         return getMissionResponseFieldBuilder().getBuilder();
       }
@@ -12367,6 +13675,123 @@ public final class Webapi {
           missionResponse_ = null;
         }
         return missionResponseBuilder_;
+      }
+
+      // optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;
+      private com.geeksville.dapi.Webapi.PingResponseMsg pingResponse_ = com.geeksville.dapi.Webapi.PingResponseMsg.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.geeksville.dapi.Webapi.PingResponseMsg, com.geeksville.dapi.Webapi.PingResponseMsg.Builder, com.geeksville.dapi.Webapi.PingResponseMsgOrBuilder> pingResponseBuilder_;
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      public boolean hasPingResponse() {
+        return ((bitField0_ & 0x00000800) == 0x00000800);
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      public com.geeksville.dapi.Webapi.PingResponseMsg getPingResponse() {
+        if (pingResponseBuilder_ == null) {
+          return pingResponse_;
+        } else {
+          return pingResponseBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      public Builder setPingResponse(com.geeksville.dapi.Webapi.PingResponseMsg value) {
+        if (pingResponseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pingResponse_ = value;
+          onChanged();
+        } else {
+          pingResponseBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000800;
+        return this;
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      public Builder setPingResponse(
+          com.geeksville.dapi.Webapi.PingResponseMsg.Builder builderForValue) {
+        if (pingResponseBuilder_ == null) {
+          pingResponse_ = builderForValue.build();
+          onChanged();
+        } else {
+          pingResponseBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000800;
+        return this;
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      public Builder mergePingResponse(com.geeksville.dapi.Webapi.PingResponseMsg value) {
+        if (pingResponseBuilder_ == null) {
+          if (((bitField0_ & 0x00000800) == 0x00000800) &&
+              pingResponse_ != com.geeksville.dapi.Webapi.PingResponseMsg.getDefaultInstance()) {
+            pingResponse_ =
+              com.geeksville.dapi.Webapi.PingResponseMsg.newBuilder(pingResponse_).mergeFrom(value).buildPartial();
+          } else {
+            pingResponse_ = value;
+          }
+          onChanged();
+        } else {
+          pingResponseBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000800;
+        return this;
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      public Builder clearPingResponse() {
+        if (pingResponseBuilder_ == null) {
+          pingResponse_ = com.geeksville.dapi.Webapi.PingResponseMsg.getDefaultInstance();
+          onChanged();
+        } else {
+          pingResponseBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000800);
+        return this;
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      public com.geeksville.dapi.Webapi.PingResponseMsg.Builder getPingResponseBuilder() {
+        bitField0_ |= 0x00000800;
+        onChanged();
+        return getPingResponseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      public com.geeksville.dapi.Webapi.PingResponseMsgOrBuilder getPingResponseOrBuilder() {
+        if (pingResponseBuilder_ != null) {
+          return pingResponseBuilder_.getMessageOrBuilder();
+        } else {
+          return pingResponse_;
+        }
+      }
+      /**
+       * <code>optional .com.geeksville.dapi.PingResponseMsg pingResponse = 67;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.geeksville.dapi.Webapi.PingResponseMsg, com.geeksville.dapi.Webapi.PingResponseMsg.Builder, com.geeksville.dapi.Webapi.PingResponseMsgOrBuilder> 
+          getPingResponseFieldBuilder() {
+        if (pingResponseBuilder_ == null) {
+          pingResponseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.geeksville.dapi.Webapi.PingResponseMsg, com.geeksville.dapi.Webapi.PingResponseMsg.Builder, com.geeksville.dapi.Webapi.PingResponseMsgOrBuilder>(
+                  pingResponse_,
+                  getParentForChildren(),
+                  isClean());
+          pingResponse_ = null;
+        }
+        return pingResponseBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:com.geeksville.dapi.Envelope)
@@ -12416,15 +13841,25 @@ public final class Webapi {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_geeksville_dapi_MissionResponse_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_geeksville_dapi_PingMsg_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_com_geeksville_dapi_PingMsg_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_geeksville_dapi_PingResponseMsg_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_com_geeksville_dapi_PingResponseMsg_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_geeksville_dapi_MavlinkMsg_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_geeksville_dapi_MavlinkMsg_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_geeksville_dapi_SetVehicleMsg_descriptor;
+    internal_static_com_geeksville_dapi_SenderIdMsg_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_com_geeksville_dapi_SetVehicleMsg_fieldAccessorTable;
+      internal_static_com_geeksville_dapi_SenderIdMsg_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_geeksville_dapi_Envelope_descriptor;
   private static
@@ -12467,37 +13902,43 @@ public final class Webapi {
       "T\022\014\n\004keep\030\004 \002(\010\022\014\n\004uuid\030\005 \001(\t\"-\n\016StopMis" +
       "sionMsg\022\r\n\005notes\030\002 \001(\t\022\014\n\004keep\030\003 \002(\010\"@\n\017" +
       "MissionResponse\022-\n\007message\030\002 \001(\0132\034.com.g" +
-      "eeksville.dapi.ShowMsg\"B\n\nMavlinkMsg\022\024\n\014" +
-      "srcInterface\030\001 \002(\021\022\016\n\006packet\030\002 \003(\014\022\016\n\006de",
-      "ltaT\030\003 \001(\003\"\322\001\n\rSetVehicleMsg\022\024\n\014gcsInter" +
-      "face\030\001 \002(\021\022\r\n\005sysId\030\002 \002(\005\022\023\n\013vehicleUUID" +
-      "\030\003 \002(\t\022\031\n\021canAcceptCommands\030\004 \002(\010\022\021\n\thum" +
-      "anName\030\005 \001(\t\022\024\n\014manufacturer\030\006 \001(\t\022\023\n\013ve" +
-      "hicleType\030\007 \001(\t\022\025\n\rautopilotType\030\010 \001(\t\022\027" +
-      "\n\017softwareVersion\030\t \001(\t\"\361\005\n\010Envelope\0223\n\004" +
-      "type\030\001 \001(\0162%.com.geeksville.dapi.Envelop" +
-      "e.MsgCode\0220\n\007mavlink\030\002 \001(\0132\037.com.geeksvi" +
-      "lle.dapi.MavlinkMsg\022,\n\005login\030  \001(\0132\035.com" +
-      ".geeksville.dapi.LoginMsg\0226\n\nsetVehicle\030",
-      "! \001(\0132\".com.geeksville.dapi.SetVehicleMs" +
-      "g\022*\n\004note\030\" \001(\0132\034.com.geeksville.dapi.No" +
-      "teMsg\022:\n\014startMission\030# \001(\0132$.com.geeksv" +
-      "ille.dapi.StartMissionMsg\0228\n\013stopMission" +
-      "\030$ \001(\0132#.com.geeksville.dapi.StopMission" +
-      "Msg\022<\n\rloginResponse\030@ \001(\0132%.com.geeksvi" +
-      "lle.dapi.LoginResponseMsg\022*\n\004show\030A \001(\0132" +
-      "\034.com.geeksville.dapi.ShowMsg\022=\n\017mission" +
-      "Response\030B \001(\0132$.com.geeksville.dapi.Mis" +
-      "sionResponse\"\314\001\n\007MsgCode\022\022\n\016MavlinkMsgCo",
-      "de\020\002\022\020\n\014LoginMsgCode\020 \022\025\n\021SetVehicleMsgC" +
-      "ode\020!\022\017\n\013NoteMsgCode\020\"\022\027\n\023StartMissionMs" +
-      "gCode\020#\022\026\n\022StopMissionMsgCode\020$\022\030\n\024Login" +
-      "ResponseMsgCode\020@\022\017\n\013ShowMsgCode\020A\022\027\n\023Mi" +
-      "ssionResponseCode\020B*N\n\nAccessCode\022\013\n\007DEF" +
-      "AULT\020\000\022\013\n\007PRIVATE\020\n\022\n\n\006SHARED\020\024\022\016\n\nRESEA" +
-      "RCHER\020\036\022\n\n\006PUBLIC\020(*=\n\020LoginRequestCode\022" +
-      "\t\n\005LOGIN\020\000\022\n\n\006CREATE\020\001\022\022\n\016CHECK_USERNAME" +
-      "\020\002B\025\n\023com.geeksville.dapi"
+      "eeksville.dapi.ShowMsg\"\030\n\007PingMsg\022\r\n\005non" +
+      "ce\030\001 \002(\021\" \n\017PingResponseMsg\022\r\n\005nonce\030\001 \002",
+      "(\021\"B\n\nMavlinkMsg\022\024\n\014srcInterface\030\001 \002(\021\022\016" +
+      "\n\006packet\030\002 \003(\014\022\016\n\006deltaT\030\003 \001(\003\"\342\001\n\013Sende" +
+      "rIdMsg\022\024\n\014gcsInterface\030\001 \002(\021\022\r\n\005sysId\030\002 " +
+      "\002(\005\022\023\n\013vehicleUUID\030\003 \002(\t\022\031\n\021canAcceptCom" +
+      "mands\030\004 \002(\010\022\021\n\thumanName\030\005 \001(\t\022\024\n\014manufa" +
+      "cturer\030\006 \001(\t\022\023\n\013vehicleType\030\007 \001(\t\022\025\n\raut" +
+      "opilotType\030\010 \001(\t\022\027\n\017softwareVersion\030\t \001(" +
+      "\t\022\020\n\010wantPipe\030\n \001(\010\"\376\006\n\010Envelope\0223\n\004type" +
+      "\030\001 \001(\0162%.com.geeksville.dapi.Envelope.Ms" +
+      "gCode\0220\n\007mavlink\030\002 \001(\0132\037.com.geeksville.",
+      "dapi.MavlinkMsg\022,\n\005login\030  \001(\0132\035.com.gee" +
+      "ksville.dapi.LoginMsg\0223\n\tsetSender\030! \001(\013" +
+      "2 .com.geeksville.dapi.SenderIdMsg\022*\n\004no" +
+      "te\030\" \001(\0132\034.com.geeksville.dapi.NoteMsg\022:" +
+      "\n\014startMission\030# \001(\0132$.com.geeksville.da" +
+      "pi.StartMissionMsg\0228\n\013stopMission\030$ \001(\0132" +
+      "#.com.geeksville.dapi.StopMissionMsg\022*\n\004" +
+      "ping\030% \001(\0132\034.com.geeksville.dapi.PingMsg" +
+      "\022<\n\rloginResponse\030@ \001(\0132%.com.geeksville" +
+      ".dapi.LoginResponseMsg\022*\n\004show\030A \001(\0132\034.c",
+      "om.geeksville.dapi.ShowMsg\022=\n\017missionRes" +
+      "ponse\030B \001(\0132$.com.geeksville.dapi.Missio" +
+      "nResponse\022:\n\014pingResponse\030C \001(\0132$.com.ge" +
+      "eksville.dapi.PingResponseMsg\"\364\001\n\007MsgCod" +
+      "e\022\022\n\016MavlinkMsgCode\020\002\022\020\n\014LoginMsgCode\020 \022" +
+      "\023\n\017SenderIdMsgCode\020!\022\017\n\013NoteMsgCode\020\"\022\027\n" +
+      "\023StartMissionMsgCode\020#\022\026\n\022StopMissionMsg" +
+      "Code\020$\022\017\n\013PingMsgCode\020%\022\030\n\024LoginResponse" +
+      "MsgCode\020@\022\017\n\013ShowMsgCode\020A\022\027\n\023MissionRes" +
+      "ponseCode\020B\022\027\n\023PingResponseMsgCode\020C*N\n\n",
+      "AccessCode\022\013\n\007DEFAULT\020\000\022\013\n\007PRIVATE\020\n\022\n\n\006" +
+      "SHARED\020\024\022\016\n\nRESEARCHER\020\036\022\n\n\006PUBLIC\020(*=\n\020" +
+      "LoginRequestCode\022\t\n\005LOGIN\020\000\022\n\n\006CREATE\020\001\022" +
+      "\022\n\016CHECK_USERNAME\020\002B\025\n\023com.geeksville.da" +
+      "pi"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12546,24 +13987,36 @@ public final class Webapi {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_MissionResponse_descriptor,
               new java.lang.String[] { "Message", });
-          internal_static_com_geeksville_dapi_MavlinkMsg_descriptor =
+          internal_static_com_geeksville_dapi_PingMsg_descriptor =
             getDescriptor().getMessageTypes().get(7);
+          internal_static_com_geeksville_dapi_PingMsg_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_com_geeksville_dapi_PingMsg_descriptor,
+              new java.lang.String[] { "Nonce", });
+          internal_static_com_geeksville_dapi_PingResponseMsg_descriptor =
+            getDescriptor().getMessageTypes().get(8);
+          internal_static_com_geeksville_dapi_PingResponseMsg_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_com_geeksville_dapi_PingResponseMsg_descriptor,
+              new java.lang.String[] { "Nonce", });
+          internal_static_com_geeksville_dapi_MavlinkMsg_descriptor =
+            getDescriptor().getMessageTypes().get(9);
           internal_static_com_geeksville_dapi_MavlinkMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_MavlinkMsg_descriptor,
               new java.lang.String[] { "SrcInterface", "Packet", "DeltaT", });
-          internal_static_com_geeksville_dapi_SetVehicleMsg_descriptor =
-            getDescriptor().getMessageTypes().get(8);
-          internal_static_com_geeksville_dapi_SetVehicleMsg_fieldAccessorTable = new
+          internal_static_com_geeksville_dapi_SenderIdMsg_descriptor =
+            getDescriptor().getMessageTypes().get(10);
+          internal_static_com_geeksville_dapi_SenderIdMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_com_geeksville_dapi_SetVehicleMsg_descriptor,
-              new java.lang.String[] { "GcsInterface", "SysId", "VehicleUUID", "CanAcceptCommands", "HumanName", "Manufacturer", "VehicleType", "AutopilotType", "SoftwareVersion", });
+              internal_static_com_geeksville_dapi_SenderIdMsg_descriptor,
+              new java.lang.String[] { "GcsInterface", "SysId", "VehicleUUID", "CanAcceptCommands", "HumanName", "Manufacturer", "VehicleType", "AutopilotType", "SoftwareVersion", "WantPipe", });
           internal_static_com_geeksville_dapi_Envelope_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_com_geeksville_dapi_Envelope_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_geeksville_dapi_Envelope_descriptor,
-              new java.lang.String[] { "Type", "Mavlink", "Login", "SetVehicle", "Note", "StartMission", "StopMission", "LoginResponse", "Show", "MissionResponse", });
+              new java.lang.String[] { "Type", "Mavlink", "Login", "SetSender", "Note", "StartMission", "StopMission", "Ping", "LoginResponse", "Show", "MissionResponse", "PingResponse", });
           return null;
         }
       };
