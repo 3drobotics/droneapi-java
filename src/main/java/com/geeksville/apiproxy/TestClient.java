@@ -16,12 +16,13 @@ public class TestClient extends GCSHookImpl {
 	public int interfaceNum = 0;
 	static int numPackets = 4;
 
-    static String login = "test-bob";
-    static String password = "sekrit";
-    static String vehicleId = "550e8400-e29b-41d4-a716-446655440000";
+	static String login = "test-bob";
+	static String password = "sekrit";
+	static String vehicleId = "550e8400-e29b-41d4-a716-446655440000";
+	static File testTlog = new File("mav.tlog");
 
-    // Do not use this key in your own applications - please register your own.
-    static String apiKey = "a41df935.ef413c94e19e056091675063a9df7c53";
+	// Do not use this key in your own applications - please register your own.
+	static String apiKey = "a41df935.ef413c94e19e056091675063a9df7c53";
 
 	public void connect() throws UnknownHostException, IOException {
 		super.connect();
@@ -35,8 +36,7 @@ public class TestClient extends GCSHookImpl {
 			loginUser(login, password);
 
 		int sysId = 1;
-		setVehicleId(vehicleId, interfaceNum,
-				sysId, false);
+		setVehicleId(vehicleId, interfaceNum, sysId, false);
 
 		startMission(false, UUID.randomUUID());
 	}
@@ -86,24 +86,67 @@ public class TestClient extends GCSHookImpl {
 	 * @throws Exception
 	 */
 	public static void runRESTTest() throws Exception {
-        RESTClient.doUpload(new File("mav.tlog"), login, password, vehicleId, apiKey);
+		RESTClient.doUpload(testTlog, login, password, vehicleId, apiKey);
+	}
+
+	/**
+	 * Test uploading all files in a directory
+	 * 
+	 * @throws Exception
+	 */
+	public static void runDirTest() throws Exception {
+		IUploadListener callback = new IUploadListener() {
+			public void onUploadStart(File f) {
+				System.out.println("Upload start: " + f);
+			}
+
+			public void onUploadSuccess(File f, String viewURL) {
+				System.out.println("Upload success: " + f + " url=" + viewURL);
+			}
+
+			public void onUploadFailure(File f, Exception ex) {
+				System.out.println("Upload fail: " + f + " " + ex);
+			}
+		};
+
+		File tmpDir = new File("/tmp");
+		File srcDir = new File(tmpDir, "testsrc");
+		srcDir.mkdirs();
+		File destDir = new File(tmpDir, "testdest");
+		DirectoryUploader up = new DirectoryUploader(srcDir, destDir, callback,
+				login, password, vehicleId, apiKey);
+		up.run();
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Starting REST test");
-		try {
-			runRESTTest();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (false) {
+			System.out.println("Starting REST test");
+			try {
+				runRESTTest();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
-		System.out.println("Starting Protobuf test");
-		try {
-			runTest();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (true) {
+			System.out.println("Starting dir upload test");
+			try {
+				runDirTest();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (false) {
+			System.out.println("Starting Protobuf test");
+			try {
+				runTest();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
