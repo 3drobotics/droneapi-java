@@ -26,7 +26,7 @@ public class DirectoryUploader {
 		this.apiKey = apiKey;
 	}
 
-	void run() {
+	public void run() {
 
 		File[] files = srcDir.listFiles(new FilenameFilter() {
 			public boolean accept(File dir, String name) {
