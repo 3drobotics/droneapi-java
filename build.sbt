@@ -18,6 +18,12 @@ libraryDependencies += "com.google.protobuf" % "protobuf-java" % "2.5.0" withSou
 
 libraryDependencies += "org.zeromq" % "jeromq" % "0.3.4" withSources()
 
+libraryDependencies += "org.apache.httpcomponents" % "httpcore" % "4.0" // Closest match to version in Android
+
+libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.0" // Closest match to version in Android
+
+libraryDependencies += "org.json" % "json" % "20090211" // Closest match to version in android
+
 mainClass in (Compile, run) := Some( "com.geeksville.apiproxy.TestClient")
 
 EclipseKeys.projectFlavor := EclipseProjectFlavor.Java
