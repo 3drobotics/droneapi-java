@@ -34,8 +34,10 @@ public class DirectoryUploader {
 			}
 		});
 
-		for (File f : files) {
-			try {
+        File processing = null;
+		try {
+			for (File f : files) {
+                processing = f;
 				callback.onUploadStart(f);
 				String url = RESTClient.doUpload(f, userId, userPass,
 						vehicleId, apiKey);
@@ -45,9 +47,13 @@ public class DirectoryUploader {
 				f.renameTo(newName);
 
 				callback.onUploadSuccess(f, url);
-			} catch (IOException ex) {
-				callback.onUploadFailure(f, ex);
 			}
+		} catch (IOException ex) {
+			// If the server returns any IO or HTTP exceptions, report _one_
+			// failure to the application
+			// but then stop scanning until asked to scan again.
+
+			callback.onUploadFailure(processing, ex);
 		}
 	}
 }
