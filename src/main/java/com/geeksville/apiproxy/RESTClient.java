@@ -91,7 +91,7 @@ public class RESTClient {
 
 			JSONArray missions = new JSONArray(resp);
 			if (missions.length() != 1)
-				throw new IOException("Non unity length array from server");
+				throw new IOException("The server rejected this log file");
 
 			JSONObject mission = missions.getJSONObject(0);
 			String viewURL = mission.getString("viewURL");
