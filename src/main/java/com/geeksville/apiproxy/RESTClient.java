@@ -73,7 +73,7 @@ public class RESTClient {
 			// instantiates httpclient to make request
 
 			// url with the post data
-			System.out.println("Starting upload to " + webAppUploadUrl);
+			System.out.println("Starting upload to " + baseUrl);
 			HttpPost httpost = new HttpPost(webAppUploadUrl);
 
 			FileEntity se = new FileEntity(srcFile, APIConstants.TLOG_MIME_TYPE);
