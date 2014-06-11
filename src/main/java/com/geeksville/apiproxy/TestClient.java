@@ -129,7 +129,7 @@ public class TestClient extends GCSHookImpl {
 			}
 		}
 
-		if (true) {
+		if (false) {
 			System.out.println("Starting dir upload test");
 			try {
 				runDirTest();
@@ -139,7 +139,7 @@ public class TestClient extends GCSHookImpl {
 			}
 		}
 
-		if (false) {
+		if (true) {
 			System.out.println("Starting Protobuf test");
 			try {
 				runTest();

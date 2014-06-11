@@ -22,76 +22,75 @@ import com.geeksville.dapi.Webapi.Envelope;
  */
 public class ZMQProtobufClient implements IProtobufClient {
 
-    private ZContext ctx;
-    private Socket socket;
-    private PollItem[] items;
+	private ZContext ctx;
+	private Socket socket;
+	private PollItem[] items;
 
-    ZMQProtobufClient(String zurl) {
-        System.out.println("Starting zmq client to " + zurl);
-        ctx = new ZContext();
+	ZMQProtobufClient(String zurl) {
+		System.out.println("Starting zmq client to " + zurl);
+		ctx = new ZContext();
 
-        // We use ROUTER rather than DEALER because we want ZMQ to drop packets
-        // (rather than blocking)
-        // if we are not connected to the server.
-        socket = ctx.createSocket(ZMQ.ROUTER);
+		// We use ROUTER rather than DEALER because we want ZMQ to drop packets
+		// (rather than blocking)
+		// if we are not connected to the server.
+		socket = ctx.createSocket(ZMQ.ROUTER);
 
-        socket.setHWM(20);
-        socket.setLinger(200); // in msecs
+		socket.setHWM(20);
+		socket.setLinger(200); // in msecs
 
-        // Use the following to get better client ids (must be unique)
-        String identity = UUID.randomUUID().toString();
-        socket.setIdentity(identity.getBytes(ZMQ.CHARSET));
+		// Use the following to get better client ids (must be unique)
+		String identity = UUID.randomUUID().toString();
+		socket.setIdentity(identity.getBytes(ZMQ.CHARSET));
 
-        socket.connect(zurl);
+		socket.connect(zurl);
 
-        items  = new PollItem[] { new PollItem(socket, Poller.POLLIN) };
-    }
+		items = new PollItem[] { new PollItem(socket, Poller.POLLIN) };
+	}
 
-    /**
-     * Send a message
-     * 
-     * @param msg
-     * @throws IOException
-     */
-    public synchronized void send(Envelope msg, Boolean noBlock) throws IOException {
-        //System.out.println("Sending " + msg);
-        socket.sendMore("SERVER"); // destination identity 
-        socket.sendMore(""); // A zero delemiter before payload
-        socket.send(msg.toByteArray(), noBlock ? ZMQ.NOBLOCK : 0);
-    }
+	/**
+	 * Send a message
+	 * 
+	 * @param msg
+	 * @throws IOException
+	 */
+	public void send(Envelope msg, Boolean noBlock) throws IOException {
+		// System.out.println("Sending " + msg);
+		socket.sendMore("SERVER"); // destination identity
+		socket.sendMore(""); // A zero delemiter before payload
+		socket.send(msg.toByteArray(), noBlock ? ZMQ.NOBLOCK : 0);
+	}
 
-    /**
-     * Block until a message can be read
-     * 
-     * @return
-     * @throws IOException
-     */
-    public synchronized Envelope receive(long timeout) throws IOException {
+	/**
+	 * Block until a message can be read
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
+	public Envelope receive(long timeout) throws IOException {
 
-        ZMQ.poll(items, timeout);
-        if (items[0].isReadable()) {
-            //System.out.println("Receiving");
-            // The DEALER socket gives us the address envelope and message
-            ZMsg msg = ZMsg.recvMsg(socket);
-            //System.out.println("Recvd " + msg);
-            ZFrame content = msg.getLast();
-            assert (content != null);
-            //System.out.println("Content " + content);
+		ZMQ.poll(items, timeout);
+		if (items[0].isReadable()) {
+			// System.out.println("Receiving");
+			// The DEALER socket gives us the address envelope and message
+			ZMsg msg = ZMsg.recvMsg(socket);
+			// System.out.println("Recvd " + msg);
+			ZFrame content = msg.getLast();
+			assert (content != null);
+			// System.out.println("Content " + content);
 
-            return Envelope.parseFrom(content.getData());
-        }
-        else
-            return null; // timed out
-    }
+			return Envelope.parseFrom(content.getData());
+		} else
+			return null; // timed out
+	}
 
-    public synchronized void close() throws IOException {
-        System.out.println("Closing");
-        // socket.close();
-        // ctx.close();
-        ctx.destroy();
-    }
+	public void close() throws IOException {
+		System.out.println("Closing ZMQ link");
+		// socket.close();
+		// ctx.close();
+		ctx.destroy();
+	}
 
-    public void flush() throws IOException {
-        // Not needed (zmq hides this)
-    }
+	public void flush() throws IOException {
+		// Not needed (zmq hides this)
+	}
 }

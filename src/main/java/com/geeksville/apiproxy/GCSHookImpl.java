@@ -34,7 +34,8 @@ public class GCSHookImpl implements GCSHooks {
 	public void connect() throws UnknownHostException, IOException {
 		// weblink = new TCPProtobufClient(APIConstants.DEFAULT_SERVER,
 		// APIConstants.DEFAULT_TCP_PORT);
-		weblink = new ZMQProtobufClient(APIConstants.ZMQ_URL);
+		weblink = new ThreadedProtobufClient(new ZMQProtobufClient(
+				APIConstants.ZMQ_URL));
 		waitConnected(5000);
 
 		startTime = System.currentTimeMillis() * 1000;
@@ -47,7 +48,7 @@ public class GCSHookImpl implements GCSHooks {
 
 		long timeout = 300; // Check every 100ms
 		while (timeoutMsec > 0) {
-			System.out.println("Sending ping");
+			// System.out.println("Sending ping");
 			weblink.send(ping, true);
 			flush();
 

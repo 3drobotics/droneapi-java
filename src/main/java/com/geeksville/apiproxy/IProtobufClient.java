@@ -4,6 +4,13 @@ import java.io.IOException;
 
 import com.geeksville.dapi.Webapi.Envelope;
 
+/**
+ * A low level pipe which can send and receive protobufs (hides differences
+ * between UDP, TCP, ZMQ from the GCSHookImpl)
+ * 
+ * @author kevinh
+ * 
+ */
 public interface IProtobufClient {
 	/**
 	 * Send a message
@@ -16,7 +23,8 @@ public interface IProtobufClient {
 	/**
 	 * Block until a message can be read
 	 * 
-     * @param timeout in msecs, or -1 for infinite
+	 * @param timeout
+	 *            in msecs, or -1 for infinite
 	 * @return null if we timeout
 	 * @throws IOException
 	 */
