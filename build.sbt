@@ -4,7 +4,7 @@ name := "droneapi-java"
 
 description := "A client library for drone API servers"
 
-version := "0.1-SNAPSHOT"
+version := "0.2-SNAPSHOT"
 
 scalaVersion := "2.10.3"
 

@@ -53,7 +53,7 @@ public class ZMQProtobufClient implements IProtobufClient {
      * @param msg
      * @throws IOException
      */
-    public void send(Envelope msg, Boolean noBlock) throws IOException {
+    public synchronized void send(Envelope msg, Boolean noBlock) throws IOException {
         //System.out.println("Sending " + msg);
         socket.sendMore("SERVER"); // destination identity 
         socket.sendMore(""); // A zero delemiter before payload
@@ -66,7 +66,7 @@ public class ZMQProtobufClient implements IProtobufClient {
      * @return
      * @throws IOException
      */
-    public Envelope receive(long timeout) throws IOException {
+    public synchronized Envelope receive(long timeout) throws IOException {
 
         ZMQ.poll(items, timeout);
         if (items[0].isReadable()) {
@@ -84,7 +84,7 @@ public class ZMQProtobufClient implements IProtobufClient {
             return null; // timed out
     }
 
-    public void close() throws IOException {
+    public synchronized void close() throws IOException {
         System.out.println("Closing");
         // socket.close();
         // ctx.close();
@@ -92,6 +92,6 @@ public class ZMQProtobufClient implements IProtobufClient {
     }
 
     public void flush() throws IOException {
-        // FIXME
+        // Not needed (zmq hides this)
     }
 }
