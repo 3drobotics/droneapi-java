@@ -6,7 +6,7 @@ public class APIConstants {
      */
     public static final String DEFAULT_SERVER = "api.3dr.com";
 
-    public static final String URL_BASE = "http://" + DEFAULT_SERVER;
+    public static final String URL_BASE = "https://" + DEFAULT_SERVER;
 
     /**
      * If using a raw TCP link to the server, use this port number
