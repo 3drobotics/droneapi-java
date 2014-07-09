@@ -13,10 +13,11 @@ public class DirectoryUploader {
 	private IUploadListener callback;
 	private String userId, userPass, vehicleId;
 	private String apiKey;
+	private String privacy;
 
 	public DirectoryUploader(File srcDir, File destDir,
 			IUploadListener callback, String userId, String userPass,
-			String vehicleId, String apiKey) {
+			String vehicleId, String apiKey, String privacy) {
 		this.srcDir = srcDir;
 		this.destDir = destDir;
 		this.callback = callback;
@@ -24,6 +25,7 @@ public class DirectoryUploader {
 		this.userPass = userPass;
 		this.vehicleId = vehicleId;
 		this.apiKey = apiKey;
+		this.privacy = privacy;
 	}
 
 	public void run() {
@@ -40,7 +42,7 @@ public class DirectoryUploader {
                 processing = f;
 				callback.onUploadStart(f);
 				String url = RESTClient.doUpload(f, userId, userPass,
-						vehicleId, apiKey);
+						vehicleId, apiKey, privacy);
 
 				destDir.mkdirs();
 				File newName = new File(destDir, f.getName());

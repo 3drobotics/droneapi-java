@@ -86,7 +86,7 @@ public class TestClient extends GCSHookImpl {
 	 * @throws Exception
 	 */
 	public static void runRESTTest() throws Exception {
-		RESTClient.doUpload(testTlog, login, password, vehicleId, apiKey);
+		RESTClient.doUpload(testTlog, login, password, vehicleId, apiKey, "DEFAULT");
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class TestClient extends GCSHookImpl {
 		srcDir.mkdirs();
 		File destDir = new File(tmpDir, "testdest");
 		DirectoryUploader up = new DirectoryUploader(srcDir, destDir, callback,
-				login, password, vehicleId, apiKey);
+				login, password, vehicleId, apiKey, "DEFAULT");
 		up.run();
 	}
 

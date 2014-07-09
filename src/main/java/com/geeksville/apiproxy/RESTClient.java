@@ -57,12 +57,13 @@ public class RESTClient {
 	 *         should never be uploaded again
 	 */
 	public static String doUpload(File srcFile, String userId, String userPass,
-			String vehicleId, String apiKey) throws IOException {
+			String vehicleId, String apiKey, String privacy) throws IOException {
 		String baseUrl = APIConstants.URL_BASE;
 		LinkedList<NameValuePair> params = new LinkedList<NameValuePair>();
 		params.add(new BasicNameValuePair("api_key", apiKey));
 		params.add(new BasicNameValuePair("login", userId));
 		params.add(new BasicNameValuePair("password", userPass));
+		params.add(new BasicNameValuePair("privacy", privacy));
 		params.add(new BasicNameValuePair("autoCreate", "true"));
 		String queryParams = URLEncodedUtils.format(params, "utf-8");
 		String webAppUploadUrl = String.format(
