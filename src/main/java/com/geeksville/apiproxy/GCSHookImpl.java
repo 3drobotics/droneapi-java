@@ -197,7 +197,8 @@ public class GCSHookImpl implements GCSHooks {
 	}
 
 	/**
-	 * Send without checking to see if we are logged in
+	 * Send without checking to see if we are logged in (this method will block
+	 * if necessary)
 	 * 
 	 * @param e
 	 * @throws IOException
@@ -219,7 +220,10 @@ public class GCSHookImpl implements GCSHooks {
 	public void stopMission(Boolean keep) throws IOException {
 		StopMissionMsg mav = StopMissionMsg.newBuilder().setKeep(keep).build();
 
-		send(Envelope.newBuilder().setStopMission(mav).build());
+		// Note - this method will be called from the GUI thread in the case of
+		// droidplanner, therefore we can never
+		// allow it to block
+		sendNoBlock(Envelope.newBuilder().setStopMission(mav).build());
 	}
 
 }
