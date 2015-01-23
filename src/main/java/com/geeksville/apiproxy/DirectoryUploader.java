@@ -1,5 +1,7 @@
 package com.geeksville.apiproxy;
 
+import com.geeksville.apiproxy.rest.RESTClient;
+
 import java.io.*;
 
 /**

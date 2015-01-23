@@ -1,8 +1,11 @@
-package com.geeksville.apiproxy;
+package com.geeksville.apiproxy.rest;
+
+import com.geeksville.apiproxy.APIConstants;
 
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.conn.scheme.PlainSocketFactory;
@@ -50,6 +53,31 @@ public class RESTClient {
     }
 
     static private DefaultHttpClient httpclient = getHttpClient();
+
+    public static JSONObject getUserData(String userName, String userPass, String apiKey) throws IOException {
+        String baseUrl = APIConstants.URL_BASE;
+        LinkedList<NameValuePair> params = new LinkedList<NameValuePair>();
+        params.add(new BasicNameValuePair("api_key", apiKey));
+        params.add(new BasicNameValuePair("login", userName));
+        params.add(new BasicNameValuePair("password", userPass));
+        String queryParams = URLEncodedUtils.format(params, "utf-8");
+        String webUserDataUrl = String.format("%s/api/v1/auth/user?%s", baseUrl, queryParams);
+
+        System.out.println("Starting user data fetch from url: " + webUserDataUrl);
+        HttpGet httpGet = new HttpGet(webUserDataUrl);
+        httpGet.setHeader("Accept", "application/json");
+
+        BasicResponseHandler responseHandler = new BasicResponseHandler();
+        String resp = httpclient.execute(httpGet, responseHandler);
+
+        System.out.println("Received JSON response: " + resp);
+        try {
+            return new JSONObject(resp);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      * @return on success the URL to view the flight at, or NULL if the flight
