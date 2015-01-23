@@ -13,3 +13,15 @@ project/target
 .history
 target/
 *.sublime-workspace
+
+# Intellij project files
+.idea/
+*.iml
+
+# Gradle files
+.gradle/
+build/
+classes/
+
+# Local configuration file (sdk path, etc)
+local.properties
