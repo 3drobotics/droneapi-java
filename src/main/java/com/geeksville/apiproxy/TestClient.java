@@ -1,5 +1,10 @@
 package com.geeksville.apiproxy;
 
+import com.geeksville.apiproxy.rest.RESTClient;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.File;
 import java.net.UnknownHostException;
@@ -86,7 +91,10 @@ public class TestClient extends GCSHookImpl {
 	 * @throws Exception
 	 */
 	public static void runRESTTest() throws Exception {
-		RESTClient.doUpload(testTlog, login, password, vehicleId, apiKey, "DEFAULT");
+//		RESTClient.doUpload(testTlog, login, password, vehicleId, apiKey, "DEFAULT");
+
+		JSONObject userData = RESTClient.getUserData("test", "test", apiKey);
+		System.out.println("User data: " + userData);
 	}
 
 	/**
@@ -119,7 +127,7 @@ public class TestClient extends GCSHookImpl {
 	}
 
 	public static void main(String[] args) {
-		if (false) {
+		if (true) {
 			System.out.println("Starting REST test");
 			try {
 				runRESTTest();
@@ -139,7 +147,7 @@ public class TestClient extends GCSHookImpl {
 			}
 		}
 
-		if (true) {
+		if (false) {
 			System.out.println("Starting Protobuf test");
 			try {
 				runTest();
