@@ -8,7 +8,7 @@ version := "0.3-SNAPSHOT"
 
 scalaVersion := "2.10.3"
 
-javacOptions ++= Seq("-source", "1.6", "-target", "1.6") // Build for java6 because old android devices require it
+//javacOptions ++= Seq("-source", "1.6", "-target", "1.6") // Build for java6 because old android devices require it
 
 autoScalaLibrary := false // This is a pure java project
 
@@ -22,7 +22,7 @@ libraryDependencies += "org.apache.httpcomponents" % "httpcore" % "4.0" // Close
 
 libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.0" // Closest match to version in Android
 
-libraryDependencies += "org.json" % "json" % "20090211" // Closest match to version in android
+libraryDependencies += "org.json" % "json" % "20090211" % "provided" notTransitive()// Closest match to version in android
 
 mainClass in (Compile, run) := Some( "com.geeksville.apiproxy.TestClient")
 
